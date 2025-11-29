@@ -91,4 +91,6 @@ if st.sidebar.button("Apply"):
         st.pyplot(fig)
 
         # --- Display table/text output ---
-        st.text_area("Output Table & Totals", value=output_text, height=300)
+        st.text_area("Output & Totals", value=output_text, height=300)
+        st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
+
