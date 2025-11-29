@@ -1,6 +1,8 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 from atomwords import draw_atom_words_from_dict  # your plotting function
+import glyphdict
+import modsdict
 
 # Example data – replace with your actual dictionaries
 words_dict = glyphdict.words_dict
