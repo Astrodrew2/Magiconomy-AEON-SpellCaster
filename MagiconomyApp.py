@@ -4,6 +4,35 @@ from atomwords import draw_atom_words_from_dict  # your plotting function
 import glyphdict
 import modsdict
 
+st.markdown("""
+<style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1.0rem;
+    font-family: sans-serif;
+    min-width: 400px;
+    border: 1px solid #ddd;
+}
+.styled-table th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+}
+.styled-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.styled-table tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # Example data – replace with your actual dictionaries
 words_dict = glyphdict.words_dict
 modifiers_dict = modsdict.mod_dict
