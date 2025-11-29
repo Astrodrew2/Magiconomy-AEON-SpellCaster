@@ -238,6 +238,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         # Electron positions
         electron_positions = {}
         grouped = {}
+        rtcEnergy = 0
         for word in words_list:
             info = words_dict[word]
             key = (info["level"], info["section"])
