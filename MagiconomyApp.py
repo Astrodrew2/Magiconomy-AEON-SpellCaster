@@ -38,33 +38,56 @@ modifiers_dict = modsdict.mod_dict
 st.title("Aeon Spell Caster")
 
 # --- Sidebar Inputs ---
-st.sidebar.header("Controls")
+with st.sidebar:
 
-# Glyph selection
-glyph_list = st.sidebar.multiselect(
-    "Select Glyphs",
-    options=list(words_dict.keys()),
-    default=list(words_dict.keys())
-)
+    # ---- NEW VIEW-MODE CONTROL ----
+    view_mode = st.radio(
+        "View Mode",
+        ["Application", "Full Document"],
+        index=0
+    )
+    st.sidebar.header("Controls")
+    
+    # Glyph selection
+    glyph_list = st.sidebar.multiselect(
+        "Select Glyphs",
+        options=list(words_dict.keys()),
+        default=list(words_dict.keys())
+    )
+    
+    # Domain input (optional)
+    domain_var = st.sidebar.text_input("Domain", "DefaultDomain")
+    
+    # Modifier selection
+    mods_list = st.sidebar.multiselect(
+        "Select Modifiers",
+        options=list(modifiers_dict.keys()),
+        default=[]
+    )
+    
+    # Range increase
+    range_inc = st.sidebar.number_input("Range Increase", min_value=0, value=0)
+    
+    # Range type
+    range_type = st.sidebar.number_input("Range Type Change", min_value=0, value=0)
+    
+    # Quicken
+    quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
+    
+if view_mode == "Full Document":
+    st.header("📄 Full Reference Document")
 
-# Domain input (optional)
-domain_var = st.sidebar.text_input("Domain", "DefaultDomain")
+    try:
+        with open("full_document.txt", "r") as f:
+            full_text = f.read()
 
-# Modifier selection
-mods_list = st.sidebar.multiselect(
-    "Select Modifiers",
-    options=list(modifiers_dict.keys()),
-    default=[]
-)
+        st.text_area("Reference", full_text, height=800)
 
-# Range increase
-range_inc = st.sidebar.number_input("Range Increase", min_value=0, value=0)
+    except FileNotFoundError:
+        st.warning("No 'full_document.txt' found in project directory.")
 
-# Range type
-range_type = st.sidebar.number_input("Range Type Change", min_value=0, value=0)
+    st.stop()  # Prevents running rest of app
 
-# Quicken
-quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
 
 # Apply button
 if st.sidebar.button("Apply"):
