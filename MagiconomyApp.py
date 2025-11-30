@@ -43,7 +43,7 @@ with st.sidebar:
     # ---- NEW VIEW-MODE CONTROL ----
     view_mode = st.radio(
         "View Mode",
-        ["Application", "Full Document"],
+        ["Spell Caster", "Glyph Dictionary"],
         index=0
     )
     st.sidebar.header("Controls")
@@ -74,17 +74,17 @@ with st.sidebar:
     # Quicken
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
     
-if view_mode == "Full Document":
-    st.header("📄 Full Reference Document")
+if view_mode == "Glyph Dictionary":
+    st.header("📄 Glyph Dictionary")
 
     try:
-        with open("full_document.txt", "r") as f:
+        with open("Glyph_Dictionary.txt", "r") as f:
             full_text = f.read()
 
         st.text_area("Reference", full_text, height=800)
 
     except FileNotFoundError:
-        st.warning("No 'full_document.txt' found in project directory.")
+        st.warning("No 'Glyph_Dictionary.txt' found in project directory.")
 
     st.stop()  # Prevents running rest of app
 
