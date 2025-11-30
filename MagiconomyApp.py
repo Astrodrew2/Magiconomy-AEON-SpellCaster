@@ -24,11 +24,8 @@ st.markdown("""
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
-.styled-table tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
 .styled-table tr:hover {
-    background-color: #f1f1f1;
+    background-color: #04665f;
 }
 </style>
 """, unsafe_allow_html=True)
