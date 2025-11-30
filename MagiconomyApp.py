@@ -78,7 +78,7 @@ if st.sidebar.button("Apply"):
         st.subheader("Orbital Figure and Table Output")
 
         # --- Generate figure and text ---
-        fig, output_text = draw_atom_words_from_dict(
+        fig, output_text, df= draw_atom_words_from_dict(
             words_list=glyph_list,
             words_dict=words_dict,
             modifiers_dict=modifiers_dict,
