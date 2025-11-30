@@ -1,0 +1,473 @@
+Glyph Dictionary
+Magic Group Symbols:
+
+ - Ley
+Description: 
+
+ - Druidism
+Description: 
+
+- Shamanism
+Description: 
+
+ - Dark Shamanism
+Description: 
+
+- Death
+Description: 
+
+- End
+Description:
+
+Glyphs:
+Ley Glyphs: 
+Novice Glyphs:
+
+ - Light: 
+Default Energy Level: 1 (0 Charge if alone, i.e. illuminate)
+Default AP: 1, Instant
+Default Range: 10 ft
+Default Range Type: Radial
+Can it be channeled: Yes
+
+- Detect Magic: 
+Default Energy Level: 1 (0 if alone, i.e. Detect Magic)
+Default AP: 1
+Default Range: Depending on level of magic detected Low: 20ft, Medium: 30ft, Strong: 40 ft. 
+Default Range Type: Radial
+Can it be channeled: Yes
+
+- Charge (Release/Damage)
+Default Energy Level: 2
+Default AP: 2
+Default Range: Touch
+Default Range Type: Point
+Can it be channeled: No
+Default Duration: 3 turns (18 sec)
+
+- Charge (Absorb/Resistance)
+Default Energy Level: 2
+Default AP: 2
+Default Range: Touch
+Default Range Type: Point
+Can it be channeled: No
+Default Duration: 3 turns (18 sec)
+
+
+
+
+
+
+
+
+
+Adept Glyphs:
+
+ - Freeze:
+Default Energy Level: 1
+Default AP: 1
+Default Range: 10ft
+Default Range Type: Beam
+Can it be channeled: Yes
+
+ - Flame: 
+.Cause Burn.
+Default Energy Level: 1
+Default AP: 1
+Default Range: 10ft
+Default Range Type: Point
+Can it be channeled: Yes
+
+- Socket: 
+Default Energy Level: 1
+Default AP: 2
+Default Range: Touch
+Default Range Type: Point
+Can it be channeled: No
+Duration: Continious
+
+- Heat:
+Heats up the air in front of you and pushes non-monstrous targets back 5ft
+Default energy Level: 1
+Default AP: 1, Instant
+Default Range: 5ft
+Default Range Type: Beam
+Can it be channeled: Yes
+
+- Chill:
+Default Energy Level: 1
+Default AP: 1, Instant
+Default Range: 10ft
+Default Range Type: Cone
+Can it be channeled: No
+
+- Ice: 
+Default Energy Level: (Depends on Weight of Object, Charge = ½ weight value, round up. A spike/shard = 1 Charge)
+Default AP: 1
+Default Range: ≤10ft
+Default Range Type: Point
+Can it be channeled: No, but is long-lasting
+
+- Shape Ice:
+Default Energy Level: 1
+Default AP: 0
+Default Range: Touch
+Default Range Type: Point
+Can it be channeled: No, but is long-lasting
+(need more types of ice shield)
+
+
+
+
+
+Master Glyphs:
+
+- Greater Flame:
+.Cause Burn.
+Default Energy Level: 2
+Default AP: 1
+Default Range: 30ft
+Default Range Type: Point
+Can it be channeled: Yes
+Damage: If caught in flames, 	2 x INT MD✨
+
+- Greater Chill: 
+Default Energy Level: 4? (We need to address slow)
+Default AP: 1, instant
+Default Range: 30ft
+Default Range Type: Cone
+Can it be channeled: No
+
+
+
+
+
+
+
+Ley Enhancements: 
+Novice:
+- Brightness Enhancement:
+Default Enhancement: Adds the Stun effect to a spell with the Glyph of Light
+Default Energy Level: 1 
+Adept:
+
+ - Vertical Enhancement:
+Adds 6ft to the height of the channeled or long-lasting glyph attached (mass is increased as would be expected)
+Default Energy Level: 1
+- Impact Enhancement:
+If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.
+Default Energy Level: 1
+Requirements: +1 Charge instead of +1 AP for glyph crafting in the Ley domain
+
+- Shoot Ice: 
+If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range
+Default Energy Level: 1 (No AP or Charge cost unless modified i.e. Shoot Ice1 or Shoot Ice2)
+
+
+
+
+Master:
+ - Greater Vertical Enhancement:
+Adds 10ft to the height of the channeled or long-lasting glyph attached
+Default Energy Level: 2
+Druidism Glyphs:
+Note: ALL have the Vigor modifier attached
+Novice Glyphs:
+
+- Roots:
+Default Energy Level: 2
+Default AP: 1
+Default Range: 20ft
+Default Range Type: Point
+Can it be channeled: No
+
+- Spirit Flame (Heal):
+Cast green fire to restore the Vigor of a target at the cost of your own. Lose Spirit x 2 as Vigor and restore target’s Vigor by the same amount. Restore targets Injury Units equal to your Spi. (Requires Medium Spirit Check)
+Default Energy Level: 1 (Vigor cost is Spirit x2)
+Default AP: 1
+Default Range: 10ft
+Default Range Type: Beam
+Can it be channeled: Yes
+
+- Spirit Flame (Damage):
+Cast dark green fire to inflict MD ✨ on a target, Damage: SPI × 2 MD ✨
+Default Energy Level: 1 (Vigor cost is Spirit x2)
+Default AP: 1
+Default Range: 10ft
+Default Range Type: Beam
+Can it be channeled: Yes
+
+- Barkskin:
+Harden your skin like tree bark, reinforcing your PR 🛡️. Bark skin acts as another layer of armor with 10 NR, 10 FR, and 1 PT for all sources of PD ⚔️. Dispelling the bark skin restores the HP used to cast it
+Default Energy Level: 1
+Default AP: 1, instant
+Default Range: Self
+Default Range Type: Self (cannot be changed)
+Can it be channeled: No
+Duration: 3 turns
+
+- Thorns:
+Grow bony thorns and spikes that protrude from your skin all over your body. If an enemy comes into contact with an area of your body where you are wearing Light armor or less, they will take damage. If the enemy punches, kicks, or grapples you while they are wearing light armor or less in any area, they will take 10 (Piercing) ⚔️/1 PP. Dispelling the thorns restores the HP used to cast it
+Default Energy Level: 1
+Default AP: 1 AP, instant
+Default Range: Self
+Default Range Type: Self
+Can it be channeled: No
+Duration: 3 turns
+
+
+
+
+
+
+
+Adept Glyphs:
+
+
+- Claws:
+Default Energy Level: 1 (+5 Vigor)
+Default AP: 1
+Default Range: Self
+
+ - Remediate:
+Cure yourself or a target of any poison, curses, or uncheck the Bleed Box.Cannot be performed during combat
+Default Energy Level: 2
+Default AP: 1
+Default Range: Touch
+Default Range Type: Touch
+
+
+
+Master Glyphs:
+- Fire of Life:
+Revert your Inner Fire to Inner Embers forever and in exchange you may resurrect one mortal entity at full Vigor and fully restoring their body, curing them of any ailments and healing any injuries (including missing limbs): Cost: Loss of Inner Fire forever
+Default Energy Level: 3
+Default AP: 6
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: No
+
+
+Druidism Enhancements: 
+Novice:
+
+Adept:
+- Shoot Thorns:
+Shoot Thorns in all directions (radial) for 5ft. If you are casting thorns from yourself you must be wearing Light armor or less on your torso. Damage: 10 (Piercing) PD ⚔️/2 PP, Instant
+Default Energy Level: 1
+
+
+- Venom:
+While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact
+Default Energy Level: 1
+Duration: 1 turn
+
+
+
+Master:
+
+Shamanism Glyphs:
+
+Novice Glyphs:
+Small Air:
+
+Small Earth:
+
+Small Water:
+
+Small Fire:
+
+Lesser Communion
+
+
+
+Adept Glyphs:
+Master Glyphs:
+
+Shamanism Enhancements: 
+
+Novice:
+Adept:
+Master:
+
+Dark Shamanism Glyphs
+
+Novice Glyphs:
+Adept Glyphs:
+Master Glyphs:
+
+Dark Shamanism Enhancements: 
+
+
+Novice:
+Adept:
+Master:
+
+Death Glyphs:
+Novice Glyphs:
+Adept Glyphs:
+Master Glyphs:
+Death Enhancements: 
+Novice:
+Adept:
+Master:
+
+End Glyphs:
+Novice Glyphs:
+
+- Volatility:
+Default Energy Level: 2
+Default AP: 1, instant
+Default Range: 15ft
+Default Range Type: Radial
+Can it be channeled: No
+
+- Devour:
+Default Energy Level: 2
+Default AP: 2
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: Yes (2 charge/2 AP per channeled turn)
+
+
+
+
+
+
+Adept Glyphs:
+
+ - Crystal:
+Default Energy Level: 1
+Default AP: 1
+Default Range: 15ft
+Default Range Type: Point
+Can it be channeled: No
+
+- Disenchant:
+Default Energy Level: 1
+Default AP: 2
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: No
+Limit: Unusable in combat
+
+- Enchant (Weapon):
+Default Energy Level: 2
+Default AP: 2
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: No
+
+- Bloodstone (Craft):
+Default Energy Level: 2
+Default AP: 2
+Default Range: ≤10ft
+Default Range Type: Point
+Can it be channeled: No
+
+- Endflame:
+Default Energy Level: 1
+Default AP: 2
+Default Range: 20ft
+Default Range Type: Beam
+Can it be channeled: No
+
+
+
+
+
+
+
+Master Glyphs:
+
+
+- Demongate:
+Rift seals in 2 seconds or after an End Pull whichever happens first.
+Default Energy Level: 5
+Default AP: 2
+Default Range: 5ft
+Default Range Type: Point
+Can it be channeled: No
+Table:
+Roll a d20 to see what comes out of the portal when using End Pull
+1
+Cast Crystal Rain 3 times at the point the portal is opened. This can also hit the caster
+2-10
+2-10: A vortex of Endwind blows through the portal dealing your d20 roll × 10 MD ✨ to all entities in a 10 foot radius
+11-15
+Spirits of the damned flow out and inhabit any corpses within a 10 foot radius of the portal. The corpses are resurrected as feral undead who recklessly strike any nearby targets
+16-19
+A lesser demon emerges from the portal (at the GM’s discretion)
+20
+A feral demon warrior bursts through the portal
+
+
+
+
+- End Pull: 
+Beckon End winds and the creatures of which it flows through towards you. Is easiest to cast in areas with concentrated End (e.g. Hell). If linked with with the Glyph of Demongate consult the Demongate table. 
+Default Energy Level: 3
+Default AP: 2
+Default Range: 10ft
+Default Range Type: Beam
+Can it be channeled: No
+
+- Enslave (demon)
+Default Energy Level: 1
+Default AP: 2
+Default Range: 10ft
+Default Range Type: Point
+Can it be channeled: No
+
+- Soul Vessel (create)
+Default Energy Level: 2
+Default AP: 2
+Default Range: 5ft
+Default Range Type: Point
+Can it be channeled: No
+Limit: This cannot be performed in combat
+
+- Soul Vessel (store)
+Default Energy Level: 1 charge for each 10 Vigor stored from a target (or becomes a vigor modified glyph if self)
+Default AP: 2
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: No
+
+- Soul Vessel (resurrect)
+Default Energy Level: 1
+Default AP: 2 AP
+Default Range: Touch
+Default Range Type: Touch
+Can it be channeled: No
+
+
+
+
+End Enhancements: 
+Novice:
+Adept:
+
+- Shadowfire:
+This gives Ley Fire magic spells the additional Shadowfire effect, dealing 2 × INT MD ✨ to any limb instantly upon initial contact (if you are completely engulfed in Shadowfire this will afflict all targets you come in contact with). This includes contact with existing Walls of Flame and areas burning with the Shadowfire effect.
+Default Energy Level: 1 (0 Charge cost even though only used in cross-domain crafting)
+Requirements: Upon learning this Glyph, you become a Traitor to Ley. You can no longer put skill points into leveling Ley Magic, Druidism, or Shamanism skills from this point onward
+
+- Crystal Growth:
+Grows the initial crystal from the Crystal Glyph far enough outward up to a total of 10ft away from you (add the proper Upper Accent to the crystal glyph, and this overwrites the default 15 ft). If hit by the point of a growing crystal while it grows (during the initial cast), you will take 40 (Piercing) PD ⚔️/7 PP. If range is increased increase the damage by that multiple (e.g. 30ft range = 3x40 → 120 PD ⚔️/7 PP.)
+Default Energy Level: 1
+
+- Crystal Grove:
+Splits the Glyph of Crystal attached into an area covering 10 ft radial circle of shards.
+Default Energy Level: 1 
+
+
+
+
+
+
+
+
+Master:
+
+
