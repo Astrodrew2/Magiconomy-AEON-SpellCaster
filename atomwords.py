@@ -5,6 +5,7 @@ from tabulate import tabulate
 import io
 import sys
 from contextlib import redirect_stdout
+import pandas as pd
 
 # Mapping for range and range type
 range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 30: "30 ft", 40: "40 ft"}
