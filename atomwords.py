@@ -469,8 +469,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         print("ENERGY from RANGE INC:", added_energy_cost)
         print("RANGE INC:", range_increase_input+1,"X")
         print("Quicken Value:", quicken)
-        print(tabulate(table, headers=["From","To","Base AP","Base Energy","Cross AP","Cross Energy",
-                                       "Domain","Range","RT","Comment","Chan","AP"], tablefmt="fancy_grid"))
+        #print(tabulate(table, headers=["From","To","Base AP","Base Energy","Cross AP","Cross Energy",
+                                       #"Domain","Range","RT","Comment","Chan","AP"], tablefmt="fancy_grid"))
+        df = pd.DataFrame(table,columns=["From","To","Base AP","Base Energy","Cross AP","Cross Energy","Domain","Range","RT","Comment","Chan","AP"])
     
     
         printed_output = buffer.getvalue()
@@ -483,7 +484,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         ax.set_ylim(-lim,lim)
         ax.set_zlim(-lim,lim)
         #plt.show()
-        return fig, printed_output
+        return fig, printed_output,df
     
 
 
