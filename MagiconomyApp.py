@@ -16,8 +16,8 @@ st.markdown("""
     border: 1px solid #ddd;
 }
 .styled-table th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: ##D2B48C;
+    color: black;
     padding: 8px;
 }
 .styled-table td {
