@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from atomwords import draw_atom_words_from_dict  # your plotting function
 import glyphdict
 import modsdict
+import pandas as pd
 
 st.markdown("""
 <style>
