@@ -35,8 +35,9 @@ st.markdown("""
 words_dict = glyphdict.words_dict
 modifiers_dict = modsdict.mod_dict
 # ====================== APP LAYOUT ====================== #
-st.image("magics.png", use_column_width=True)
+
 st.title("Aeon Spell Caster")
+st.image("magics.png", use_container_width=True)
 
 # --- Sidebar Inputs ---
 with st.sidebar:
