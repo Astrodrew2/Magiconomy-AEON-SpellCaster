@@ -5,6 +5,7 @@ import glyphdict
 import modsdict
 import pandas as pd
 import base64
+import os
 from pdf2image import convert_from_path
 def render_pdf_as_images(pdf_path):
     """Convert each PDF page to an image and display it."""
