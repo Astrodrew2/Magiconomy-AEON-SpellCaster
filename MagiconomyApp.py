@@ -5,7 +5,19 @@ import glyphdict
 import modsdict
 import pandas as pd
 import base64
+from pdf2image import convert_from_path
+def render_pdf_as_images(pdf_path):
+    """Convert each PDF page to an image and display it."""
+    if not os.path.exists(pdf_path):
+        st.error(f"PDF file not found: {pdf_path}")
+        return
 
+    # Convert pages to images
+    pages = convert_from_path(pdf_path, dpi=150)
+
+    # Display each page as an image
+    for i, page in enumerate(pages):
+        st.image(page, caption=f"Page {i+1}", use_column_width=True)
 def display_pdf(pdf_path: str):
     """Embed a PDF into the Streamlit app."""
     with open(pdf_path, "rb") as f:
@@ -94,13 +106,11 @@ with st.sidebar:
 if view_mode == "Glyph Dictionary":
     st.header("Glyph Dictionary")
 
-    pdf_path = "Glyph_Dictionary(tobeupdated).pdf"   # <-- your PDF file here
+    pdf_path = "Glyph_Dictionary(tobeupdated).pdf"
 
-    try:
-        display_pdf(pdf_path)
+    st.subheader("Document Pages")
 
-    except FileNotFoundError:
-        st.warning("No 'Glyph_Dictionary.pdf' found in project directory.")
+    render_pdf_as_images(pdf_path)
 
     st.stop()
     
