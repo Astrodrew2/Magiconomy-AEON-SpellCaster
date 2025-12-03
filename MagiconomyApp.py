@@ -105,11 +105,8 @@ with st.sidebar:
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
 
 if view_mode == "Glyph Dictionary":
-    st.header("Glyph Dictionary")
 
     pdf_path = "Glyph_Dictionary(tobeupdated).pdf"
-
-    st.subheader("Document Pages")
 
     render_pdf_as_images(pdf_path)
 
