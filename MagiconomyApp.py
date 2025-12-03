@@ -5,6 +5,20 @@ import glyphdict
 import modsdict
 import pandas as pd
 
+def display_pdf(pdf_path: str):
+    """Embed a PDF into the Streamlit app."""
+    with open(pdf_path, "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode("utf-8")
+
+    pdf_display = f"""
+        <iframe
+            src="data:application/pdf;base64,{base64_pdf}"
+            width="100%" height="900"
+            type="application/pdf">
+        </iframe>
+    """
+    st.markdown(pdf_display, unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 .styled-table {
@@ -75,20 +89,20 @@ with st.sidebar:
     
     # Quicken
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
-    
+
 if view_mode == "Glyph Dictionary":
-    st.header("📄 Glyph Dictionary")
+    st.header("Glyph Dictionary")
+
+    pdf_path = "Glyph_Dictionary(tobeupdated).pdf"   # <-- your PDF file here
 
     try:
-        with open("Glyph_Dictionary.txt", "r") as f:
-            full_text = f.read()
-
-        st.text_area("Reference", full_text, height=800)
+        display_pdf(pdf_path)
 
     except FileNotFoundError:
-        st.warning("No 'Glyph_Dictionary.txt' found in project directory.")
+        st.warning("No 'Glyph_Dictionary.pdf' found in project directory.")
 
-    st.stop()  # Prevents running rest of app
+    st.stop()
+    
 
 
 # Apply button
