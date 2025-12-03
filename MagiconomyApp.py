@@ -4,6 +4,7 @@ from atomwords import draw_atom_words_from_dict  # your plotting function
 import glyphdict
 import modsdict
 import pandas as pd
+import base64
 
 def display_pdf(pdf_path: str):
     """Embed a PDF into the Streamlit app."""
