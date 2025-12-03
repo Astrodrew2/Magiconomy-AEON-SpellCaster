@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["cairo", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "pkg-config", "poppler_utils", "qhull", "tcl", "tk", "poppler"]
+packages = ["cairo", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "pkg-config", "poppler_utils", "qhull", "tcl", "tk", "poppler", "poppler-utils"]
 
 [workflows]
 runButton = "Project"
