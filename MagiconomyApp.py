@@ -63,10 +63,6 @@ st.markdown("""
 words_dict = glyphdict.words_dict
 modifiers_dict = modsdict.mod_dict
 # ====================== APP LAYOUT ====================== #
-if view_mode == "Spell Caster":
-    st.title("Aeon Spell Caster")
-    st.image("magics.png", use_container_width=True)
-
 # --- Sidebar Inputs ---
 with st.sidebar:
 
@@ -103,6 +99,11 @@ with st.sidebar:
     
     # Quicken
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
+
+if view_mode == "Spell Caster":
+    st.title("Aeon Spell Caster")
+    st.image("magics.png", use_container_width=True)
+
 
 if view_mode == "Glyph Dictionary":
 
