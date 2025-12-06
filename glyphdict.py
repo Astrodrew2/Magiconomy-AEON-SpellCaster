@@ -9,41 +9,46 @@
 words_dict = {
     #LEY
     #Novice
-    "Light": {"level":1,"section":6,"AP":1, "range":10, "rt": 6, "comment": "instant", "chann":1 },
-    "Detect Magic": {"level":1,"section":6,"AP":1, "range":40, "rt": 6, "comment": "none", "chann":1 },
-    "Charge D": {"level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "duration 3 turns", "chann":2 },
-    "Charge R": {"level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "duration 3 turns", "chann":2 },
+    "Light": {"level":1,"section":6,"AP":1, "range":10, "rt": 6, "comment": "instant, Emanate a light from your hand radially outward. It’s shine is almost calming
+", "chann":1 },
+    "Charge D": {"level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a weapon with MD ✨ equal to 2 × INT. When the effect wears off, the weapon turns to ash. Duration 3 turns", "chann":2 },
+    "Charge R": {"level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a piece of armor with MR 🪞 equal to 2 × INT. When the effect wears off, the armor turns to ash. Duration 3 turns", "chann":2 },
     #Adept
-    "Freeze": {"level":1,"section":6,"AP":1, "range":10, "rt": 4, "comment": "cause slow 1", "chann":1 },
-    "Flame": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "cause burn", "chann":1 },
-    "Socket": {"level":1,"section":6,"AP":2, "range":2, "rt": 2, "comment": "permanent", "chann":2 },
+    "Freeze": {"level":1,"section":6,"AP":1, "range":10, "rt": 4, "comment": "The Ley winds caught within your cast halt almost to a stand still inflicting 4 Slow on targets within your range", "chann":1 },
+    "Flame": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "Energize the Ley winds you cast upon making that which it touches burn. Causes Burn.", "chann":1 },
+    "Socket": {"level":1,"section":6,"AP":2, "range":2, "rt": 2, "comment": "If a weapon or piece of armor has a slot for a magical item or gemstone, you may use the Ley winds to fuse them together so the weapon or armor gains the effects of the magical item. Duration: continuous", "chann":2 },
     "Heat": {"level":1,"section":6,"AP":1, "range":5, "rt": 4, "comment": "instant, pushes non-monsterous targets back 5ft", "chann":1 },
-    "Chill": {"level":1,"section":6,"AP":1, "range":10, "rt": 5, "comment": "instant", "chann":2 },
-    "Ice w=1": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "long-lasting, w = weight of object and is 2x defualt charge value", "chann":1 },
-    "Ice w=2": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "long-lasting, w = weight of object and is 2x defualt charge value", "chann":1 },
-    "Ice w=3": {"level":2,"section":6,"AP":1, "range":10, "rt": 3, "comment": "long-lasting, w = weight of object and is 2x defualt charge value", "chann":1 },
-    "Ice w=4": {"level":2,"section":6,"AP":1, "range":10, "rt": 3, "comment": "long-lasting, w = weight of object and is 2x defualt charge value", "chann":1 },
-    "Ice w=5": {"level":3,"section":6,"AP":1, "range":10, "rt": 3, "comment": "long-lasting, w = weight of object and is 2x defualt charge value", "chann":1 },
-    "Shape Ice": {"level":1,"section":6,"AP":0, "range":2, "rt": 2, "comment": "long-lasting, can only be added to Glyph of Ice", "chann":2 },
+    "Chill": {"level":1,"section":6,"AP":1, "range":10, "rt": 5, "comment": "instant, The Ley winds caught within your cast slow down inflicting 1 Slow on targets within your range
+", "chann":2 },
+    "Ice w=1": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
+    "Ice w=2": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
+    "Ice w=3": {"level":2,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
+    "Ice w=4": {"level":2,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
+    "Ice w=5": {"level":3,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
+    "Shape Ice": {"level":1,"section":6,"AP":0, "range":2, "rt": 2, "comment": "You cut away at the Ley ice shaping it into your desired form as long as there is enough material to do so. Can only be added to Glyph of Ice. Duration: long-lasting", "chann":2 },
     #Master
-    "Greater Flame": {"level":2,"section":6,"AP":1, "range":30, "rt": 4, "comment": "cause burn and 2x INT MD", "chann":1 },
-    "Greater Chill": {"level":4,"section":6,"AP":1, "range":30, "rt": 5, "comment": "Instant, adds Slow 4", "chann":2 },
+    "Greater Flame": {"level":2,"section":6,"AP":1, "range":30, "rt": 4, "comment": "Energize the Ley winds you cast upon with far greater power and control making that which it touches burn and effect the natural world around it. Damage: If caught in flames, 2 x INT MD✨and Causes Burn.", "chann":1 },
+    "Greater Chill": {"level":4,"section":6,"AP":1, "range":30, "rt": 5, "comment": "Instant, The Ley winds caught within your cast come to stop briefly inflicting Inflict 6 Slow on targets within your range", "chann":2 },
     #Enhancements: Novice
     "Brightness EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "adds stun effect to Glyph of Light", "chann":2 },
     #Enhancements: Adept
-    "Vertical EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "adds 6ft to height of channeled / long-lasting glyph", "chann":2 },
-    "Impact EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "knocks enemy Prone, causes fracturing on inanimate object", "chann":2, "over": 1 },
-    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "shoots ley ice up to specified range", "chann":2 },
+    "Vertical EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 6ft to the height of the channeled or long-lasting glyph attached (mass is increased as would be expected). Duration: long-lasting glyph", "chann":2 },
+    "Impact EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.
+", "chann":2, "over": 1 },
+    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range
+(Unless modified with Shoot Ice1 or 2)", "chann":2 },
     #Enhancements: Master
-    "Greater Vertical EN": {"level":2,"section":6,"AP":1, "range":0, "rt": 0, "comment": "adds 10ft to height of channeled / long-lasting glyph", "chann":2 },
+    "Greater Vertical EN": {"level":2,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 10ft to the height of the channeled or long-lasting glyph attached", "chann":2 },
 
     
     #END
     #Novice
-    "Volatile": {"level":2,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant", "chann":2 },
-    "Devour": {"level":2,"section":1,"AP":2, "range":2, "rt": 2, "comment": "none", "chann":1, "2chann":2},
+    "Noxious": {"level":1,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant, Turn the End winds around you into a cloud of noxious gas. Caster is immune to the effects. Entities in the cloud lose 60 Vigor. Triggers if an entity ends their turn in the Noxious Cloud.", "chann":2 },
+    "Volatile": {"level":2,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant, Turn the End winds around you into a volatile cloud of gas. Caster is immune to the effects. Entities in the cloud lose 30 Vigor. Triggers if an entity ends their turn in the Volatile Cloud. The cloud can be ignited from an external source. Entities in the cloud upon ignition will be inflicted with Burn
+", "chann":2 },
+    "Devour": {"level":2,"section":1,"AP":2, "range":2, "rt": 2, "comment": "Absorb the health of a target you are in contact with Deal 2 × INT MD ✨ and recover Injury Units equal to the ¼ final damage dealt. Fresh corpses have 5 injury units to steal.", "chann":1, "2chann":2},
     #Adept
-    "Crystal": {"level":1,"section":1,"AP":1, "range":15, "rt": 3, "comment": "none", "chann":2},
+    "Crystal": {"level":1,"section":1,"AP":1, "range":15, "rt": 3, "comment": "Condense the End winds into a hard blood red crystal before you (this is susceptible to gravity).", "chann":2},
     "Disenchant": {"level":1,"section":1,"AP":2, "range":2, "rt": 2, "comment": "unusable in combat", "chann":2},
     "Enchant": {"level":2,"section":1,"AP":2, "range":2, "rt": 2, "comment": "none", "chann":2},
     "Bloodstone (Craft)": {"level":2,"section":1,"AP":2, "range":10, "rt": 3, "comment": "none", "chann":2},
