@@ -31,10 +31,8 @@ words_dict = {
     "Brightness EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "adds stun effect to Glyph of Light", "chann":2 },
     #Enhancements: Adept
     "Vertical EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 6ft to the height of the channeled or long-lasting glyph attached (mass is increased as would be expected). Duration: long-lasting glyph", "chann":2 },
-    "Impact EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.
-", "chann":2, "over": 1 },
-    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range
-(Unless modified with Shoot Ice1 or 2)", "chann":2 },
+    "Impact EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.", "chann":2, "over": 1 },
+    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range (Unless modified with Shoot Ice1 or 2)", "chann":2 },
     #Enhancements: Master
     "Greater Vertical EN": {"level":2,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 10ft to the height of the channeled or long-lasting glyph attached", "chann":2 },
 
@@ -42,25 +40,21 @@ words_dict = {
     #END
     #Novice
     "Noxious": {"level":1,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant, Turn the End winds around you into a cloud of noxious gas. Caster is immune to the effects. Entities in the cloud lose 60 Vigor. Triggers if an entity ends their turn in the Noxious Cloud.", "chann":2 },
-    "Volatile": {"level":2,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant, Turn the End winds around you into a volatile cloud of gas. Caster is immune to the effects. Entities in the cloud lose 30 Vigor. Triggers if an entity ends their turn in the Volatile Cloud. The cloud can be ignited from an external source. Entities in the cloud upon ignition will be inflicted with Burn
-", "chann":2 },
+    "Volatile": {"level":2,"section":1,"AP":1, "range":15, "rt": 6, "comment": "instant, Turn the End winds around you into a volatile cloud of gas. Caster is immune to the effects. Entities in the cloud lose 30 Vigor. Triggers if an entity ends their turn in the Volatile Cloud. The cloud can be ignited from an external source. Entities in the cloud upon ignition will be inflicted with Burn", "chann":2 },
     "Devour": {"level":2,"section":1,"AP":2, "range":2, "rt": 2, "comment": "Absorb the health of a target you are in contact with Deal 2 × INT MD ✨ and recover Injury Units equal to the ¼ final damage dealt. Fresh corpses have 5 injury units to steal.", "chann":1, "2chann":2},
     #Adept
     "Crystal": {"level":1,"section":1,"AP":1, "range":15, "rt": 3, "comment": "Condense the End winds into a hard blood red crystal before you (this is susceptible to gravity).", "chann":2},
-    "Disenchant": {"level":1,"section":1,"AP":2, "range":2, "rt": 2, "comment": "Turn weapons and armor imbued with magic into their Primal Essence, pure magic in crystalline form. This destroys the weapon or armor. Disenchanting a weapon produces a Weapon Essence crystal with a stored magic value equal to the weapon’s MD. This cannot be used on Ice Weapons
-Disenchanting a piece of armor produces one (1) Armor Essence crystal, unusable in combat", "chann":2},
+    "Disenchant": {"level":1,"section":1,"AP":2, "range":2, "rt": 2, "comment": "Turn weapons and armor imbued with magic into their Primal Essence, pure magic in crystalline form. This destroys the weapon or armor. Disenchanting a weapon produces a Weapon Essence crystal with a stored magic value equal to the weapon’s MD. This cannot be used on Ice Weapons. Disenchanting a piece of armor produces one (1) Armor Essence crystal, unusable in combat", "chann":2},
     "Enchant": {"level":2,"section":1,"AP":2, "range":2, "rt": 2, "comment": "Use the power stored in a Weapon Essence crystal to enchant a weapon. This transfers the MD value stored in the Weapon Essence to the destination weapon. This can be done multiple times to the same weapon. If a single weapon is enchanted 2 times, it becomes Unstable, reducing it to 1 Strike and halving its durability. Attempting to use Disenchant on this weapon will now just turn it to dust. If a single weapon is enchanted 5 times, it becomes Draining. Every turn this weapon is wielded in combat, it inflicts 10 ✨ to the wielder's arm. ", "chann":2},
     "Bloodstone (Craft)": {"level":2,"section":1,"AP":2, "range":10, "rt": 3, "comment": "By combining the End within 3 Armor Essences you can craft a Bloodstone", "chann":2},
-    "Endflame": {"level":1,"section":1,"AP":2, "range":20, "rt": 4, "comment": "Turn the End winds against a target, unleash a flaming bolt of End magic.
-Damage: INT + attack roll MD ✨", "chann":2},
+    "Endflame": {"level":1,"section":1,"AP":2, "range":20, "rt": 4, "comment": "Turn the End winds against a target, unleash a flaming bolt of End magic. Damage: INT + attack roll MD ✨", "chann":2},
     #Master
     "Demongate": {"level":5,"section":1,"AP":2, "range":5, "rt": 3, "comment": "Using the End winds open a rift to hell. The rift to hell seals in 2 seconds or after an End Pull whichever happens first unless stabilized.", "chann":2},
     "End Pull": {"level":3,"section":1,"AP":2, "range":10, "rt": 4, "comment": "Beckon End winds and the creatures of which it flows through towards you. Is easiest to cast in areas with concentrated End (e.g. Hell). If linked with with the Glyph of Demongate consult the Demongate table", "chann":2},
     #Enhancements: Novice
     #Enhancements: Adept
     "Shadowfire EN": {"level":1,"section":1,"AP":1, "range":0, "rt": 0, "comment": "This gives Ley Fire magic spells the additional Shadowfire effect, dealing 2 × INT MD ✨ to any limb instantly upon initial contact (if you are completely engulfed in Shadowfire this will afflict all targets you come in contact with). This includes contact with existing Walls of Flame and areas burning with the Shadowfire effect. You are a traitor of ley", "chann":2},
-    "Crystal Growth EN": {"level":1,"section":1,"AP":2, "range":10, "rt": 3, "comment": "Grows the initial crystal from the Crystal Glyph far enough outward up to a total of 10ft away from you (This overwrites the default 15 ft). If hit by the point of a growing crystal while it grows (during the initial cast), you will take 40 (Piercing) PD ⚔️/7 PP. If range is increased increase the damage by that multiple (e.g. 30ft range = 3x40 → 120 PD ⚔️/7 PP.)
-", "chann":2},
+    "Crystal Growth EN": {"level":1,"section":1,"AP":2, "range":10, "rt": 3, "comment": "Grows the initial crystal from the Crystal Glyph far enough outward up to a total of 10ft away from you (This overwrites the default 15 ft). If hit by the point of a growing crystal while it grows (during the initial cast), you will take 40 (Piercing) PD ⚔️/7 PP. If range is increased increase the damage by that multiple (e.g. 30ft range = 3x40 → 120 PD ⚔️/7 PP.)", "chann":2},
     "Crystal Grove EN": {"level":1,"section":1,"AP":1, "range":10, "rt": 6, "comment": "Splits Glyph of Crystal into an area covering 10ft radial crystal shards", "chann":2 },
     #Enhancements: Master
     
