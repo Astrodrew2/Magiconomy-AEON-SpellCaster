@@ -16,12 +16,27 @@ range_rt_symbol_dict = {
     # Ranges
     "self": "x",
     "touch": "○",
-    "5 ft": "●",
+    "5 ft": r'$\cdot$',
     "10 ft": "—",
     "15 ft": r'$\dotminus$',
     "20 ft": "=",
+    "25 ft": r'$\doteq$',
     "30 ft": r'$\equiv$',
-    "40 ft": r'$\not\equiv$',
+    "35 ft":r'$\equiv\cdot$',
+    "40 ft": "-/",
+    "45 ft": r'$-/\cdot$'
+    "50 ft": "/",
+    "100 ft": "|",
+    "120 ft": "|=",
+    "150 ft": "|/"
+    "200 ft": "||",
+    "250 ft": "||/",
+    "300 ft": "|||",
+    "350 ft": "|||/",
+    "400 ft": "||||",
+    "450 ft": "||||/",
+    "500 ft": "\",
+    
 
     # Range Types
     "point": "●",
