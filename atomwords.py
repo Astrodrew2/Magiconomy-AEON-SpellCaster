@@ -35,7 +35,7 @@ range_rt_symbol_dict = {
     "350 ft": "|||/",
     "400 ft": "||||",
     "450 ft": "||||/",
-    "500 ft": "\",
+    "500 ft": r'$\setminus$',
     
 
     # Range Types
