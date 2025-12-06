@@ -23,9 +23,9 @@ range_rt_symbol_dict = {
     "25 ft": r'$\doteq$',
     "30 ft": r'$\equiv$',
     "35 ft":r'$\equiv\cdot$',
-    "40 ft": "-/",
+    "40 ft": r'$-/$',
     "45 ft": r'$-/\cdot$'
-    "50 ft": "/",
+    "50 ft": r'$/$',
     "100 ft": "|",
     "120 ft": "|=",
     "150 ft": "|/"
