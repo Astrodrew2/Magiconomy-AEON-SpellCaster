@@ -5,6 +5,9 @@
 #chann means channeled if 1 = Yes, if 2 = No
 # if EN is in the word name then you only add 1 AP due to the connection 
 # if EN is in the word name and it has "over" = 1 then only add 1 charge rather than 1 AP
+#if "vig":1 then  it is a vigor cost not charge (adds the < to the base AP
+#if the vig keyword is = 1 and "fiver": 1 then it adds the > to the end of the base AP
+# 2chann is the AP to channel (default 1)
 
 words_dict = {
     #LEY
@@ -57,6 +60,25 @@ words_dict = {
     "Crystal Growth EN": {"level":1,"section":1,"AP":2, "range":10, "rt": 3, "comment": "Grows the initial crystal from the Crystal Glyph far enough outward up to a total of 10ft away from you (This overwrites the default 15 ft). If hit by the point of a growing crystal while it grows (during the initial cast), you will take 40 (Piercing) PD ⚔️/7 PP. If range is increased increase the damage by that multiple (e.g. 30ft range = 3x40 → 120 PD ⚔️/7 PP.)", "chann":2},
     "Crystal Grove EN": {"level":1,"section":1,"AP":1, "range":10, "rt": 6, "comment": "Splits Glyph of Crystal into an area covering 10ft radial crystal shards", "chann":2 },
     #Enhancements: Master
+
+
+    #DRUID:
+    #Novice
+    "Roots": {"level":2,"section":5,"AP":1, "range":20, "rt": 3, "comment": "Call upon the spark of life within the roots around a target and cause them to grow use them to wrap around the target, entangling them. Roots have 50 Vigor", "chann":2, "vig":1, "fiver":2},
+    "Spirit Flame (Heal)": {"level":1,"section":5,"AP":1, "range":10, "rt": 4, "comment": "Cast green fire to restore the Vigor of a target at the cost of your own. Lose Spirit x 2 as Vigor and restore target’s Vigor by the same amount. Restore targets Injury Units equal to your Spi. (Requires Medium Spirit Check)", "chann":1, "vig":1, "fiver":2},
+    "Spirit Flame (Damage)": {"level":1,"section":5,"AP":1, "range":10, "rt": 4, "comment": "Cast dark green fire to inflict MD ✨ on a target, Damage: SPI × 2 MD ✨", "chann":1, "vig":1, "fiver":2},
+    
+    
+    #Adept
+    
+    #Master
+    
+    #Enhancements: Novice
+    
+    #Enhancements: Adept
+    
+    #Enhancements: Master
+    
     
     
 }
