@@ -122,37 +122,37 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
 
          # ---- Draw V-marker for VIG ----
     # ---- Draw Backwards Arrowhead for VIG ----
-if vig == 1:
-    # p1 = first electron, p2 = second electron
-    direction = p1 - p2   # NOTE: reversed so arrow points back to p1
-    L = np.linalg.norm(direction)
-    if L < 1e-6:
-        pass  # avoid division by zero
-
-    direction /= L  # unit vector from p2 → p1
-
-    # Find a perpendicular direction for the arrow wings
-    perp = np.cross(direction, np.array([0, 0, 1]))
-    if np.linalg.norm(perp) < 1e-6:  # if parallel, use X-axis instead
-        perp = np.cross(direction, np.array([1, 0, 0]))
-
-    perp /= np.linalg.norm(perp)
-
-    # Arrowhead size
-    V_size = 0.35
-
-    # Two wing points of the V
-    p_left  = p2 + direction * V_size + perp * (V_size * 0.6)
-    p_right = p2 + direction * V_size - perp * (V_size * 0.6)
-
-    # Draw the V shape pointing backward
-    ax.plot([p_left[0],  p2[0]],
-            [p_left[1],  p2[1]],
-            [p_left[2],  p2[2]], color="black", linewidth=2)
-
-    ax.plot([p_right[0], p2[0]],
-            [p_right[1], p2[1]],
-            [p_right[2], p2[2]], color="black", linewidth=2)
+    if vig == 1:
+        # p1 = first electron, p2 = second electron
+        direction = p1 - p2   # NOTE: reversed so arrow points back to p1
+        L = np.linalg.norm(direction)
+        if L < 1e-6:
+            pass  # avoid division by zero
+    
+        direction /= L  # unit vector from p2 → p1
+    
+        # Find a perpendicular direction for the arrow wings
+        perp = np.cross(direction, np.array([0, 0, 1]))
+        if np.linalg.norm(perp) < 1e-6:  # if parallel, use X-axis instead
+            perp = np.cross(direction, np.array([1, 0, 0]))
+    
+        perp /= np.linalg.norm(perp)
+    
+        # Arrowhead size
+        V_size = 0.35
+    
+        # Two wing points of the V
+        p_left  = p2 + direction * V_size + perp * (V_size * 0.6)
+        p_right = p2 + direction * V_size - perp * (V_size * 0.6)
+    
+        # Draw the V shape pointing backward
+        ax.plot([p_left[0],  p2[0]],
+                [p_left[1],  p2[1]],
+                [p_left[2],  p2[2]], color="black", linewidth=2)
+    
+        ax.plot([p_right[0], p2[0]],
+                [p_right[1], p2[1]],
+                [p_right[2], p2[2]], color="black", linewidth=2)
 
                        
 
