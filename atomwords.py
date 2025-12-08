@@ -123,37 +123,40 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
          # ---- Draw V-marker for VIG ----
     # ---- Draw Backwards Arrowhead for VIG ----
     # ---- Draw V-marker for VIG ----
+    # ---- Draw V-marker for VIG ----
     if vig == 1:
     
-        # vector FROM second electron TO first electron (p1 <- p2)
+        # vector from second to first (arrow direction)
         direction = p1 - p2
         norm = np.linalg.norm(direction)
         if norm == 0:
-            pass  # safety guard
+            pass
         direction /= norm
     
-        # choose anchor point closer to p1 (¼ of the way from p2 → p1)
-        anchor = p2 + direction * 0.75 * np.linalg.norm(p2 - p1)
+        # choose where to place the arrowhead (close to p1)
+        arrow_pos = p1 - direction * 0.4   # 0.4 units before p1
     
-        # perpendicular vector
-        perp = np.array([-direction[1], direction[0], 0.0])
-        if np.linalg.norm(perp) < 1e-6:
-            perp = np.array([1.0, 0.0, 0.0])
+        # find a robust perpendicular vector using cross product
+        # pick any non-parallel vector
+        temp = np.array([1, 0, 0])
+        if abs(np.dot(temp, direction)) > 0.9:  # too parallel? choose different
+            temp = np.array([0, 1, 0])
+    
+        perp = np.cross(direction, temp)
         perp /= np.linalg.norm(perp)
     
         # V size
-        V_size = 1
+        V_size = 0.25
     
-        # compute V endpoints
-        p_left  = anchor + perp * V_size
-        p_right = anchor - perp * V_size
+        p_left  = arrow_pos + perp * V_size
+        p_right = arrow_pos - perp * V_size
     
-        # draw the V lines
-        ax.plot([p_left[0], anchor[0]],   [p_left[1], anchor[1]],   [p_left[2], anchor[2]],
+        # draw the two legs of the V
+        ax.plot([p_left[0], arrow_pos[0]],   [p_left[1], arrow_pos[1]],   [p_left[2], arrow_pos[2]],
                 color="black", linewidth=2)
-    
-        ax.plot([p_right[0], anchor[0]],  [p_right[1], anchor[1]],  [p_right[2], anchor[2]],
+        ax.plot([p_right[0], arrow_pos[0]],  [p_right[1], arrow_pos[1]],  [p_right[2], arrow_pos[2]],
                 color="black", linewidth=2)
+
 
 
                        
