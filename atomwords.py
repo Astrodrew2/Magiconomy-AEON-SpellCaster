@@ -146,7 +146,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         perp /= np.linalg.norm(perp)
     
         # V size
-        V_size = 1.5
+        V_size = 2
     
         p_left  = arrow_pos + perp * V_size
         p_right = arrow_pos - perp * V_size
