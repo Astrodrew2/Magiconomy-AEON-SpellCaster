@@ -121,26 +121,39 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         lines_drawn += 1
 
          # ---- Draw V-marker for VIG ----
-    if vig==1:
-        mid = (p1 + p2) / 2
-        direction = p2 - p1
-        direction /= np.linalg.norm(direction)
+    # ---- Draw Backwards Arrowhead for VIG ----
+if vig == 1:
+    # p1 = first electron, p2 = second electron
+    direction = p1 - p2   # NOTE: reversed so arrow points back to p1
+    L = np.linalg.norm(direction)
+    if L < 1e-6:
+        continue  # avoid division by zero
 
-        # perpendicular vector
-        perp = np.array([-direction[1], direction[0], 0])
-        if np.linalg.norm(perp) < 1e-6:
-            perp = np.array([1, 0, 0])
-        perp /= np.linalg.norm(perp)
+    direction /= L  # unit vector from p2 → p1
 
-        # V size
-        V_size = 0.4
+    # Find a perpendicular direction for the arrow wings
+    perp = np.cross(direction, np.array([0, 0, 1]))
+    if np.linalg.norm(perp) < 1e-6:  # if parallel, use X-axis instead
+        perp = np.cross(direction, np.array([1, 0, 0]))
 
-        # two points of the V
-        p_left  = mid + perp * V_size
-        p_right = mid - perp * V_size
+    perp /= np.linalg.norm(perp)
 
-        ax.plot([p_left[0], mid[0]], [p_left[1], mid[1]], [p_left[2], mid[2]], color="black", linewidth=2)
-        ax.plot([p_right[0], mid[0]], [p_right[1], mid[1]], [p_right[2], mid[2]], color="black", linewidth=2)
+    # Arrowhead size
+    V_size = 0.35
+
+    # Two wing points of the V
+    p_left  = p2 + direction * V_size + perp * (V_size * 0.6)
+    p_right = p2 + direction * V_size - perp * (V_size * 0.6)
+
+    # Draw the V shape pointing backward
+    ax.plot([p_left[0],  p2[0]],
+            [p_left[1],  p2[1]],
+            [p_left[2],  p2[2]], color="black", linewidth=2)
+
+    ax.plot([p_right[0], p2[0]],
+            [p_right[1], p2[1]],
+            [p_right[2], p2[2]], color="black", linewidth=2)
+
                        
 
     return {'lines_drawn': lines_drawn, 'cross_sector_extra': cross_sector_extra, 'used_quicken': used_quicken}
