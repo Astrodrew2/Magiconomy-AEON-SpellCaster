@@ -101,7 +101,7 @@ with st.sidebar:
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
 
 if view_mode == "Spell Caster":
-    st.title("Aeon Spell Caster")
+    st.title("Aeon Spell Caster (Tips Below)")
     st.image("magics.png", use_container_width=True)
     # Add text below the image
     st.subheader("Tips/Instructions")
