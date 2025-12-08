@@ -127,7 +127,7 @@ if vig == 1:
     direction = p1 - p2   # NOTE: reversed so arrow points back to p1
     L = np.linalg.norm(direction)
     if L < 1e-6:
-        continue  # avoid division by zero
+        pass  # avoid division by zero
 
     direction /= L  # unit vector from p2 → p1
 
