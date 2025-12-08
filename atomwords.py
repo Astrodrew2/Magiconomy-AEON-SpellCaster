@@ -139,7 +139,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         perp /= np.linalg.norm(perp)
     
         # Arrowhead size
-        V_size = 0.35
+        V_size = 2
     
         # Two wing points of the V
         p_left  = p2 + direction * V_size + perp * (V_size * 0.6)
