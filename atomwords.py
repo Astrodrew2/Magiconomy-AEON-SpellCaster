@@ -134,7 +134,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             direction /= norm
     
         # choose where to place the V (slightly before p1)
-        arrow_pos = p1 - direction * 0.5  # adjust distance
+        arrow_pos = p1 - direction * 2  # adjust distance
     
         # pick a perpendicular vector for the V width
         temp = np.array([1,0,0])
