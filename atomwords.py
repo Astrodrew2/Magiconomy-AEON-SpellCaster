@@ -55,7 +55,7 @@ def bezier_curve_3d(p0, p1, p2, n_points=50):
     return curve[:,0], curve[:,1], curve[:,2]
 
 def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec2=None,
-                             arch_factor=0.3, flip=True, quicken=0, chann=2, chann2=1, tick_len=0.5, vig=2):
+                             arch_factor=0.3, flip=True, quicken=0, chann=2, chann2=1, tick_len=0.5, vig=2, fiver=2):
     p1 = np.array(p1)
     p2 = np.array(p2)
     distance = np.linalg.norm(p2 - p1)
@@ -135,6 +135,54 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
     
         # place the V slightly before the first electron
         arrow_pos = p1 - direction * 1.2  # adjust distance to scene scale
+    
+        # create two legs of the V at an angle (e.g., 30 degrees) to the connection
+        angle_deg = 30
+        angle_rad = np.radians(angle_deg)
+    
+        # find two perpendicular vectors to the direction
+        if abs(direction[2]) < 0.9:
+            temp = np.array([0,0,1])
+        else:
+            temp = np.array([1,0,0])
+        perp1 = np.cross(direction, temp)
+        perp1 /= np.linalg.norm(perp1)
+        perp2 = np.cross(direction, perp1)
+        perp2 /= np.linalg.norm(perp2)
+    
+        # V size
+        V_size = 1.0
+    
+        # rotate perp1 and perp2 by angle_rad around direction to form V legs
+        leg1 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*perp1
+        leg2 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*(-perp1)
+    
+        # scale to V size
+        leg1 *= V_size
+        leg2 *= V_size
+    
+        # draw V
+        ax.plot([arrow_pos[0], arrow_pos[0]+leg1[0]],
+                [arrow_pos[1], arrow_pos[1]+leg1[1]],
+                [arrow_pos[2], arrow_pos[2]+leg1[2]],
+                color="black", linewidth=2, zorder= 12)
+    
+        ax.plot([arrow_pos[0], arrow_pos[0]+leg2[0]],
+                [arrow_pos[1], arrow_pos[1]+leg2[1]],
+                [arrow_pos[2], arrow_pos[2]+leg2[2]],
+                color="black", linewidth=2, zorder= 12)
+
+    if fiver == 1:
+        # vector from second to first (arrow direction)
+        direction = p2 - p1
+        norm = np.linalg.norm(direction)
+        if norm == 0:
+            direction = np.array([1,0,0])
+        else:
+            direction /= norm
+    
+        # place the V slightly before the second electron
+        arrow_pos = p2 - direction * 1.2  # adjust distance to scene scale
     
         # create two legs of the V at an angle (e.g., 30 degrees) to the connection
         angle_deg = 30
@@ -447,7 +495,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                                         quicken=remaining_quicken,
                                         chann=first_electron['chann'],
                                         chann2=first_electron['chann2'],
-                                        vig=first_electron['info'].get("vig",0))
+                                        vig=first_electron['info'].get("vig",0),
+                                        fiver=first_electron['info'].get("fiver",0))
         remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
         base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
         cross_AP = conn['cross_sector_extra']
@@ -495,7 +544,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                                                quicken=remaining_quicken,
                                                chann=target['chann'],
                                                chann2=target['chann2'],
-                                               vig=target['info'].get("vig",0))
+                                               vig=target['info'].get("vig",0),
+                                               fiver=target['info'].get("fiver",0))
                 remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
                 base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
                 cross_AP = conn['cross_sector_extra']
