@@ -55,7 +55,7 @@ def bezier_curve_3d(p0, p1, p2, n_points=50):
     return curve[:,0], curve[:,1], curve[:,2]
 
 def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec2=None,
-                             arch_factor=0.3, flip=True, quicken=0, chann=2, chann2=1, tick_len=0.5):
+                             arch_factor=0.3, flip=True, quicken=0, chann=2, chann2=1, tick_len=0.5, vig=2):
     p1 = np.array(p1)
     p2 = np.array(p2)
     distance = np.linalg.norm(p2 - p1)
@@ -119,6 +119,29 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
     if sec1 != sec2:
         cross_sector_extra = 1
         lines_drawn += 1
+
+         # ---- Draw V-marker for VIG ----
+    if vig==1:
+        mid = (p1 + p2) / 2
+        direction = p2 - p1
+        direction /= np.linalg.norm(direction)
+
+        # perpendicular vector
+        perp = np.array([-direction[1], direction[0], 0])
+        if np.linalg.norm(perp) < 1e-6:
+            perp = np.array([1, 0, 0])
+        perp /= np.linalg.norm(perp)
+
+        # V size
+        V_size = 0.4
+
+        # two points of the V
+        p_left  = mid + perp * V_size
+        p_right = mid - perp * V_size
+
+        ax.plot([p_left[0], mid[0]], [p_left[1], mid[1]], [p_left[2], mid[2]], color="black", linewidth=2)
+        ax.plot([p_right[0], mid[0]], [p_right[1], mid[1]], [p_right[2], mid[2]], color="black", linewidth=2)
+                       
 
     return {'lines_drawn': lines_drawn, 'cross_sector_extra': cross_sector_extra, 'used_quicken': used_quicken}
 
@@ -389,7 +412,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                                         arch_factor=0.15, flip=True,
                                         quicken=remaining_quicken,
                                         chann=first_electron['chann'],
-                                        chann2=first_electron['chann2'])
+                                        chann2=first_electron['chann2'],
+                                        vig=first_electron['info'].get("vig",0))
         remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
         base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
         cross_AP = conn['cross_sector_extra']
@@ -436,7 +460,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                                                arch_factor=0.2, flip=True,
                                                quicken=remaining_quicken,
                                                chann=target['chann'],
-                                               chann2=target['chann2'])
+                                               chann2=target['chann2'],
+                                               vig=target['info'].get("vig",0))
                 remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
                 base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
                 cross_AP = conn['cross_sector_extra']
