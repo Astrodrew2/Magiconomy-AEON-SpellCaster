@@ -182,7 +182,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             direction /= norm
     
         # place the V slightly before the second electron
-        arrow_pos = p2 - direction * 1.2  # adjust distance to scene scale
+        arrow_pos = p2 - direction * 0.5  # adjust distance to scene scale
     
         # create two legs of the V at an angle (e.g., 30 degrees) to the connection
         angle_deg = 30
