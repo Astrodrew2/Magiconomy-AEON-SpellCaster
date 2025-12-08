@@ -136,15 +136,20 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         # choose where to place the "V" — on the line, slightly before p1
         arrow_pos = p1 - direction * 2    # change 0.4 to move it
 
-        # Plot a text "V"
+        # compute angle in degrees for rotation
+        angle = np.degrees(np.arctan2(direction[1], direction[0]))
+        
         ax.text(
             arrow_pos[0], arrow_pos[1], arrow_pos[2],
-            "V",  
-            fontsize=20,            # <--- size control
+            "V",
+            fontsize=20,
             color="black",
+            rotation=angle,           # <--- rotate with line
+            rotation_mode='anchor',
             horizontalalignment='center',
             verticalalignment='center'
         )
+
 
 
 
