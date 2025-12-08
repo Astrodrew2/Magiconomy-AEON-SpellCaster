@@ -165,12 +165,12 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         ax.plot([arrow_pos[0], arrow_pos[0]+leg1[0]],
                 [arrow_pos[1], arrow_pos[1]+leg1[1]],
                 [arrow_pos[2], arrow_pos[2]+leg1[2]],
-                color="black", linewidth=2)
+                color="black", linewidth=2, zorder= 12)
     
         ax.plot([arrow_pos[0], arrow_pos[0]+leg2[0]],
                 [arrow_pos[1], arrow_pos[1]+leg2[1]],
                 [arrow_pos[2], arrow_pos[2]+leg2[2]],
-                color="black", linewidth=2)
+                color="black", linewidth=2, zorder= 12)
     
 
 
