@@ -117,10 +117,7 @@ if view_mode == "Spell Caster":
     
     
     
-    # Add other outputs, e.g., metrics or tables
-    st.markdown("### Example Stats")
-    st.write("Total AP: 10")
-    st.write("Total Energy: 5")
+  
 
 
 if view_mode == "Glyph Dictionary":
