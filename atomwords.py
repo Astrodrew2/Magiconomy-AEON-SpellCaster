@@ -199,7 +199,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         perp2 /= np.linalg.norm(perp2)
     
         # V size
-        V_size = 1.0
+        V_size = 0.8
     
         # rotate perp1 and perp2 by angle_rad around direction to form V legs
         leg1 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*perp1
