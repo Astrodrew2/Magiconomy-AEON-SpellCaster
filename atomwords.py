@@ -129,7 +129,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         direction = p1 - p2
         norm = np.linalg.norm(direction)
         if norm == 0:
-            continue  # safety guard
+            pass  # safety guard
         direction /= norm
     
         # choose anchor point closer to p1 (¼ of the way from p2 → p1)
