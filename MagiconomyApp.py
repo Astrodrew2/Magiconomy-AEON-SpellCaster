@@ -108,7 +108,7 @@ if view_mode == "Spell Caster":
     st.write("**Spell Caster View Mode:** This is where you can use the spell caster calculator.")
     st.write("You can pick the glyphs in **Select Glyphs** box")
     st.write("Leave **Domain** as DefaultDomain")
-    st.write("**Select Modifiers:** lets you choose the modifiers as shown in the Glyph Dictionary View Mode Background section.")
+    st.write("**Select Modifiers:** lets you choose the modifiers as shown in the Glyph Dictionary View Mode Modifiers section.")
     st.write("**Range Increase:** Type the number equivalent to how many more multiples of the range you want to increase by. Ex.) if its a default of 10ft inputing a 1 will change the range to 20ft, 2 will change the range to 30 ft and so on.")
     st.write("**Range Type Change:** Type the number equivalent to how many stages up you want to go along this list—Point(channeled) → Beam → Cone → Radial. Ex.) if by default it is a beam you would type 2 to change it to radial or 1 to change it to cone.")
     st.write("**Quicken:** Type the amount of AP you want to take away from the current AP cost. Ex.) typing 2 for a default 4 AP/ 2Charge cast will result in a 2AP/8Charge cost")
