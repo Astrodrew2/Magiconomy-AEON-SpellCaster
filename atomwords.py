@@ -125,30 +125,38 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
     # ---- Draw V-marker for VIG ----
     # ---- Draw V-marker for VIG ----
     if vig == 1:
-
         # vector from second to first (arrow direction)
         direction = p1 - p2
         norm = np.linalg.norm(direction)
         if norm == 0:
-            pass
-        direction /= norm
-
-        # choose where to place the "V" — on the line, slightly before p1
-        arrow_pos = p1 - direction * 2    # change 0.4 to move it
-
-        # compute angle in degrees for rotation
-        angle = np.degrees(np.arctan2(direction[1], direction[0]))
-        
-        ax.text(
-            arrow_pos[0], arrow_pos[1], arrow_pos[2],
-            "V",
-            fontsize=20,
-            color="black",
-            rotation=angle,           # <--- rotate with line
-            rotation_mode='anchor',
-            horizontalalignment='center',
-            verticalalignment='center'
-        )
+            direction = np.array([1,0,0])
+        else:
+            direction /= norm
+    
+        # choose where to place the V (slightly before p1)
+        arrow_pos = p1 - direction * 0.5  # adjust distance
+    
+        # pick a perpendicular vector for the V width
+        temp = np.array([1,0,0])
+        if abs(np.dot(temp, direction)) > 0.9:  # too parallel
+            temp = np.array([0,1,0])
+        perp = np.cross(direction, temp)
+        perp /= np.linalg.norm(perp)
+    
+        V_size = 2  # half-width of V
+        p_left  = arrow_pos + perp * V_size
+        p_right = arrow_pos - perp * V_size
+    
+        # draw the two legs of the V
+        ax.plot([p_left[0], arrow_pos[0]],
+                [p_left[1], arrow_pos[1]],
+                [p_left[2], arrow_pos[2]],
+                color="black", linewidth=2)
+    
+        ax.plot([p_right[0], arrow_pos[0]],
+                [p_right[1], arrow_pos[1]],
+                [p_right[2], arrow_pos[2]],
+                color="black", linewidth=2)
 
 
 
