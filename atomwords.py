@@ -134,7 +134,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         direction /= norm
 
         # choose where to place the "V" — on the line, slightly before p1
-        arrow_pos = p1 - direction * 0.4    # change 0.4 to move it
+        arrow_pos = p1 - direction * 0.1    # change 0.4 to move it
 
         # Plot a text "V"
         ax.text(
