@@ -122,37 +122,39 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
 
          # ---- Draw V-marker for VIG ----
     # ---- Draw Backwards Arrowhead for VIG ----
+    # ---- Draw V-marker for VIG ----
     if vig == 1:
-        # p1 = first electron, p2 = second electron
-        direction = p1 - p2   # NOTE: reversed so arrow points back to p1
-        L = np.linalg.norm(direction)
-        if L < 1e-6:
-            pass  # avoid division by zero
     
-        direction /= L  # unit vector from p2 → p1
+        # vector FROM second electron TO first electron (p1 <- p2)
+        direction = p1 - p2
+        norm = np.linalg.norm(direction)
+        if norm == 0:
+            continue  # safety guard
+        direction /= norm
     
-        # Find a perpendicular direction for the arrow wings
-        perp = np.cross(direction, np.array([0, 0, 1]))
-        if np.linalg.norm(perp) < 1e-6:  # if parallel, use X-axis instead
-            perp = np.cross(direction, np.array([1, 0, 0]))
+        # choose anchor point closer to p1 (¼ of the way from p2 → p1)
+        anchor = p2 + direction * 0.75 * np.linalg.norm(p2 - p1)
     
+        # perpendicular vector
+        perp = np.array([-direction[1], direction[0], 0.0])
+        if np.linalg.norm(perp) < 1e-6:
+            perp = np.array([1.0, 0.0, 0.0])
         perp /= np.linalg.norm(perp)
     
-        # Arrowhead size
-        V_size = 2
+        # V size
+        V_size = 1
     
-        # Two wing points of the V
-        p_left  = p2 + direction * V_size + perp * (V_size * 0.6)
-        p_right = p2 + direction * V_size - perp * (V_size * 0.6)
+        # compute V endpoints
+        p_left  = anchor + perp * V_size
+        p_right = anchor - perp * V_size
     
-        # Draw the V shape pointing backward
-        ax.plot([p_left[0],  p2[0]],
-                [p_left[1],  p2[1]],
-                [p_left[2],  p2[2]], color="black", linewidth=2)
+        # draw the V lines
+        ax.plot([p_left[0], anchor[0]],   [p_left[1], anchor[1]],   [p_left[2], anchor[2]],
+                color="black", linewidth=2)
     
-        ax.plot([p_right[0], p2[0]],
-                [p_right[1], p2[1]],
-                [p_right[2], p2[2]], color="black", linewidth=2)
+        ax.plot([p_right[0], anchor[0]],  [p_right[1], anchor[1]],  [p_right[2], anchor[2]],
+                color="black", linewidth=2)
+
 
                        
 
