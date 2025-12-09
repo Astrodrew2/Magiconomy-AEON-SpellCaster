@@ -67,10 +67,10 @@ words_dict = {
     "Spirit Flame (Heal)": {"level":1,"section":5,"AP":1, "range":10, "rt": 4, "comment": "Cast green fire to restore the Vigor of a target at the cost of your own. Lose Spirit x 2 as Vigor and restore target’s Vigor by the same amount. Restore targets Injury Units equal to your Spi. (Requires Medium Spirit Check)", "chann":1, "vig":1, "fiver":2},
     "Spirit Flame (Damage)": {"level":1,"section":5,"AP":1, "range":10, "rt": 4, "comment": "Cast dark green fire to inflict MD ✨ on a target, Damage: SPI × 2 MD ✨", "chann":1, "vig":1, "fiver":2},
     "Barkskin": {"level":1,"section":5,"AP":1, "range":1, "rt": 1, "comment": "Instant. Duration: 3 turns. Harden your skin like tree bark, reinforcing your PR 🛡️. Bark skin acts as another layer of armor with 10 NR, 10 FR, and 1 PT for all sources of PD ⚔️. Dispelling the bark skin restores the Vigor used to cast it", "chann":2, "vig":1, "fiver":2},
-    "Thorns": {"level":1,"section":5,"AP":1, "range":1, "rt": 1, "comment": "Instant. Duration: 3 turns. Grow bony thorns and spikes that protrude from your skin all over your body. If an enemy comes into contact with an area of your body where you are wearing Light armor or less, they will take damage. If the enemy punches, kicks, or grapples you while they are wearing light armor or less in any area, they will take 10 (Piercing) ⚔️/1 PP. Dispelling the thorns restores the Vigor used to cast it", "chann":2, "vig":1, "fiver":2},
+    "Thorns": {"level":1,"section":5,"AP":1, "range":1, "rt": 1, "comment": "Instant. Duration: 3 turns. Grow bony thorns and spikes that protrude from all over your body. If an enemy comes into contact with an area of your body where you are wearing Light armor or less, they will take damage. If the enemy punches, kicks, or grapples you while they are wearing light armor or less in any area, they will take 10 (Piercing) ⚔️/1 PP. Dispelling the thorns restores the Vigor used to cast it", "chann":2, "vig":1, "fiver":2},
     
     #Adept
-    "Claws": {"level":1,"section":5,"AP":1, "range":10, "rt": 4, "comment": "Flare your inner embers to Grow bony claws from your fingertips. Slash: 10 (Cutting) ⚔️/1 PP, Stab: 10 (Piercing) ⚔️/1 PP, Ambush Weapon. Dispelling Claws restores the Vigor used to cast it", "chann":2, "vig":1, "fiver":1},
+    "Claws": {"level":1,"section":5,"AP":1, "range":1, "rt": 1, "comment": "Flare your inner embers to Grow bony claws from your fingertips. Slash: 10 (Cutting) ⚔️/1 PP, Stab: 10 (Piercing) ⚔️/1 PP, Ambush Weapon. Dispelling Claws restores the Vigor used to cast it", "chann":2, "vig":1, "fiver":1},
     "Remediate": {"level":2,"section":5,"AP":1, "range":2, "rt": 2, "comment": "Cure yourself or a target of any poison, curses, or uncheck the Bleed Box.Cannot be performed during combat", "chann":2, "vig":1, "fiver":2},
     
     #Master
@@ -79,7 +79,7 @@ words_dict = {
     #Enhancements: Novice
     #Enhancements: Adept
     "Shoot Thorns EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 6, "comment": "Instant. Shoot Thorns in all directions (radial) for 5ft. If you are casting thorns from yourself you must be wearing Light armor or less on your torso. Damage: 10 (Piercing) PD ⚔️/2 PP", "chann":2, "vig":1, "fiver":2},
-    "Venom EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 6, "comment": "Instant. While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact", "chann":2, "vig":1, "fiver":2},
+    "Venom EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 1, "comment": "Instant. While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact", "chann":2, "vig":1, "fiver":2},
     #Enhancements: Master
     
     
