@@ -408,6 +408,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         plt.axis("off")
         sector_angle = np.pi/3
         theta_full = np.linspace(0, 2*np.pi, 500)
+        all_ranges = [] 
     
         # Nucleus
         first_word = words_list[0]
@@ -471,7 +472,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             sec_start = (sec-1)*sector_angle
             sec_center = sec_start + sector_angle/2
             angles = [sec_center] if n==1 else np.linspace(sec_center - 0.45, sec_center + 0.45, n)
-            all_ranges = [] 
+            
     
             for (word, info), angle in zip(words_in_group, angles):
                 xe = r*np.cos(angle)
