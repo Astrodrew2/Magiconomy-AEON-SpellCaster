@@ -677,7 +677,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
 
         if all(r in (0, None) for r in all_ranges):
             print("**SPELL IS NOT FEASIBLE: NO RANGE**")
-        print(all_ranges)
+        #print(all_ranges)
         
     
         total_AP = total_base_AP + total_cross_AP 
