@@ -486,10 +486,10 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     rng_num = info.get("range","")*(range_increase_input+1)
                     rng_def=range_dict.get(rng_num)
                     print("Range with Mods:",rng_def)
-                    all_ranges.append(rng_def)
                 else:
                     rng_num = info.get("range","")
                     
+                all_ranges.append(rng_def)    
                 all_ranges.append(rng_num)
     
                 rt_=info.get("rt",0) 
