@@ -489,7 +489,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         print("SPELL IS NOT FEASIBLE")
                 else:
                     rng_num = info.get("range","")
-                    if rng_def == 0 or rng_def is None:
+                    if rng_num == 0 or rng_num is None:
                         print("SPELL IS NOT FEASIBLE")
     
                 rt_=info.get("rt",0) 
