@@ -125,7 +125,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
     # ---- Draw V-marker for VIG ----
     # ---- Draw V-marker for VIG ----
     if vig == 1:
-        # vector from second to first (arrow direction)
+        # vector from second → first (V points toward p1)
         direction = p1 - p2
         norm = np.linalg.norm(direction)
         if norm == 0:
@@ -133,31 +133,29 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         else:
             direction /= norm
     
-        # place the V slightly before the first electron
-        arrow_pos = p1 - direction * 1.2  # adjust distance to scene scale
+        # place V a fixed distance before p1
+        arrow_pos = p1 - direction * 1.2   # consistent scale
     
-        # create two legs of the V at an angle (e.g., 30 degrees) to the connection
+        # angle of the V legs
         angle_deg = 30
         angle_rad = np.radians(angle_deg)
     
-        # find two perpendicular vectors to the direction
+        # find perpendicular vector for V spreading
         if abs(direction[2]) < 0.9:
             temp = np.array([0,0,1])
         else:
             temp = np.array([1,0,0])
+    
         perp1 = np.cross(direction, temp)
         perp1 /= np.linalg.norm(perp1)
-        perp2 = np.cross(direction, perp1)
-        perp2 /= np.linalg.norm(perp2)
     
-        # V size
+        # V size (consistent across zoom and scene)
         V_size = 1.0
     
-        # rotate perp1 and perp2 by angle_rad around direction to form V legs
+        # make V legs
         leg1 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*perp1
-        leg2 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*(-perp1)
+        leg2 = np.cos(angle_rad)*(-direction) - np.sin(angle_rad)*perp1
     
-        # scale to V size
         leg1 *= V_size
         leg2 *= V_size
     
@@ -165,15 +163,17 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         ax.plot([arrow_pos[0], arrow_pos[0]+leg1[0]],
                 [arrow_pos[1], arrow_pos[1]+leg1[1]],
                 [arrow_pos[2], arrow_pos[2]+leg1[2]],
-                color="black", linewidth=2, zorder= 12)
+                color="black", linewidth=2, zorder=12)
     
         ax.plot([arrow_pos[0], arrow_pos[0]+leg2[0]],
                 [arrow_pos[1], arrow_pos[1]+leg2[1]],
                 [arrow_pos[2], arrow_pos[2]+leg2[2]],
-                color="black", linewidth=2, zorder= 12)
+                color="black", linewidth=2, zorder=12)
+
+
 
     if fiver == 1:
-        # vector from second to first (arrow direction)
+        # vector from first → second (V points toward p2)
         direction = p2 - p1
         norm = np.linalg.norm(direction)
         if norm == 0:
@@ -181,31 +181,29 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         else:
             direction /= norm
     
-        # place the V slightly before the second electron
-        arrow_pos = p2 - direction * 0.5  # adjust distance to scene scale
+        # place V a fixed distance before p2
+        arrow_pos = p2 - direction * 1.2   # consistent scale
     
-        # create two legs of the V at an angle (e.g., 30 degrees) to the connection
+        # angle of the V legs
         angle_deg = 30
         angle_rad = np.radians(angle_deg)
     
-        # find two perpendicular vectors to the direction
+        # find perpendicular vector for V spreading
         if abs(direction[2]) < 0.9:
             temp = np.array([0,0,1])
         else:
             temp = np.array([1,0,0])
+    
         perp1 = np.cross(direction, temp)
         perp1 /= np.linalg.norm(perp1)
-        perp2 = np.cross(direction, perp1)
-        perp2 /= np.linalg.norm(perp2)
     
-        # V size
-        V_size = 0.8
+        # V size (consistent across zoom and scene)
+        V_size = 1.0
     
-        # rotate perp1 and perp2 by angle_rad around direction to form V legs
+        # make V legs
         leg1 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*perp1
-        leg2 = np.cos(angle_rad)*(-direction) + np.sin(angle_rad)*(-perp1)
+        leg2 = np.cos(angle_rad)*(-direction) - np.sin(angle_rad)*perp1
     
-        # scale to V size
         leg1 *= V_size
         leg2 *= V_size
     
@@ -213,15 +211,12 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
         ax.plot([arrow_pos[0], arrow_pos[0]+leg1[0]],
                 [arrow_pos[1], arrow_pos[1]+leg1[1]],
                 [arrow_pos[2], arrow_pos[2]+leg1[2]],
-                color="black", linewidth=2, zorder= 12)
+                color="black", linewidth=2, zorder=12)
     
         ax.plot([arrow_pos[0], arrow_pos[0]+leg2[0]],
                 [arrow_pos[1], arrow_pos[1]+leg2[1]],
                 [arrow_pos[2], arrow_pos[2]+leg2[2]],
-                color="black", linewidth=2, zorder= 12)
-    
-
-
+                color="black", linewidth=2, zorder=12)
 
                        
 
