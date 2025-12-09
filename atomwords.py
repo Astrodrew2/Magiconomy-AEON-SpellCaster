@@ -485,7 +485,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     rng_num = info.get("range","")*(range_increase_input+1)
                     rng_def=range_dict.get(rng_num)
                     print("Range with Mods:",rng_def)
-                    if rng_def == 0 or rng_def is None:
+                    if rng_num == 0 or rng_num is None:
                         print("**SPELL IS NOT FEASIBLE: NO RANGE**")
                 else:
                     rng_num = info.get("range","")
