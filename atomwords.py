@@ -191,6 +191,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
                 tick2 = mid - perp3*(tick_len/2)
                 ax.plot([tick1[0], tick2[0]], [tick1[1], tick2[1]], [tick1[2], tick2[2]], color="black", linewidth=2)
 
+        # if curved
         else:
             dir_xy = p2[:2] - p1[:2]
             perp_xy = np.array([-dir_xy[1], dir_xy[0]])
@@ -201,42 +202,59 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             cp = (p1 + p2)/2 + np.append(perp_xy * arch_height + perp_xy*off, 0)
             x, y, z = bezier_curve_3d(p1, cp, p2)
             ax.plot(x, y, z,"-." if is_red else "-", color="black", linewidth= 1.5)
+            # --- V for vig: should sit near the p1 end and point TOWARD p1 ---
             if vig == 1:
-                # pick a point near the end of the curve toward p1
-                idx = int(len(x)*0.8)   # 15% from the start (adjust)
+                # pick an index near p1 (15% along the curve)
+                idx = max(1, int(len(x) * 0.15))
+                if idx >= len(x) - 1:
+                    idx = len(x) // 2
+            
                 V_pos = np.array([x[idx], y[idx], z[idx]])
             
-                # tangent direction at the V point 
-                direction = np.array([x[idx+1]-x[idx-1],
-                                      y[idx+1]-y[idx-1],
-                                      z[idx+1]-z[idx-1]])
-                direction /= np.linalg.norm(direction)
+                # compute local tangent (next - prev)
+                tangent = np.array([x[idx+1] - x[idx-1],
+                                    y[idx+1] - y[idx-1],
+                                    z[idx+1] - z[idx-1]])
+                tnorm = np.linalg.norm(tangent)
+                if tnorm == 0:
+                    tangent = np.array([1.0, 0.0, 0.0])
+                else:
+                    tangent /= tnorm
             
-                # build perpendicular basis
-                perp = np.cross(direction, np.array([0,0,1]))
+                # direction for vig should point TOWARD p1 -> use -tangent
+                direction = -tangent
+            
+                # perpendicular for V spread
+                perp = np.cross(direction, np.array([0,0,1.0]))
                 if np.linalg.norm(perp) < 1e-6:
-                    perp = np.cross(direction, np.array([0,1,0]))
+                    perp = np.cross(direction, np.array([0,1,0.0]))
                 perp /= np.linalg.norm(perp)
             
-                # V angle and size
+                # V geometry
                 angle = np.radians(30)
                 size  = 0.8
             
-                leg1 = -direction*np.cos(angle) + perp*np.sin(angle)
-                leg2 = -direction*np.cos(angle) - perp*np.sin(angle)
+                leg1 = direction * np.cos(angle) + perp * np.sin(angle)
+                leg2 = direction * np.cos(angle) - perp * np.sin(angle)
                 leg1 *= size
                 leg2 *= size
             
-                # draw V
-                ax.plot([V_pos[0], V_pos[0]+leg1[0]],
-                        [V_pos[1], V_pos[1]+leg1[1]],
-                        [V_pos[2], V_pos[2]+leg1[2]],
+                # tiny offset toward p1 so the V sits slightly off the curve
+                bond_len = np.linalg.norm(p2 - p1)
+                offset = 0.05 * bond_len
+                V_pos = V_pos + direction * offset
+            
+                # draw the V legs
+                ax.plot([V_pos[0], V_pos[0] + leg1[0]],
+                        [V_pos[1], V_pos[1] + leg1[1]],
+                        [V_pos[2], V_pos[2] + leg1[2]],
                         color='black', linewidth=2)
             
-                ax.plot([V_pos[0], V_pos[0]+leg2[0]],
-                        [V_pos[1], V_pos[1]+leg2[1]],
-                        [V_pos[2], V_pos[2]+leg2[2]],
+                ax.plot([V_pos[0], V_pos[0] + leg2[0]],
+                        [V_pos[1], V_pos[1] + leg2[1]],
+                        [V_pos[2], V_pos[2] + leg2[2]],
                         color='black', linewidth=2)
+
                 
             if fiver == 1:
                 # pick a point near p2 end of curve (85% toward end)
