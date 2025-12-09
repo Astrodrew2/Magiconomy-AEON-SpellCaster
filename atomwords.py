@@ -489,7 +489,6 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 else:
                     rng_num = info.get("range","")
                     
-                
                 all_ranges.append(rng_num)
     
                 rt_=info.get("rt",0) 
@@ -676,12 +675,13 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
 
         if all(r in (0, None, "") for r in all_ranges):
             print("**SPELL IS NOT FEASIBLE: NO RANGE**")
+        print(all_ranges)
         
     
         total_AP = total_base_AP + total_cross_AP 
         total_energy = total_base_energy + total_cross_energy +rtcEnergy
     
-            #print("Range with Mods:",rng_def)
+        
         
         if quicken > 0:
             print(f"TOTAL AP: {total_AP-quicken} (quicken applied)")
