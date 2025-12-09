@@ -203,7 +203,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             ax.plot(x, y, z,"-." if is_red else "-", color="black", linewidth= 1.5)
             if vig == 1:
                 # pick a point near the end of the curve toward p1
-                idx = int(len(x)*0.15)   # 15% from the start (adjust)
+                idx = int(len(x)*0.5)   # 15% from the start (adjust)
                 V_pos = np.array([x[idx], y[idx], z[idx]])
             
                 # tangent direction at the V point 
