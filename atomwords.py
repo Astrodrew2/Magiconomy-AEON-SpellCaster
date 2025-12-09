@@ -486,10 +486,11 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     rng_num = info.get("range",0)*(range_increase_input+1)
                     rng_def=range_dict.get(rng_num)
                     print("Range with Mods:",rng_def)
-                    all_ranges.append(rng_num if rng_num else 0)
+                    all_ranges.append(rng_def)
                 else:
                     rng_num = info.get("range",0)
-                    all_ranges.append(rng_num if rng_num else 0)
+                    all_ranges.append(rng_num)
+                
     
                 rt_=info.get("rt",0) 
                 #print(rt_)
@@ -673,7 +674,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     
         # ---------------- Print totals ----------------
 
-        if all(r == 0 for r in all_ranges):
+        if all(r in (0, None) for r in all_ranges):
             print("**SPELL IS NOT FEASIBLE: NO RANGE**")
         print(all_ranges)
         
