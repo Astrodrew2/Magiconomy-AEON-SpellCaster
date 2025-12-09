@@ -205,7 +205,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             # --- V for vig: should sit near the p1 end and point TOWARD p1 ---
             if vig == 1:
                 # pick an index near p1 (15% along the curve)
-                idx = max(1, int(len(x) * 0.15))
+                idx = max(1, int(len(x) * 0.8))
                 if idx >= len(x) - 1:
                     idx = len(x) // 2
             
