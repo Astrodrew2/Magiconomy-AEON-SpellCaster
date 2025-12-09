@@ -81,7 +81,36 @@ words_dict = {
     "Shoot Thorns EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 6, "comment": "Instant. Shoot Thorns in all directions (radial) for 5ft. If you are casting thorns from yourself you must be wearing Light armor or less on your torso. Damage: 10 (Piercing) PD ⚔️/2 PP", "chann":2, "vig":1, "fiver":2},
     "Venom EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 1, "comment": "Instant. While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact", "chann":2, "vig":1, "fiver":2},
     #Enhancements: Master
+
+    #SHAMANISM:
+    #Novice:
+    "Earth (s=1)": {"level":1,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Instant. Throw chunks of earth the size of a tennis ball from a source at a target up to 10ft away. Damage: d% +(10 x Focus) of 10 (Force)/1PP", "chann":2},
+    "Water (s=1)": {"level":1,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Instant. Shoot a thin tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 10 (Force)/0PP", "chann":2},
+    "Fire (s=1)": {"level":1,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Instant. Pull fire of a small size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 30 MD, Causes Burn", "chann":2},
+    "Air (s=1)": {"level":1,"section":4,"AP":1, "range":30, "rt": 3, "comment": "Pull the air from 1 vessel you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
     
+    #Adept:
+    "Earth (s=2)": {"level":1,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Shifts a chunk of earth the size of a basketball. This can either displace the chunk up as a new mound of the same size or hold it mid air for the action. IF THROWN: Damage: d% +(10 x Focus) of 150 (Force)/2PP", "chann":2},
+    "Earth (s=3)": {"level":1,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a large yoga ball. This can either displace the chunk up as a new mound or hold it mid air for the action. IF THROWN: Damage: d% +(10 x Focus) of 300 (Force)/4PP", "chann":2},
+    "Water (s=2)": {"level":1,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Shoot a tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 20 (Force)/0PP", "chann":2},
+    "Water (s=3)": {"level":2,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Shoot a large tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 40 (Cutting)/0PP", "chann":2},
+    "Fire (s=2)": {"level":2,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Pull fire of a medium size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 60 MD, Causes Burn", "chann":2},
+    "Fire (s=3)": {"level":3,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Pull fire of a medium size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 90 MD, Causes Burn", "chann":2},
+    "Air (s=2)": {"level":2,"section":4,"AP":1, "range":30, "rt": 6, "comment": "Pull the air from 2 vessel you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
+    "Air (s=3)": {"level":3,"section":4,"AP":2, "range":15, "rt": 6, "comment": "Pull the air from 5 vessels you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
+    
+    #Master:
+    "Earth (s=4)": {"level":5,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a refrigerator. This can either displace the chunk up as a new mound or hold it mid air for the action.IF THROWN: Damage: d% +(10 x Focus) of 1000 (Force)/6PP", "chann":2},
+    "Water (s=4)": {"level":3,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Shoot a tremendous tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 80 (Force)/0PP", "chann":2},
+    "Fire (s=4)": {"level":4,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Pull fire of a medium size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 180 MD, Causes Burn 2", "chann":2},
+    "Air (s=4)": {"level":5,"section":4,"AP":2, "range":15, "rt": 6, "comment": "Pull the air from 10 vessels you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
+
+    #Enhancements: Novice
+    #Enhancements: Adept
+    "Minor Throw Earth": {"level":1,"section":4,"AP":1, "range":0, "rt": 4, "comment": "Throw an object of earth that is loose or suspended with a medium or large size (such as with Glyph of Earth(s=2 or 3)) up to 20 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
+    "Water Grapple":{"level":1,"section":4,"AP":1, "range":0, "rt": 4, "comment": "Throw an object of earth that is loose or suspended with a medium or large size (such as with Glyph of Earth(s=2 or 3)) up to 20 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
+    #Enhancements: Master
+    "Major Throw Earth": {"level":1,"section":4,"AP":1, "range":0, "rt": 4, "comment": "Throw an object of earth that is loose or suspended with a tremendous size up to 10 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
     
     
 }
