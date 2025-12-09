@@ -1,4 +1,4 @@
-N# Glyph dictionary for spell calculator
+# Glyph dictionary for spell calculator
 #section is the parent domain 1 = END, 2 = DEATH, 3 = DARK SHAMAN, 4 = SHAMAN, 5 = DRUID, 6 = LEY
 #range is the range: 1 = self, 2 = touch, 5 = 5ft, 10 = 10ft, 20 = 20ft and so on
 #rt is the range type: 1 = self, 2 = touch, 3 = point, 4 = beam,  5 = cone, 6 = radial,
