@@ -471,6 +471,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             sec_start = (sec-1)*sector_angle
             sec_center = sec_start + sector_angle/2
             angles = [sec_center] if n==1 else np.linspace(sec_center - 0.45, sec_center + 0.45, n)
+            all_ranges = [] 
     
             for (word, info), angle in zip(words_in_group, angles):
                 xe = r*np.cos(angle)
@@ -485,12 +486,10 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     rng_num = info.get("range","")*(range_increase_input+1)
                     rng_def=range_dict.get(rng_num)
                     print("Range with Mods:",rng_def)
-                    if rng_num == 0 or rng_num is None:
-                        print("**SPELL IS NOT FEASIBLE: NO RANGE**")
                 else:
                     rng_num = info.get("range","")
-                    if rng_num == 0 or rng_num is None:
-                        print("**SPELL IS NOT FEASIBLE: NO RANGE**")
+                    
+                all_ranges.append(rng_num)
     
                 rt_=info.get("rt",0) 
                 #print(rt_)
@@ -673,6 +672,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 ])       
     
         # ---------------- Print totals ----------------
+
+        if all(r in (0, None, "") for r in all_ranges):
+            print("**SPELL IS NOT FEASIBLE: NO RANGE**")
         
     
         total_AP = total_base_AP + total_cross_AP 
