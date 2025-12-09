@@ -203,7 +203,7 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
             ax.plot(x, y, z,"-." if is_red else "-", color="black", linewidth= 1.5)
             if vig == 1:
                 # pick a point near the end of the curve toward p1
-                idx = int(len(x)*0.5)   # 15% from the start (adjust)
+                idx = int(len(x)*0.8)   # 15% from the start (adjust)
                 V_pos = np.array([x[idx], y[idx], z[idx]])
             
                 # tangent direction at the V point 
@@ -237,6 +237,44 @@ def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, sec1=None, sec
                         [V_pos[1], V_pos[1]+leg2[1]],
                         [V_pos[2], V_pos[2]+leg2[2]],
                         color='black', linewidth=2)
+                
+            if fiver == 1:
+                # pick a point near p2 end of curve (85% toward end)
+                idx = int(len(x)*0.85)
+                V_pos = np.array([x[idx], y[idx], z[idx]])
+            
+                # tangent direction at the V point 
+                direction = np.array([x[idx+1]-x[idx-1],
+                                      y[idx+1]-y[idx-1],
+                                      z[idx+1]-z[idx-1]])
+                direction /= np.linalg.norm(direction)
+            
+                # perpendicular basis
+                perp = np.cross(direction, np.array([0,0,1]))
+                if np.linalg.norm(perp) < 1e-6:
+                    perp = np.cross(direction, np.array([0,1,0]))
+                perp /= np.linalg.norm(perp)
+            
+                # V angle and size
+                angle = np.radians(30)
+                size  = 0.8
+            
+                leg1 = -direction*np.cos(angle) + perp*np.sin(angle)
+                leg2 = -direction*np.cos(angle) - perp*np.sin(angle)
+                leg1 *= size
+                leg2 *= size
+            
+                # draw V
+                ax.plot([V_pos[0], V_pos[0]+leg1[0]],
+                        [V_pos[1], V_pos[1]+leg1[1]],
+                        [V_pos[2], V_pos[2]+leg1[2]],
+                        color='black', linewidth=2)
+            
+                ax.plot([V_pos[0], V_pos[0]+leg2[0]],
+                        [V_pos[1], V_pos[1]+leg2[1]],
+                        [V_pos[2], V_pos[2]+leg2[2]],
+                        color='black', linewidth=2)
+
 
             if i < tick_count:
                 mid_idx = len(x)//2
