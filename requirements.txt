@@ -1,1 +1,8 @@
 plotly
+matplotlib
+numpy
+pandas
+pdf2image
+plotly
+streamlit
+tabulate
