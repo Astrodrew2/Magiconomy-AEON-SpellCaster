@@ -654,6 +654,10 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 if target['info'].get("over",0) == 1:
                     total_base_energy = total_base_energy + 1
                     total_base_AP = total_base_AP - 1
+                elif target['info'].get("over",0) == 5:
+                    total_base_energy = total_base_energy + 5
+                    total_base_AP = total_base_AP - 1
+    
                 else:
                     total_base_energy = total_base_energy
                     total_base_AP = total_base_AP
