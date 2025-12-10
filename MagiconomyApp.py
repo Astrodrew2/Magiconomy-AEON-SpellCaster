@@ -7,7 +7,7 @@ import pandas as pd
 import base64
 import os
 from pdf2image import convert_from_path
-import mpld3
+
 
 def render_pdf_as_images(pdf_path):
     """Convert each PDF page to an image and display it."""
@@ -152,9 +152,8 @@ if st.sidebar.button("Apply"):
         )
 
         # --- Display figure ---
-        #st.pyplot(fig)
-        html = mpld3.fig_to_html(fig)
-        st.components.v1.html(html, height=900)
+        st.pyplot(fig)
+        
 
         # --- Display table/text output ---
         st.text_area("Output & Totals", value=output_text, height=300)
