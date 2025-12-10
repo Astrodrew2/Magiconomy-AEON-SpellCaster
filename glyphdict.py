@@ -126,7 +126,7 @@ words_dict = {
     "psychE": {"level":5,"section":3,"AP":4, "range":2, "rt": 2, "comment": "When combined with the Fragment, anAtomy, and spiriT Glyphs, change the fate of a dead target, reversing the immediate effect of whatever killed them. However, this does not cure any ailments nor mend any injuries, including lost limbs and Wound Table rolls. The target cannot have been dead for more than 5 days and they cannot be posthumously disfigured beyond the ability to function (e.g. decapitation).", "chann":2},
     
     #Enhancements: Novice
-    "Virulence EN": {"level":6,"section":3,"AP":1, "range":2, "rt": 2, "comment": "When combined with the Glyph of Fragment, discern exactly how long it has been since the target died.", "chann":2},
+    "Virulence EN": {"level":6,"section":3,"AP":1, "range":2, "rt": 2, "comment": "When combined with the Glyph of Fragment, discern exactly how long it has been since the target died.", "chann":2, "over":0},
     "Chronic EN": {"level":1,"section":3,"AP":1, "range":2, "rt": 2, "comment": "Change the Duration of a curse to be Permanent. E.g. If the Duration was 5 days it now becomes Permanent.", "chann":2, "over":1},
     "Exacerbation EN": {"level":1,"section":3,"AP":2, "range":2, "rt": 2, "comment": "Instantly raise all Injury Levels to the next Level. (IE. Crippled is now Destroyed)", "chann":2},
 
