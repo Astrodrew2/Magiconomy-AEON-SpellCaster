@@ -7,6 +7,8 @@ import pandas as pd
 import base64
 import os
 from pdf2image import convert_from_path
+from plotly.tools import mpl_to_plotly
+import plotly.graph_objects as go
 
 
 def render_pdf_as_images(pdf_path):
@@ -152,7 +154,13 @@ if st.sidebar.button("Apply"):
         )
 
         # --- Display figure ---
-        st.pyplot(fig)
+        #st.pyplot(fig)
+        # --- Convert Matplotlib fig to Plotly ---
+        plotly_fig = mpl_to_plotly(fig)
+
+        # --- Display interactive Plotly figure in Streamlit ---
+        st.plotly_chart(plotly_fig, use_container_width=True)
+
         
 
         # --- Display table/text output ---
