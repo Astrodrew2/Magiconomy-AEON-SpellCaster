@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["cairo", "ffmpeg-full", "freetype", "ghostscript", "gobject-introspection", "gtk3", "pkg-config", "poppler_utils", "qhull", "tcl", "tk", "poppler", "poppler-utils"]
+packages = ["cairo", "ffmpeg-full", "freetype", "ghostscript", "glibcLocales", "gobject-introspection", "gtk3", "pkg-config", "poppler", "poppler-utils", "poppler_utils", "qhull", "tcl", "tk"]
 
 [workflows]
 runButton = "Project"
@@ -33,6 +33,10 @@ outputType = "webview"
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 46723
+externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"
