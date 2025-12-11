@@ -129,6 +129,7 @@ words_dict = {
     "Virulence EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "When combined with the Glyph of Fragment, discern exactly how long it has been since the target died.", "chann":2, "over":5},
     "Chronic EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "Change the Duration of a curse to be Permanent. E.g. If the Duration was 5 days it now becomes Permanent.", "chann":2, "over":1},
     "Exacerbation EN": {"level":1,"section":3,"AP":2, "range":0, "rt": 0, "comment": "Instantly raise all Injury Levels to the next Level of a target when effected by a Curse. (IE. Crippled is now Destroyed)", "chann":2},
+    "Radiation EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "A cursed target hit with this radiates their leaking Spirit outward reducing the Vigor of all mortals around them by 20.", "chann":2, "over":1},
 
 
     
