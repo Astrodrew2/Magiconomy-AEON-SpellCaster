@@ -70,20 +70,8 @@ st.markdown("""
 #Sidebar coloration and format
 # ---- CUSTOM SIDEBAR STYLING ----
 
-st.markdown("""
-<style>
-
-/* Replace Streamlit built-in accent color (red) with teal */
-:root {
-    --primary-color: #00ffea !important;
-    --accent-color: #00ffea !important;
-    --text-selection-color: #00ffea33 !important;
-    --focus-color: #00ffea !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
+[theme]
+primaryColor= "cyan"
 
 
 
