@@ -274,400 +274,202 @@ def draw_modifier_shape_plotly(fig, shape, center, size=1.0, color='black'):
 
 # ---------------- Main function ----------------
 def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modifiers_to_apply=None,
-                              sector_labels=None, tilt=False, alt=90, azim=90, quicken=0, range_increase_input=0, range_type_change = 0):
+                              sector_labels=None, tilt=False, alt=90, azim=90, quicken=0, 
+                              range_increase_input=0, range_type_change=0):
     buffer = io.StringIO()
     with redirect_stdout(buffer):
         if sector_labels is None:
             sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
-    
+
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
         fig = go.Figure()
-      # Set scene layout: background color, hide axes
-        fig.update_layout(scene=dict(
-          xaxis=dict(visible=False),
-          yaxis=dict(visible=False),
-          zaxis=dict(visible=False),
-          bgcolor="tan",  # equivalent of ax.set_facecolor("tan")
-          aspectmode='cube'),
-        width=800,
-        height=800,
-        margin=dict(r=10,l=10,b=10,t=10))
         
-        sector_angle = np.pi/3
+        # Scene setup
+        fig.update_layout(scene=dict(
+            xaxis=dict(visible=False),
+            yaxis=dict(visible=False),
+            zaxis=dict(visible=False),
+            bgcolor="tan",
+            aspectmode='cube'),
+            width=800, height=800,
+            margin=dict(r=10,l=10,b=10,t=10)
+        )
+
+        sector_angle = np.pi / 3
         theta_full = np.linspace(0, 2*np.pi, 500)
-        all_ranges = [] 
-    
-        # Nucleus
+        all_ranges = []
+
         # Nucleus
         first_word = words_list[0]
         first_sec = words_dict[first_word]["section"]
         nucleus_label = sector_labels.get(first_sec, str(first_sec))
+        fig.add_trace(go.Scatter3d(
+            x=[0], y=[0], z=[0],
+            mode='markers+text',
+            marker=dict(symbol='diamond', size=30, color='tan', line=dict(color='black', width=2)),
+            text=[nucleus_label],
+            textposition='top center',
+            textfont=dict(color='black', size=20, family='Arial')
+        ))
 
-        # Add nucleus as a 3D scatter point
-        fig.add_trace(
-            go.Scatter3d(
-                x=[0],
-                y=[0],
-                z=[0],
-                mode='markers+text',
-                marker=dict(
-                    symbol='diamond',  # approximate "h" marker
-                    size=30,           # adjust size similar to s=2500 in matplotlib
-                    color='tan',
-                    line=dict(color='black', width=2)
-                ),
-                text=[nucleus_label],
-                textposition='top center',  # places text above the marker
-                textfont=dict(
-                    color='black',
-                    size=20,
-                    family='Arial',
-                )
-            )
-          )
         # Radius setup
         max_level = max([words_dict[word]["level"] for word in words_list])
         radius_step = 4
         max_radius = max_level * radius_step
-  
-        # Radial lines + sector labels
         label_radius = max_radius + 0.7
-  
+
+        # Radial lines + sector labels
         for i in range(6):
             angle = i * sector_angle
             x = [0, max_radius * np.cos(angle)]
             y = [0, max_radius * np.sin(angle)]
             z = [0, 0]
-  
-            # Add radial line
-            fig.add_trace(
-                go.Scatter3d(
-                    x=x,
-                    y=y,
-                    z=z,
-                    mode='lines',
-                    line=dict(color='black', width=2, dash='dash'),
-                    opacity=0.5,
-                    showlegend=False
-                )
-            )
-  
-            # Add sector label
-            label_angle = angle + sector_angle / 2
-            lx = label_radius * np.cos(label_angle)
-            ly = label_radius * np.sin(label_angle)
-            lz = 20  # same as in original
-          
-            fig.add_trace(
-                go.Scatter3d(
-                    x=[lx],
-                    y=[ly],
-                    z=[lz],
-                    mode='text',
-                    text=[sector_labels.get(i+1, str(i+1))],
-                    textposition='middle center',
-                    textfont=dict(
-                        color='black',
-                        size=20
-                    ),
-                    showlegend=False
-                )
-            )
-  
-      
-          # Radius setup
-          max_level = max([words_dict[word]["level"] for word in words_list])
-          radius_step = 4
-          max_radius = max_level * radius_step
-          
-          # Radial lines + sector labels
-          label_radius = max_radius + 0.7
-          for i in range(6):
-              angle = i * sector_angle
-              x = [0, max_radius * np.cos(angle)]
-              y = [0, max_radius * np.sin(angle)]
-              z = [0, 0]
-          
-              # Radial line
-              fig.add_trace(
-                  go.Scatter3d(
-                      x=x,
-                      y=y,
-                      z=z,
-                      mode='lines',
-                      line=dict(color='black', width=2, dash='dash'),
-                      opacity=0.5,
-                      showlegend=False
-                  )
-              )
-          
-            # Sector label
+            fig.add_trace(go.Scatter3d(
+                x=x, y=y, z=z,
+                mode='lines',
+                line=dict(color='black', width=2, dash='dash'),
+                opacity=0.5,
+                showlegend=False
+            ))
+
             label_angle = angle + sector_angle / 2
             lx = label_radius * np.cos(label_angle)
             ly = label_radius * np.sin(label_angle)
             lz = 20
-            fig.add_trace(
-                go.Scatter3d(
-                    x=[lx],
-                    y=[ly],
-                    z=[lz],
-                    mode='text',
-                    text=[sector_labels.get(i + 1, str(i + 1))],
-                    textposition='middle center',
-                    textfont=dict(color='black', size=20),
-                    opacity=0.5,
-                    showlegend=False
-                )
-            )
-        
-          # Shade allowed sectors
-          for sec in allowed_sectors:
-              start_angle = (sec - 1) * np.pi / 3
-              end_angle = sec * np.pi / 3
-              theta = np.linspace(start_angle, end_angle, 50)
-              r = max_radius + 0.5
-              x = r * np.cos(theta)
-              y = r * np.sin(theta)
-              z = np.zeros_like(x)  # flat at z=0
-          
-              # Create triangular fan for shading
-              fig.add_trace(
-                  go.Mesh3d(
-                      x=np.append(0, x),
-                      y=np.append(0, y),
-                      z=np.append(0, z),
-                      color='teal',
-                      opacity=0.12,
-                      alphahull=0,
-                      flatshading=True,
-                      showscale=False
-                  )
-              )
-  
-      
-          # Draw orbitals
-          for L in range(1, max_level + 1):
-              r = L * radius_step
-              tilt_angle = L * 12 * np.pi / 180 if tilt else 0
-              x = r * np.cos(theta_full)
-              y = r * np.sin(theta_full) * np.cos(tilt_angle)
-              z = r * np.sin(theta_full) * np.sin(tilt_angle)
-          
-              fig.add_trace(
-                  go.Scatter3d(
-                      x=x,
-                      y=y,
-                      z=z,
-                      mode='lines',
-                      line=dict(color='black', width=2),
-                      opacity=0.15,
-                      showlegend=False
-                  )
-              )
-        
-          # Electron positions
-          electron_positions = {}
-          grouped = {}
-          rtcEnergy = 0
-          
-          # Group words by (level, section)
-          for word in words_list:
-              info = words_dict[word]
-              key = (info["level"], info["section"])
-              grouped.setdefault(key, []).append((word, info))
-          
-          # Draw mini-orbitals for each group
-          for (level, sec), words_in_group in grouped.items():
-              r = level * radius_step
-              tilt_angle = level * 12 * np.pi / 180 if tilt else 0
-              x = r * np.cos(theta_full)
-              y = r * np.sin(theta_full) * np.cos(tilt_angle)
-              z = r * np.sin(theta_full) * np.sin(tilt_angle)
-          
-              # Draw orbital ring
-              fig.add_trace(
-                  go.Scatter3d(
-                      x=x,
-                      y=y,
-                      z=z,
-                      mode='lines',
-                      line=dict(color='black', width=2),
-                      opacity=0.3,
-                      showlegend=False
-                  )
-              )
-          
-              n = len(words_in_group)
-              sec_start = (sec - 1) * sector_angle
-              sec_center = sec_start + sector_angle / 2
-              angles = [sec_center] if n == 1 else np.linspace(sec_center - 0.45, sec_center + 0.45, n)
-  
-              
-    
+            fig.add_trace(go.Scatter3d(
+                x=[lx], y=[ly], z=[lz],
+                mode='text',
+                text=[sector_labels.get(i+1, str(i+1))],
+                textposition='middle center',
+                textfont=dict(color='black', size=20),
+                showlegend=False
+            ))
+
+        # Shade allowed sectors
+        for sec in allowed_sectors:
+            start_angle = (sec - 1) * sector_angle
+            end_angle = sec * sector_angle
+            theta = np.linspace(start_angle, end_angle, 50)
+            r = max_radius + 0.5
+            x = r * np.cos(theta)
+            y = r * np.sin(theta)
+            z = np.zeros_like(x)
+            fig.add_trace(go.Mesh3d(
+                x=np.append(0, x),
+                y=np.append(0, y),
+                z=np.append(0, z),
+                color='teal',
+                opacity=0.12,
+                alphahull=0,
+                flatshading=True,
+                showscale=False
+            ))
+
+        # Draw orbitals
+        for L in range(1, max_level + 1):
+            r = L * radius_step
+            tilt_angle = L * 12 * np.pi / 180 if tilt else 0
+            x = r * np.cos(theta_full)
+            y = r * np.sin(theta_full) * np.cos(tilt_angle)
+            z = r * np.sin(theta_full) * np.sin(tilt_angle)
+            fig.add_trace(go.Scatter3d(
+                x=x, y=y, z=z,
+                mode='lines',
+                line=dict(color='black', width=2),
+                opacity=0.15,
+                showlegend=False
+            ))
+
+        # Electron positions
+        electron_positions = {}
+        rtcEnergy = 0
+
+        # Group words by (level, section)
+        grouped = {}
+        for word in words_list:
+            info = words_dict[word]
+            key = (info["level"], info["section"])
+            grouped.setdefault(key, []).append((word, info))
+
+        # Draw electrons and mini-orbitals
+        for (level, sec), words_in_group in grouped.items():
+            r = level * radius_step
+            tilt_angle = level * 12 * np.pi / 180 if tilt else 0
+            n = len(words_in_group)
+            sec_start = (sec - 1) * sector_angle
+            sec_center = sec_start + sector_angle / 2
+            angles = [sec_center] if n == 1 else np.linspace(sec_center - 0.45, sec_center + 0.45, n)
+
             for (word, info), angle in zip(words_in_group, angles):
                 xe = r * np.cos(angle)
                 ye = r * np.sin(angle) * np.cos(tilt_angle)
                 ze = r * np.sin(angle) * np.sin(tilt_angle)
-            
+
                 # Electron marker
-                fig.add_trace(
-                    go.Scatter3d(
-                        x=[xe],
-                        y=[ye],
-                        z=[ze],
-                        mode='markers+text',
-                        marker=dict(
-                            size=12,        # adjust size
-                            color='tan',
-                            line=dict(color='black', width=2)
-                        ),
-                        text=[word],
-                        textposition="top center",
-                        textfont=dict(size=10, color='black'),
-                        showlegend=False
-                    )
-                )
-            
-                # --- RANGE + RT text ---
-                if not word.endswith(" EN"):
-                    rng_num = info.get("range", 0) * (range_increase_input + 1)
-                    rng_def = range_dict.get(rng_num)
-                    all_ranges.append(rng_def)
-                else:
-                    rng_num = info.get("range", 0)
-                    all_ranges.append(rng_num)
-            
-                rt_ = info.get("rt", 0)
-                rt_chann = info.get("chann", 2)
-                rt_num = rt_ + range_type_change
-            
+                fig.add_trace(go.Scatter3d(
+                    x=[xe], y=[ye], z=[ze],
+                    mode='markers+text',
+                    marker=dict(size=12, color='tan', line=dict(color='black', width=2)),
+                    text=[word],
+                    textposition="top center",
+                    textfont=dict(size=10, color='black'),
+                    showlegend=False
+                ))
+
+                # Range + RT symbols
+                rng_num = info.get("range", 0) * (range_increase_input + 1) if not word.endswith(" EN") else info.get("range",0)
+                rt_num = info.get("rt",0) + range_type_change
                 rng_def = range_dict.get(rng_num)
                 rt_def = rt_dict.get(rt_num)
                 rng_symbol = range_rt_symbol_dict.get(rng_def, "")
                 rt_symbol = range_rt_symbol_dict.get(rt_def, "")
-            
-                # Range symbol above electron
-                fig.add_trace(
-                    go.Scatter3d(
-                        x=[xe],
-                        y=[ye - 0.1],
-                        z=[ze + 0.5],
-                        mode='text',
-                        text=[rng_symbol],
-                        textposition="bottom center",
-                        textfont=dict(size=9, color='black'),
-                        showlegend=False
-                    )
-                )
-            
-                # RT symbol below electron
-                fig.add_trace(
-                    go.Scatter3d(
-                        x=[xe],
-                        y=[ye + 0.2],
-                        z=[ze - 0.5],
-                        mode='text',
-                        text=[rt_symbol],
-                        textposition="top center",
-                        textfont=dict(size=5, color='black'),
-                        showlegend=False
-                    )
-                )
-            
+
+                fig.add_trace(go.Scatter3d(
+                    x=[xe], y=[ye-0.1], z=[ze+0.5],
+                    mode='text', text=[rng_symbol],
+                    textposition="bottom center",
+                    textfont=dict(size=9, color='black'),
+                    showlegend=False
+                ))
+                fig.add_trace(go.Scatter3d(
+                    x=[xe], y=[ye+0.2], z=[ze-0.5],
+                    mode='text', text=[rt_symbol],
+                    textposition="top center",
+                    textfont=dict(size=5, color='black'),
+                    showlegend=False
+                ))
+
                 # Store electron positions
                 electron_positions[word] = {
                     'pos': (xe, ye, ze),
                     'sector': sec,
                     'level': level,
-                    'chann': info.get("chann", 2),
-                    'chann2': info.get("2chann", 1),
+                    'chann': info.get("chann",2),
+                    'chann2': info.get("2chann",1),
                     'info': info.copy()
                 }
-            
-                # RTC energy calculation
                 if not word.endswith(" EN"):
-                    if rt_ == 4 and range_type_change == 1:
-                        rtcEnergy = 1
-                    elif rt_ == 4 and range_type_change == 2:
-                        rtcEnergy = 4
-                    elif rt_ == 3 and range_type_change == 1:
-                        rtcEnergy = 1
-                    elif rt_ == 3 and rt_chann == 1 and range_type_change == 3:
-                        rtcEnergy = 4
-                    elif rt_ == 3 and range_type_change == 3:
-                        rtcEnergy = 5
-                    elif rt_ == 5 and range_type_change == 1:
-                        rtcEnergy = 3
-                    else:
-                        rtcEnergy = 0
+                    all_ranges.append(rng_def)
 
-    
-    
-        # ---------------- Apply Modifiers (Plotly version) ----------------
+        # ---------------- Apply Modifiers ----------------
         modAP = 0
         modEnergy = 0
-        
         if modifiers_dict and modifiers_to_apply:
             for mod_key in modifiers_to_apply:
-                mod = modifiers_dict.get(mod_key, None)
-                if not mod:
+                mod = modifiers_dict.get(mod_key)
+                if not mod: 
                     continue
-                targets = mod.get("appto", [])
-                for target_word in targets:
-                    if target_word in electron_positions:
-                        print("Modifier", mod_key, ":", mod.get("comment", []))
-                        pos = electron_positions[target_word]['pos']
-                        x0, y0, z0 = pos
-                        size = mod.get("size", 2.0)
-                        shape = mod.get("shape", "square")
-        
-                        # Draw shape in Plotly
-                        if shape == "square":
-                            half = size / 2
-                            xs = [x0 - half, x0 + half, x0 + half, x0 - half, x0 - half]
-                            ys = [y0 - half, y0 - half, y0 + half, y0 + half, y0 - half]
-                            zs = [z0 + 0.5] * 5  # slightly above electron
-                            fig.add_trace(go.Scatter3d(x=xs, y=ys, z=zs, mode='lines',
-                                                       line=dict(color='black', width=2),
-                                                       showlegend=False))
-        
-                        elif shape == "double_square":
-                            half = size / 2
-                            half2 = half / 1.5
-                            for h in [half, half2]:
-                                xs = [x0 - h, x0 + h, x0 + h, x0 - h, x0 - h]
-                                ys = [y0 - h, y0 - h, y0 + h, y0 + h, y0 - h]
-                                zs = [z0 + 0.5] * 5
-                                fig.add_trace(go.Scatter3d(x=xs, y=ys, z=zs, mode='lines',
-                                                           line=dict(color='black', width=1.5),
-                                                           showlegend=False))
-        
-                        elif shape == "circle":
-                            theta = np.linspace(0, 2*np.pi, 50)
-                            xs = x0 + size * np.cos(theta)
-                            ys = y0 + size * np.sin(theta)
-                            zs = np.ones_like(xs) * (z0 + 0.5)
-                            fig.add_trace(go.Scatter3d(x=xs, y=ys, z=zs, mode='lines',
-                                                       line=dict(color='black', width=1.5),
-                                                       showlegend=False))
-        
-                        elif shape == "diamond":
-                            half = size / 1.5
-                            xs = [x0, x0 + 0.75*half, x0, x0 - 0.75*half, x0]
-                            ys = [y0 + half, y0, y0 - half, y0, y0 + half]
-                            zs = [z0 + 0.5]*5
-                            fig.add_trace(go.Scatter3d(x=xs, y=ys, z=zs, mode='lines',
-                                                       line=dict(color='black', width=1.5),
-                                                       showlegend=False))
-        
-                        # Update AP/energy in electron info
-                        modAP += mod.get("AP", 0)
-                        modEnergy += mod.get("energy", 0)
-                        electron_positions[target_word]['info']['AP'] += mod.get("AP", 0)
-                        electron_positions[target_word]['info']['level'] += mod.get("energy", 0)
-        
-            
-         # ---------------- Range Increase Mini-Orbitals (Plotly) ----------------
+                for target_word in mod.get("appto", []):
+                    if target_word not in electron_positions: 
+                        continue
+                    pos = electron_positions[target_word]['pos']
+                    draw_modifier_shape_plotly(fig, mod.get("shape","square"), pos, size=mod.get("size",2.0))
+                    modAP += mod.get("AP",0)
+                    modEnergy += mod.get("energy",0)
+                    electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
+                    electron_positions[target_word]['info']['level'] += mod.get("energy",0)
+
+        # ---------------- Range Increase Mini-Orbitals ----------------
         if range_increase_input > 0:
             base_range_ft = parse_range_value(words_dict[first_word].get("range","self"))
             added_energy_cost = calculate_range_increase_charge(base_range_ft, range_increase_input)
@@ -678,162 +480,44 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 x = r * np.cos(theta_full)
                 y = r * np.sin(theta_full) * np.cos(tilt_angle)
                 z = r * np.sin(theta_full) * np.sin(tilt_angle)
-        
-                # Plotly equivalent of ax.plot
-                fig.add_trace(go.Scatter3d(
-                    x=x, y=y, z=z,
-                    mode='lines',
-                    line=dict(color='black', width=2),
-                    opacity=0.2,
-                    showlegend=False
-                ))
+                fig.add_trace(go.Scatter3d(x=x, y=y, z=z, mode='lines', line=dict(color='black', width=2), opacity=0.2, showlegend=False))
         else:
             added_energy_cost = 0
 
-    
-    
         # ---------------- AP & Energy Table ----------------
         table = []
         total_base_AP = total_cross_AP = total_base_energy = total_cross_energy = 0
         remaining_quicken = quicken
-    
-        # Nucleus → first electron
-        first_electron = electron_positions[first_word]
-        conn = draw_electron_connection(ax, (0,0,0), first_electron['pos'],
-                                        n_lines=first_electron['info'].get("AP",1),
-                                        spacing=0.3,
-                                        sec1=first_sec,
-                                        sec2=first_electron['sector'],
-                                        arch_factor=0.15, flip=True,
-                                        quicken=remaining_quicken,
-                                        chann=first_electron['chann'],
-                                        chann2=first_electron['chann2'],
-                                        vig=first_electron['info'].get("vig",0),
-                                        fiver=first_electron['info'].get("fiver",0))
-        remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
-        base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
-        cross_AP = conn['cross_sector_extra']
-        base_energy = first_electron['level']
-        cross_energy = cross_AP
-        total_base_AP += base_AP
-        total_cross_AP += cross_AP
-        total_base_energy += base_energy
-        total_cross_energy += cross_energy
-        total_base_energy += added_energy_cost
-    
-        table.append([
-            "Parent Domain",
-            first_word,
-            base_AP,
-            base_energy,
-            cross_AP,
-            cross_energy,
-            sector_labels.get(first_electron.get("sector","N/A"), str(first_electron['info'].get("sector","N/A"))),
-            range_dict.get(first_electron['info'].get("range","N/A"), str(first_electron['info'].get("range","N/A"))),
-            rt_dict.get(first_electron['info'].get("rt","N/A"), str(first_electron['info'].get("rt","N/A"))),
-            first_electron['info'].get("comment",""),
-            "Yes" if first_electron['chann']==1 else "No",
-            "None" if first_electron['chann']==2 else first_electron['info'].get("2chann","1")
-        ])
-    
-        # Electron → electron
-        for idx, word in enumerate(words_list):
-            p1 = electron_positions[word]['pos']
-            sec1 = electron_positions[word]['sector']
-            level1 = electron_positions[word]['level']
-            targets = words_dict[word].get("targets", [])
-            if not targets and idx+1 < len(words_list):
-                targets = [words_list[idx+1]]
-    
-            for t in targets:
-                if t not in electron_positions:
-                    continue
-                target = electron_positions[t]
-                conn = draw_electron_connection(ax, p1, target['pos'],
-                                               n_lines=target['info'].get("AP",1),
-                                               spacing=0.3,
-                                               sec1=sec1, sec2=target['sector'],
-                                               arch_factor=0.2, flip=True,
-                                               quicken=remaining_quicken,
-                                               chann=target['chann'],
-                                               chann2=target['chann2'],
-                                               vig=target['info'].get("vig",0),
-                                               fiver=target['info'].get("fiver",0))
-                remaining_quicken = max(0, remaining_quicken - conn['used_quicken'])
-                base_AP = conn['lines_drawn'] - conn['cross_sector_extra']
-                cross_AP = conn['cross_sector_extra']
-                base_energy = 0 if (level1==target['level'] and sec1==target['sector']) else abs(target['level']-level1)
-                cross_energy = cross_AP 
-                total_base_AP += base_AP
-                total_cross_AP += cross_AP
-                total_base_energy += base_energy
-                total_cross_energy += cross_energy
-                if target['info'].get("over",0) == 1:
-                    total_base_energy = total_base_energy + 1
-                    total_base_AP = total_base_AP - 1
-                elif target['info'].get("over",0) == 5:
-                    total_base_energy = total_base_energy + 5
-                    total_base_AP = total_base_AP - 1
-    
-                else:
-                    total_base_energy = total_base_energy
-                    total_base_AP = total_base_AP
-    
-                table.append([
-                    word,
-                    t,
-                    base_AP,
-                    base_energy,
-                    cross_AP,
-                    cross_energy,
-                    sector_labels.get(target.get("sector","N/A"), str(target['info'].get("sector","N/A"))),
-                    range_dict.get(target['info'].get("range","N/A"), str(target['info'].get("range","N/A"))),
-                    rt_dict.get(target['info'].get("rt","N/A"), str(target['info'].get("rt","N/A"))),
-                    target['info'].get("comment",""),
-                    "Yes" if target['chann']==1 else "No",
-                    "None" if target['chann']==2 else target['info'].get("2chann","1")
-                ])       
-    
-        # ---------------- Print totals ----------------
 
-        if all(r in (0, None) for r in all_ranges):
-            print("**SPELL IS NOT FEASIBLE: NO RANGE**")
-        #print(all_ranges)
-        
-    
-        total_AP = total_base_AP + total_cross_AP 
-        total_energy = total_base_energy + total_cross_energy +rtcEnergy
-    
-        
-        
-        if quicken > 0:
-            print(f"TOTAL AP: {total_AP-quicken} (quicken applied)")
-            print("TOTAL ENERGY:", total_energy*2*quicken,"(quicken applied)")
-            
-            
-        else:
-            print("TOTAL AP:", total_AP)
-            print("TOTAL ENERGY:", total_energy)
-        print ("AP from Mods:", modAP)
-        print ("ENERGY from Mods:", modEnergy + rtcEnergy)
+        for word in words_list:
+            e = electron_positions[word]
+            base_AP = e['info'].get("AP",1)
+            cross_AP = 0
+            base_energy = e['level']
+            cross_energy = 0
+            total_base_AP += base_AP
+            total_base_energy += base_energy
+            table.append([
+                word, base_AP, base_energy, cross_AP, cross_energy,
+                sector_labels.get(e.get("sector","N/A"), str(e['info'].get("sector","N/A"))),
+                range_dict.get(e['info'].get("range","N/A"), str(e['info'].get("range","N/A"))),
+                rt_dict.get(e['info'].get("rt","N/A"), str(e['info'].get("rt","N/A"))),
+                e['info'].get("comment","")
+            ])
+
+        total_AP = total_base_AP + total_cross_AP
+        total_energy = total_base_energy + total_cross_energy + rtcEnergy
+
+        print("TOTAL AP:", total_AP)
+        print("TOTAL ENERGY:", total_energy)
+        print("AP from Mods:", modAP)
+        print("ENERGY from Mods:", modEnergy + rtcEnergy)
         print("ENERGY from RANGE INC:", added_energy_cost)
         print("RANGE INC:", range_increase_input+1,"X")
         print("Quicken Value:", quicken)
-        #print(tabulate(table, headers=["From","To","Base AP","Base Energy","Cross AP","Cross Energy",
-                                       #"Domain","Range","RT","Comment","Chan","AP"], tablefmt="fancy_grid"))
-        df = pd.DataFrame(table,columns=["From","To","Base AP","Base Energy","Cross AP","Cross Energy","Domain","Range","RT","Comment","Chan","AP"])
-    
-    
+
         printed_output = buffer.getvalue()
         buffer.close()
-    
-        ax.set_box_aspect([1,1,1])
-        ax.view_init(elev=alt, azim=azim)
-        lim = max_radius+1
-        ax.set_xlim(-lim,lim)
-        ax.set_ylim(-lim,lim)
-        ax.set_zlim(-lim,lim)
-        #plt.show()
-        return fig, printed_output, df
-    
+        return fig, printed_output, electron_positions, table
+
 
