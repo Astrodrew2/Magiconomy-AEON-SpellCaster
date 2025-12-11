@@ -325,54 +325,54 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 )
             )
           )
-          # Radius setup
-          max_level = max([words_dict[word]["level"] for word in words_list])
-          radius_step = 4
-          max_radius = max_level * radius_step
+        # Radius setup
+        max_level = max([words_dict[word]["level"] for word in words_list])
+        radius_step = 4
+        max_radius = max_level * radius_step
   
-          # Radial lines + sector labels
-          label_radius = max_radius + 0.7
+        # Radial lines + sector labels
+        label_radius = max_radius + 0.7
   
-          for i in range(6):
-              angle = i * sector_angle
-              x = [0, max_radius * np.cos(angle)]
-              y = [0, max_radius * np.sin(angle)]
-              z = [0, 0]
+        for i in range(6):
+            angle = i * sector_angle
+            x = [0, max_radius * np.cos(angle)]
+            y = [0, max_radius * np.sin(angle)]
+            z = [0, 0]
   
-              # Add radial line
-              fig.add_trace(
-                  go.Scatter3d(
-                      x=x,
-                      y=y,
-                      z=z,
-                      mode='lines',
-                      line=dict(color='black', width=2, dash='dash'),
-                      opacity=0.5,
-                      showlegend=False
-                  )
-              )
+            # Add radial line
+            fig.add_trace(
+                go.Scatter3d(
+                    x=x,
+                    y=y,
+                    z=z,
+                    mode='lines',
+                    line=dict(color='black', width=2, dash='dash'),
+                    opacity=0.5,
+                    showlegend=False
+                )
+            )
   
-              # Add sector label
-              label_angle = angle + sector_angle / 2
-              lx = label_radius * np.cos(label_angle)
-              ly = label_radius * np.sin(label_angle)
-              lz = 20  # same as in original
+            # Add sector label
+            label_angle = angle + sector_angle / 2
+            lx = label_radius * np.cos(label_angle)
+            ly = label_radius * np.sin(label_angle)
+            lz = 20  # same as in original
           
-              fig.add_trace(
-                  go.Scatter3d(
-                      x=[lx],
-                      y=[ly],
-                      z=[lz],
-                      mode='text',
-                      text=[sector_labels.get(i+1, str(i+1))],
-                      textposition='middle center',
-                      textfont=dict(
-                          color='black',
-                          size=20
-                      ),
-                      showlegend=False
-                  )
-              )
+            fig.add_trace(
+                go.Scatter3d(
+                    x=[lx],
+                    y=[ly],
+                    z=[lz],
+                    mode='text',
+                    text=[sector_labels.get(i+1, str(i+1))],
+                    textposition='middle center',
+                    textfont=dict(
+                        color='black',
+                        size=20
+                    ),
+                    showlegend=False
+                )
+            )
   
       
           # Radius setup
