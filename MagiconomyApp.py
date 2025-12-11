@@ -84,7 +84,7 @@ with st.sidebar:
     glyph_list = st.sidebar.multiselect(
         "Select Glyphs",
         options=list(words_dict.keys()),
-        default=list(words_dict.keys())
+        default=[]
     )
     
     # Domain input (optional)
