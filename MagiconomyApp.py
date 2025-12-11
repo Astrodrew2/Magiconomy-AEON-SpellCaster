@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-#from atomwords import draw_atom_words_from_dict  # your plotting function
-from plotlyatomwords import draw_atom_words_from_dict
+from atomwords import draw_atom_words_from_dict  # your plotting function
+#from plotlyatomwordsWIP import draw_atom_words_from_dict
 import glyphdict
 import modsdict
 import pandas as pd
