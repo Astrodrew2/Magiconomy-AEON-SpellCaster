@@ -69,6 +69,17 @@ st.markdown("""
 words_dict = glyphdict.words_dict
 modifiers_dict = modsdict.mod_dict
 # ====================== APP LAYOUT ====================== #
+
+# -- Domain name → section conversion map --
+domain_to_section = {
+    "End": 1,
+    "Death": 2,
+    "Dark Shamanism": 3,
+    "Shamanism": 4,
+    "Druidism": 5,
+    "Ley": 6,
+}
+
 # --- Sidebar Inputs ---
 with st.sidebar:
 
@@ -88,7 +99,18 @@ with st.sidebar:
     )
     
     # Domain input (optional)
-    domain_var = st.sidebar.text_input("Domain", "DefaultDomain")
+    domain_var = st.sidebar.text_input("Domain", "DefaultDomain").strip().lower()
+    # ---- Domain input (filters list by section) ----
+    selected_section = domain_to_section.get(domain_var, "DefaultDomain")
+
+    # ---- APPLY DOMAIN FILTER ----
+    if selected_section is not "DefaultDomain":
+        glyph_list = [
+            w for w in glyph_list
+            if words_dict[w]["section"] == selected_section
+        ]
+
+    
     
     # Modifier selection
     mods_list = st.sidebar.multiselect(
