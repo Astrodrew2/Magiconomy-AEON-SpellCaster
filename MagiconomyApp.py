@@ -92,24 +92,38 @@ with st.sidebar:
     st.sidebar.header("Controls")
     
     # Glyph selection
-    glyph_list = st.sidebar.multiselect(
-        "Select Glyphs",
-        options=list(words_dict.keys()),
-        default=[]
-    )
-    
-    # Domain input (optional)
-    domain_var = st.sidebar.text_input("Domain", "DefaultDomain").strip().lower()
-    # ---- Domain input (filters list by section) ----
-    selected_section = domain_to_section.get(domain_var, "DefaultDomain")
+    # --- Glyph selection (unfiltered) ---
+    all_glyphs = list(words_dict.keys())
 
-    # ---- APPLY DOMAIN FILTER ----
-    if selected_section is not "DefaultDomain":
-        glyph_list = [
-            w for w in glyph_list
+    # --- Domain dropdown ---
+    chosen_domain = st.selectbox(
+        "Domain (Filter Glyphs):",
+        options=list(domain_to_section.keys()),
+        index=0  # "All Domains"
+    )
+
+    # Convert domain → section number
+    selected_section = domain_to_section[chosen_domain]
+
+    # --- Filter glyphs based on domain ---
+    if selected_section is None:
+        filtered_glyphs = all_glyphs
+    else:
+        filtered_glyphs = [
+            w for w in all_glyphs
             if words_dict[w]["section"] == selected_section
         ]
 
+    # --- Display filtered list ---
+    glyph_list = st.multiselect(
+        "Select Glyphs",
+        options=filtered_glyphs,
+        default=[]
+    )
+
+    # --- Optional feedback message ---
+    if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
+        st.warning(f"No glyphs found in **{chosen_domain}** domain.")
     
     
     # Modifier selection
