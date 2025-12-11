@@ -133,7 +133,7 @@ with st.sidebar:
     
     # Glyph selection
     # --- Glyph selection (unfiltered) ---
-    all_glyphs = list(words_dict.keys())
+    all_glyphs = list(glyphdict.keys())
 
     # --- Domain dropdown ---
     chosen_domain = st.selectbox(
@@ -151,7 +151,7 @@ with st.sidebar:
     else:
         filtered_glyphs = [
             w for w in all_glyphs
-            if words_dict[w]["section"] == selected_section
+            if glyphdict[w]["section"] == selected_section
         ]
 
     # --- Display filtered list ---
