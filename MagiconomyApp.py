@@ -70,8 +70,6 @@ st.markdown("""
 #Sidebar coloration and format
 # ---- CUSTOM SIDEBAR STYLING ----
 
-[theme]
-primaryColor= "cyan"
 
 
 
