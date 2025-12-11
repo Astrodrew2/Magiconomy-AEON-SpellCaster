@@ -71,42 +71,49 @@ st.markdown("""
 # ---- CUSTOM SIDEBAR STYLING ----
 st.markdown("""
 <style>
-/* Sidebar background */
-section[data-testid="stSidebar"] {
-    background-color: #1e1e1e;
+/* ===================== SIDEBAR BACKGROUND ===================== */
+section[data-testid="stSidebar"], div[data-testid="stSidebarContent"] {
+    background-color: #1e1e1e !important;
 }
 
-/* Radio and checkbox labels */
-div[data-baseweb="radio"] > div > label {
+/* ===================== RADIO BUTTON LABELS ===================== */
+div[role="radiogroup"] label p {
     color: white !important;
 }
 
-/* Selected radio button */
-div[data-baseweb="radio"] input:checked + div > div {
-    background-color: #00ffea !important;  /* highlight color */
-    border-color: #00ffea !important;
-    color: black !important;
+/* ===================== SELECTED RADIO BUTTON ===================== */
+div[role="radiogroup"] input:checked + div {
+    outline: 2px solid #00ffea !important;
+    border-radius: 6px;
 }
 
-/* Multiselect selected items (chips) */
-span[data-baseweb="tag"] {
-    background-color: #00ffea !important; 
-    color: black !important;
+/* The text inside the selected radio option */
+div[role="radiogroup"] input:checked + div p {
+    color: #00ffea !important;
+    font-weight: 600;
 }
 
-/* Dropdown selected item highlight */
+/* ===================== MULTISELECT TAGS (selected chips) ===================== */
+div[data-testid="stMultiSelect"] div[role="list"] > div {
+    background-color: #00ffea !important;
+    color: black !important;
+    border-radius: 8px !important;
+}
+
+/* ===================== DROPDOWN LIST SELECTED ITEM ===================== */
 div[role="listbox"] div[aria-selected="true"] {
     background-color: #00ffea !important;
     color: black !important;
 }
 
-/* Dropdown hover effect */
-div[role="listbox"] div:hover {
+/* ===================== DROPDOWN HOVER HIGHLIGHT ===================== */
+div[role="option"]:hover {
     background-color: #00ffea !important;
     color: black !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ====================== APP LAYOUT ====================== #
