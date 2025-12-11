@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 from atomwords import draw_atom_words_from_dict  # your plotting function
 #from plotlyatomwordsWIP import draw_atom_words_from_dict
 import glyphdict
+words_dict = glyphdict.words_dict
 import modsdict
+mod_dict = modsdict.mod_dict
 import pandas as pd
 import base64
 import os
@@ -169,7 +171,7 @@ with st.sidebar:
     # Modifier selection
     mods_list = st.sidebar.multiselect(
         "Select Modifiers",
-        options=list(modifiers_dict.keys()),
+        options=list(mod_dict.keys()),
         default=[]
     )
     
