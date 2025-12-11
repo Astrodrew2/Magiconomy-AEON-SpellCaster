@@ -169,30 +169,10 @@ if view_mode == "Spell Caster":
   
 
 
-if view_mode == "Glyph Dictionary":
-    pdf_path = "Glyph_Dictionary(tobeupdated).pdf"
-
-    try:
-        with open(pdf_path, "rb") as f:
-            pdf_bytes = f.read()
-        # Encode PDF to base64
-        base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
-
-        # Embed PDF with clickable links
-        pdf_display = f'''
-        <iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">
-        This browser does not support PDFs. Please download the PDF to view it: 
-        <a href="data:application/pdf;base64,{base64_pdf}">Download PDF</a>.
-        </iframe>
-        '''
-        components.html(pdf_display, height=1000, width=700)
-
-    except FileNotFoundError:
-        st.error("PDF file not found.")
-
+if view_mode == "Glyph Dictionary": 
+    pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
+    render_pdf_as_images(pdf_path) 
     st.stop()
-    
-
 
 # Apply button
 if st.sidebar.button("Apply"):
