@@ -190,7 +190,7 @@ if st.sidebar.button("Apply"):
         fig, output_text, df= draw_atom_words_from_dict(
             words_list=glyph_list,
             words_dict=words_dict,
-            modifiers_dict=modifiers_dict,
+            modifiers_dict=mod_dict,
             modifiers_to_apply=mods_list,
             quicken=quicken_val,
             range_increase_input=range_inc,
