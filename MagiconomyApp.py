@@ -133,7 +133,7 @@ with st.sidebar:
     
     # Glyph selection
     # --- Glyph selection (unfiltered) ---
-    all_glyphs = list(glyphdict.keys())
+    all_glyphs = list(words_dict.keys())
 
     # --- Domain dropdown ---
     chosen_domain = st.selectbox(
