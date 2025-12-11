@@ -10,4 +10,5 @@ serverAddress = "0.0.0.0"
 gatherUsageStats = false
 
 [theme]
+base="dark"
 primaryColor= "cyan"
