@@ -153,7 +153,7 @@ with st.sidebar:
     else:
         filtered_glyphs = [
             w for w in all_glyphs
-            if glyphdict[w]["section"] == selected_section
+            if words_dict[w]["section"] == selected_section
         ]
 
     # --- Display filtered list ---
