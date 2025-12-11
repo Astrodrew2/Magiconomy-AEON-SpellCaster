@@ -70,6 +70,58 @@ st.markdown("""
 #Sidebar coloration and format
 # ---- CUSTOM SIDEBAR STYLING ----
 
+st.markdown("""
+<style>
+
+/* Replace Streamlit built-in accent color (red) with teal */
+:root {
+    --primary-color: #00ffea !important;
+    --accent-color: #00ffea !important;
+    --text-selection-color: #00ffea33 !important;
+    --focus-color: #00ffea !important;
+}
+
+/* Text input and selectbox borders */
+input, select, textarea, div[data-baseweb="select"] > div {
+    border-color: #00ffea !important;
+}
+
+/* Multiselect tags (chips) */
+span[data-baseweb="tag"] {
+    background-color: #00ffea !important;
+    color: black !important;
+}
+
+/* Multiselect close “X” button on tags */
+span[data-baseweb="tag"] svg {
+    fill: black !important;
+}
+
+/* Dropdown open arrow color */
+div[data-baseweb="select"] svg {
+    fill: #00ffea !important;
+}
+
+/* Radio selected dot */
+div[role="radiogroup"] input:checked + div > div:first-child {
+    background-color: #00ffea !important;
+    border-color: #00ffea !important;
+}
+
+/* Text input focus ring */
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid #00ffea !important;
+}
+
+/* Selectbox focused border */
+div[data-baseweb="select"]:focus-within {
+    border-color: #00ffea !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
 
 
 # ====================== APP LAYOUT ====================== #
