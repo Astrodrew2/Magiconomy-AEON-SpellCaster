@@ -176,7 +176,7 @@ if view_mode == "Glyph Dictionary":
     if os.path.exists(pdf_path):
         # Embed PDF directly using iframe
         pdf_display = f"""
-        <iframe src="{pdf_path}" width="700" height="1000" type="application/pdf">
+        <iframe src="{pdf_path}" width="700" height="1000" type="pdf">
         This browser does not support PDFs. Please download the PDF to view it: <a href="{pdf_path}">Download PDF</a>.
         </iframe>
         """
