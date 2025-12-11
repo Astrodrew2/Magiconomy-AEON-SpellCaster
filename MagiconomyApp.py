@@ -65,9 +65,48 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Example data – replace with your actual dictionaries
-words_dict = glyphdict.words_dict
-modifiers_dict = modsdict.mod_dict
+#Sidebar coloration and format
+# ---- CUSTOM SIDEBAR STYLING ----
+st.markdown("""
+<style>
+/* Sidebar background */
+section[data-testid="stSidebar"] {
+    background-color: #1e1e1e;
+}
+
+/* Radio and checkbox labels */
+div[data-baseweb="radio"] > div > label {
+    color: white !important;
+}
+
+/* Selected radio button */
+div[data-baseweb="radio"] input:checked + div > div {
+    background-color: #00ffea !important;  /* highlight color */
+    border-color: #00ffea !important;
+    color: black !important;
+}
+
+/* Multiselect selected items (chips) */
+span[data-baseweb="tag"] {
+    background-color: #00ffea !important; 
+    color: black !important;
+}
+
+/* Dropdown selected item highlight */
+div[role="listbox"] div[aria-selected="true"] {
+    background-color: #00ffea !important;
+    color: black !important;
+}
+
+/* Dropdown hover effect */
+div[role="listbox"] div:hover {
+    background-color: #00ffea !important;
+    color: black !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # ====================== APP LAYOUT ====================== #
 
 # -- Domain name → section conversion map --
