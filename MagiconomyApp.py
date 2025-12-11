@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 from atomwords import draw_atom_words_from_dict  # your plotting function
 #from plotlyatomwordsWIP import draw_atom_words_from_dict
@@ -169,10 +170,19 @@ if view_mode == "Spell Caster":
 
 
 if view_mode == "Glyph Dictionary":
-
     pdf_path = "Glyph_Dictionary(tobeupdated).pdf"
 
-    render_pdf_as_images(pdf_path)
+    # Make sure the PDF file exists
+    if os.path.exists(pdf_path):
+        # Embed PDF directly using iframe
+        pdf_display = f"""
+        <iframe src="{pdf_path}" width="700" height="1000" type="application/pdf">
+        This browser does not support PDFs. Please download the PDF to view it: <a href="{pdf_path}">Download PDF</a>.
+        </iframe>
+        """
+        components.html(pdf_display, height=1000, width=700)
+    else:
+        st.error("PDF file not found.")
 
     st.stop()
     
