@@ -118,8 +118,7 @@ domain_to_section = {
     "Shamanism": 4,
     "Druidism": 5,
 }
-background-color: var(--primary-color) !important;
-color: var(--text-color) !important;
+
 
 # --- Sidebar Inputs ---
 with st.sidebar:
