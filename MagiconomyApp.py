@@ -104,12 +104,48 @@ with st.sidebar:
     all_glyphs = list(words_dict.keys())
 
     # --- Domain dropdown ---
-    chosen_domain = st.selectbox(
-        "Domain (Filter Glyphs):",
+    chosen_domains = st.multiselect(
+        "Domains (Filter Glyphs)",
         options=list(domain_to_section.keys()),
-        index=0  # "All Domains"
+        default=["All"]
     )
 
+    #filter logic?
+    # --- Resolve selected sections ---
+    selected_sections = set()
+
+    if "All" in chosen_domains:
+        selected_sections = set(range(1, 7))
+    else:
+        for d in chosen_domains:
+            sec = domain_to_section[d]
+            if isinstance(sec, set):
+                selected_sections |= sec
+            else:
+                selected_sections.add(sec)
+    
+    # --- Domain-based filter (DISPLAY ONLY) ---
+    filtered_glyphs = [
+        g for g in all_glyphs
+        if words_dict[g]["section"] in selected_sections
+    ]
+    
+    # --- Search filter ---
+    if glyph_search:
+        filtered_glyphs = [
+            g for g in filtered_glyphs
+            if glyph_search.lower() in g.lower()
+        ]
+    
+    # --- Ensure selected glyphs are always visible ---
+    display_options = sorted(
+        set(filtered_glyphs) | set(st.session_state.selected_glyphs)
+    )
+    
+
+    #end
+
+'''
     # Convert domain → section number
     selected_section = domain_to_section[chosen_domain]
 
@@ -128,6 +164,29 @@ with st.sidebar:
         options=filtered_glyphs,
         default=[]
     )
+'''
+    glyph_list = st.multiselect(
+        "Select Glyphs",
+        options=display_options,
+        default=st.session_state.selected_glyphs
+    )
+
+    st.session_state.selected_glyphs = glyph_list
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("Clear Visible"):
+            st.session_state.selected_glyphs = [
+                g for g in st.session_state.selected_glyphs
+                if g not in filtered_glyphs
+            ]
+    
+    with col2:
+        if st.button("Clear All"):
+            st.session_state.selected_glyphs = []
+    
+
 
     # --- Optional feedback message ---
     if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
