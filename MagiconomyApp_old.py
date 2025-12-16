@@ -14,6 +14,9 @@ from pdf2image import convert_from_path
 
 #from plotly.tools import mpl_to_plotly
 #import plotly.graph_objects as go
+# --- Session state initialization ---
+if "selected_glyphs" not in st.session_state:
+    st.session_state["selected_glyphs"] = []
 
 
 def render_pdf_as_images(pdf_path):
@@ -78,7 +81,7 @@ st.markdown("""
 
 # -- Domain name → section conversion map --
 domain_to_section = {
-    "All":[6,1,2,3,4,5],
+    "All": set(range(1, 7)),
     "Ley": 6,
     "End": 1,
     "Death": 2,
@@ -114,20 +117,37 @@ with st.sidebar:
     selected_section = domain_to_section[chosen_domain]
 
     # --- Filter glyphs based on domain ---
-    if selected_section is None:
+    # --- Filter glyphs (DISPLAY ONLY) ---
+    if chosen_domain == "All":
         filtered_glyphs = all_glyphs
+    
+    elif isinstance(selected_section, set):
+        filtered_glyphs = [
+            g for g in all_glyphs
+            if words_dict[g]["section"] in selected_section
+        ]
+    
     else:
         filtered_glyphs = [
-            w for w in all_glyphs
-            if words_dict[w]["section"] == selected_section
+            g for g in all_glyphs
+            if words_dict[g]["section"] == selected_section
         ]
-
-    # --- Display filtered list ---
+    
+    # --- IMPORTANT: keep already-selected glyphs visible ---
+    display_options = sorted(
+        set(filtered_glyphs) | set(st.session_state["selected_glyphs"])
+    )
+    
+    # --- Glyph selector (state-backed) ---
     glyph_list = st.multiselect(
         "Select Glyphs",
-        options=filtered_glyphs,
-        default=[]
+        options=display_options,
+        default=st.session_state["selected_glyphs"]
     )
+    
+    # --- Persist selection ---
+    st.session_state["selected_glyphs"] = glyph_list
+
 
     # --- Optional feedback message ---
     if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
