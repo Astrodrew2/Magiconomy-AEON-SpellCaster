@@ -75,8 +75,11 @@ st.markdown("""
 
 
 # ====================== APP LAYOUT ====================== #
-
+# --- Session State Initialization (MUST be first) ---
+if "selected_glyphs" not in st.session_state:
+    st.session_state["selected_glyphs"] = []
 # -- Domain name → section conversion map --
+
 domain_to_section = {
     "All":set(range(1, 7)),
     "Ley": 6,
