@@ -109,6 +109,11 @@ with st.sidebar:
         options=list(domain_to_section.keys()),
         default=["All"]
     )
+    glyph_search = st.text_input(
+        "Search Glyphs",
+        placeholder="Type glyph name..."
+    )
+
 
     #filter logic?
     # --- Resolve selected sections ---
