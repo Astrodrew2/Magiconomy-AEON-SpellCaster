@@ -78,7 +78,7 @@ st.markdown("""
 
 # -- Domain name → section conversion map --
 domain_to_section = {
-    "All":[6,1,2,3,4,5]
+    "All":[6,1,2,3,4,5],
     "Ley": 6,
     "End": 1,
     "Death": 2,
