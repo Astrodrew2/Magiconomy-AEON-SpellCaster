@@ -119,58 +119,24 @@ with st.sidebar:
 
 
     #filter logic?
-    # --- Resolve selected sections ---
-    selected_sections = set()
+    # Convert domain → section number
+    selected_section = domain_to_section[chosen_domain]
 
-    if "All" in chosen_domains:
-        selected_sections = set(range(1, 7))
+    # --- Filter glyphs based on domain ---
+    if selected_section is None:
+        filtered_glyphs = all_glyphs
     else:
-        for d in chosen_domains:
-            sec = domain_to_section[d]
-            if isinstance(sec, set):
-                selected_sections |= sec
-            else:
-                selected_sections.add(sec)
-    
-    # --- Domain-based filter (DISPLAY ONLY) ---
-    filtered_glyphs = [
-        g for g in all_glyphs
-        if words_dict[g]["section"] in selected_sections
-    ]
-    
-    # --- Search filter ---
-    if glyph_search:
         filtered_glyphs = [
-            g for g in filtered_glyphs
-            if glyph_search.lower() in g.lower()
+            w for w in all_glyphs
+            if words_dict[w]["section"] == selected_section
         ]
-    
-    # --- Ensure selected glyphs are always visible ---
-    display_options = sorted(
-        set(filtered_glyphs) | set(st.session_state.selected_glyphs)
-    )
-    
 
+    # --- Display filtered list ---
     glyph_list = st.multiselect(
         "Select Glyphs",
-        options=display_options,
-        default=st.session_state.selected_glyphs
+        options=filtered_glyphs,
+        default=[]
     )
-
-    st.session_state.selected_glyphs = glyph_list
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("Clear Visible"):
-            st.session_state.selected_glyphs = [
-                g for g in st.session_state.selected_glyphs
-                if g not in filtered_glyphs
-            ]
-    
-    with col2:
-        if st.button("Clear All"):
-            st.session_state.selected_glyphs = []
     
 
 
