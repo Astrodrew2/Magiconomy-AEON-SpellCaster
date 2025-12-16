@@ -143,28 +143,6 @@ with st.sidebar:
     )
     
 
-    #end
-
-'''
-    # Convert domain → section number
-    selected_section = domain_to_section[chosen_domain]
-
-    # --- Filter glyphs based on domain ---
-    if selected_section is None:
-        filtered_glyphs = all_glyphs
-    else:
-        filtered_glyphs = [
-            w for w in all_glyphs
-            if words_dict[w]["section"] == selected_section
-        ]
-
-    # --- Display filtered list ---
-    glyph_list = st.multiselect(
-        "Select Glyphs",
-        options=filtered_glyphs,
-        default=[]
-    )
-'''
     glyph_list = st.multiselect(
         "Select Glyphs",
         options=display_options,
@@ -185,6 +163,27 @@ with st.sidebar:
     with col2:
         if st.button("Clear All"):
             st.session_state.selected_glyphs = []
+    
+'''
+    # Convert domain → section number
+    selected_section = domain_to_section[chosen_domain]
+
+    # --- Filter glyphs based on domain ---
+    if selected_section is None:
+        filtered_glyphs = all_glyphs
+    else:
+        filtered_glyphs = [
+            w for w in all_glyphs
+            if words_dict[w]["section"] == selected_section
+        ]
+
+    # --- Display filtered list ---
+    glyph_list = st.multiselect(
+        "Select Glyphs",
+        options=filtered_glyphs,
+        default=[]
+    )
+'''
     
 
 
