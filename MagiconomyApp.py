@@ -171,10 +171,11 @@ with st.sidebar:
     quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
 
 if view_mode == "Spell Caster":
-    st.title("Aeon Spell Caster (Tips Below)")
-    st.image("magics.png", use_container_width=True)
+    st.title("Aeon Spell Caster")
+    # st.image("magics.png", use_container_width=True)
     # Add text below the image
     st.subheader("Tips/Instructions")
+    st.write("**ONCE YOU HIT APPLY YOUR SPELL WILL APPEAR BELOW THE TEXT**")
     st.write("**Spell Caster View Mode:** This is where you can use the spell caster calculator.")
     st.write("Choose a **Domain** to pick your Glyphs from")
     st.write("You can pick the glyphs in **Select Glyphs** box")
@@ -184,7 +185,8 @@ if view_mode == "Spell Caster":
     st.write("**Quicken:** Type the amount of AP you want to take away from the current AP cost. Ex.) typing 2 for a default 4 AP/ 2Charge cast will result in a 2AP/8Charge cost")
     st.write("")
     st.write("**Glyph Dictionary View Mode:** This is where you can learn how the values are calculated and how you can write your own spells! This also shows you the Glyph dictionary with more elaborate descriptions and details.")
-    
+    st.write("")
+    st.write("**ONCE YOU HIT APPLY YOUR SPELL WILL APPEAR BELOW HERE**")
     
     
   
