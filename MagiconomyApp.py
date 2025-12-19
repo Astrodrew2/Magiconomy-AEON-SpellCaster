@@ -203,7 +203,7 @@ if st.sidebar.button("Apply"):
     if not glyph_list:
         st.warning("Please select at least one glyph.")
     else:
-        st.subheader("Orbital Figure and Table Output")
+        st.subheader("Spell Hex Map and Table Output")
 
         # --- Generate figure and text ---
         fig, output_text, df= draw_atom_words_from_dict(
