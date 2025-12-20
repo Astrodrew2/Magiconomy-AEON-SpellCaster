@@ -85,7 +85,7 @@ domain_to_section = {
     "Ley": 6,
     "End": 1,
     "Death": 2,
-    "Dark Shamanism": 3,
+    "Witchcraft": 3,
     "Shamanism": 4,
     "Druidism": 5,
 }
