@@ -130,11 +130,24 @@ words_dict = {
     "Chronic EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "Change the Duration of a curse to be Permanent. E.g. If the Duration was 5 days it now becomes Permanent.", "chann":2, "over":1},
     "Exacerbation EN": {"level":1,"section":3,"AP":2, "range":0, "rt": 0, "comment": "Instantly raise all Injury Levels to the next Level of a target when effected by a Curse. (IE. Crippled is now Destroyed)", "chann":2},
     "Radiation EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "A cursed target hit with this radiates their leaking Spirit outward reducing the Vigor of all mortals within 10ft around them by 20.", "chann":2, "over":1},
-
-
-    
     #Enhancements: Adept
     #Enhancements: Master
+
+    #DEATH
+    #Novice:
+    "Soul Death": {"level":2,"section":2,"AP":1, "range":20, "rt": 3, "comment": "Push your Soul out to another’s, manipulating part of the target’s Soul into Death equal to Spi x 2 + accuracy roll", "chann":2},
+    "Imbue Death": {"level":1,"section":2,"AP":1, "range":2, "rt": 2, "comment": "Imbue your Soul onto a held object, giving it Siphon Death: When an object imbued with your Soul pierces a creature, remove equivalent Death from the Death bar of the target and apply it to your object, via your Soul surrounding it. If the object with Death pierces another creature, transfer the Death from it to the enemy, dealing physical damage as normal. Organic objects with no Soul that are touching can be temporarily linked by your Soul when remaining in contact.", "chann":1},
+    #Adept:
+    "Wildflame": {"level":1,"section":2,"AP":1, "range":30, "rt": 3, "comment": "Manipulate the Fire of Death emanating from a target who has died due to a full Death bar with your Soul. By using Spirit you can throw part of it at and onto other targets with Souls. Uses Spi x 2 for accuracy, if the target is hit, their soul begins to become Death. Damage: Death equal to the caster’s Spirit.", "chann":2},
+    "Exorcize": {"level":3,"section":2,"AP":1, "range":20, "rt": 3, "comment": "Remove Fire of Death from a dead target, afflicting oneself with 1/4 targets original max Death as Death. This reanimates a corpse, if the dead target was killed by Death within the last 10 days, without a Soul as an aggressive undead with 3/4th original health. The reanimated target will attack any nearby creature.", "chann":2},
+    #Master:
+    "Death Link": {"level":5,"section":2,"AP":2, "range":2, "rt": 2, "comment": "If organic objects, organized and attached in a biologically reasonable way, are linked with Glyph of Imbue Soul and you cast Glyph of Exorcize with the Enhanced Spirit enhancement, this will link the revived mind to recognize your Soul, preventing it from attacking you, and making it more accepting of taking orders from you. (This would override the aggressive quality of the undead reanimated with Glyph of Exorcize)", "chann":2},
+    #Enhancements: Novice
+    #Enhancements: Adept
+    #Enhancements: Master
+    "Enhance Spirit EN": {"level":3,"section":2,"AP":1, "range":0, "rt": 0, "comment": "our mastery of your Soul allows you to enhance it’s reach on command. This allows Death Glyphs that are currently conical to extend to an additional 2 targets if within range.", "chann":2, "over":1},
+    
+    
 }
     
     
