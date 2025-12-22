@@ -227,8 +227,8 @@ if st.sidebar.button("Apply"):
         
 
         # --- Display table/text output ---
-        st.text_area("Total Cost", value=output_text, height=300)
+        st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
         st.write("")
-        st.write("Glyph functions (comments) and individual cost values")
+        st.write("**Glyph functions (comments) and individual cost values**")
         st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
 
