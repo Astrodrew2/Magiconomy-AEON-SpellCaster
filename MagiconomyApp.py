@@ -164,7 +164,7 @@ with st.sidebar:
 
     #---
     st.markdown("---")
-    st.subheader("Selected Glyph Details Shown Here")
+    st.subheader("Most Recently Selected Glyph Details")
     
     active = st.session_state.get("active_glyph")
     
@@ -182,6 +182,8 @@ with st.sidebar:
         st.markdown(f"**Range:** {range_text}")
         st.markdown(f"**Range Type:** {range_type_text}")
         st.markdown(f"**Comment:** {data.get('comment', '—')}")
+    else:
+        st.caption("Select a glyph to view details.")
     st.markdown("---")
 
 
