@@ -91,7 +91,9 @@ domain_to_section = {
     "Shamanism": 4,
     "Druidism": 5,
 }
-
+# Mapping for range and range type
+range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
+rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
 
 # --- Sidebar Inputs ---
 with st.sidebar:
@@ -162,19 +164,26 @@ with st.sidebar:
 
     #---
     st.markdown("---")
-    st.subheader("Glyph Details")
-
+    st.subheader("Selected Glyph Details Shown Here")
+    
     active = st.session_state.get("active_glyph")
-
+    
     if active:
         data = words_dict.get(active, {})
-
+    
+        # Decode values
+        raw_range = data.get("range")
+        raw_range_type = data.get("rt")
+    
+        range_text = range_dict.get(raw_range, "None")
+        range_type_text = rt_dict.get(raw_range_type, "None")
+    
         st.markdown(f"**Glyph:** {active}")
-        st.markdown(f"**Range:** {data.get('range', '—')}")
-        st.markdown(f"**Range Type:** {data.get('rt', '—')}")
+        st.markdown(f"**Range:** {range_text}")
+        st.markdown(f"**Range Type:** {range_type_text}")
         st.markdown(f"**Comment:** {data.get('comment', '—')}")
-    else:
-        st.caption("Select a glyph to view details.")
+        st.markdown("---")
+
 
 
 
