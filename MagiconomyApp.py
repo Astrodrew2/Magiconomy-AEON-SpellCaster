@@ -18,6 +18,8 @@ from pdf2image import convert_from_path
 if "selected_glyphs" not in st.session_state:
     st.session_state["selected_glyphs"] = []
 
+if "active_glyph" not in st.session_state:
+    st.session_state["active_glyph"] = None
 
 def render_pdf_as_images(pdf_path):
     """Convert each PDF page to an image and display it."""
@@ -139,14 +141,42 @@ with st.sidebar:
     )
     
     # --- Glyph selector (state-backed) ---
+    previous = set(st.session_state["selected_glyphs"])
+
     glyph_list = st.multiselect(
         "Select Glyphs",
         options=display_options,
         default=st.session_state["selected_glyphs"]
     )
-    
-    # --- Persist selection ---
+
+    current = set(glyph_list)
+
+    # Detect newly selected glyph
+    newly_selected = list(current - previous)
+
+    if newly_selected:
+        st.session_state["active_glyph"] = newly_selected[-1]
+
+    # Persist selection
     st.session_state["selected_glyphs"] = glyph_list
+
+    #---
+    st.markdown("---")
+    st.subheader("Glyph Details")
+
+    active = st.session_state.get("active_glyph")
+
+    if active:
+        data = words_dict.get(active, {})
+
+        st.markdown(f"**Glyph:** {active}")
+        st.markdown(f"**Range:** {data.get('range', '—')}")
+        st.markdown(f"**Range Type:** {data.get('rt', '—')}")
+        st.markdown(f"**Comment:** {data.get('comment', '—')}")
+    else:
+        st.caption("Select a glyph to view details.")
+
+
 
 
     # --- Optional feedback message ---
