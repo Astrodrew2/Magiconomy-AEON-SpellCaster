@@ -163,7 +163,6 @@ with st.sidebar:
     st.session_state["selected_glyphs"] = glyph_list
 
     #---
-    st.markdown("---")
     st.subheader("Selected Glyph Details Shown Here")
     
     active = st.session_state.get("active_glyph")
@@ -182,7 +181,7 @@ with st.sidebar:
         st.markdown(f"**Range:** {range_text}")
         st.markdown(f"**Range Type:** {range_type_text}")
         st.markdown(f"**Comment:** {data.get('comment', '—')}")
-        st.markdown("---")
+    st.markdown("---")
 
 
 
