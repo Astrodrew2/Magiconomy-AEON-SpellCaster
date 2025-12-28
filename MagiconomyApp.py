@@ -163,6 +163,7 @@ with st.sidebar:
     st.session_state["selected_glyphs"] = glyph_list
 
     #---
+    st.markdown("---")
     st.subheader("Selected Glyph Details Shown Here")
     
     active = st.session_state.get("active_glyph")
