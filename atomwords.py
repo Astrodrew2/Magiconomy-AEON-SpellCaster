@@ -356,10 +356,10 @@ def level_size_scale(level, base=1.0, factor=0):
         return base * (1 + factor * level)
 
 
-def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
+def draw_modifier_shape(ax, shape, center, size=1.0, color='black', Level=1):
     x0, y0, z0 = center
     z = z0 + 0.5  # lift shape above electron marker
-    size = level_size_scale(level, base=size, factor=1)
+    size = level_size_scale(Level, base=size, factor=1)
     if shape == "square":
         half = size / 1.5
         corners = np.array([
@@ -586,7 +586,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 electron_positions[word] = {
                     'pos': (xe, ye, ze),
                     'sector': sec,
-                    'level': level,
+                    'Level': level,
                     'chann': info.get("chann",2),
                     'chann2': info.get("2chann",1),
                     'info': info.copy()
@@ -625,13 +625,13 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     if target_word in electron_positions:
                         print("Modifier", mod_key, ":",mod.get("comment", []))
                         pos = electron_positions[target_word]['pos']
-                        level = electron_positions[target_word]['level']
-                        draw_modifier_shape(ax, mod["shape"], pos, size=mod.get("size",2.0),level = level)
+                        Level = electron_positions[target_word]['Level']
+                        draw_modifier_shape(ax, mod["shape"], pos, size=mod.get("size",2.0),Level = Level)
                         # Update AP/energy in word info
                         modAP += mod.get("AP",0)
                         modEnergy += mod.get("energy",0)
                         electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
-                        electron_positions[target_word]['info']['energy'] += mod.get("energy",0)
+                        electron_positions[target_word]['info']['level'] += mod.get("energy",0)
     
         # ---------------- Range Increase Mini-Orbitals ----------------
         if range_increase_input > 0:
