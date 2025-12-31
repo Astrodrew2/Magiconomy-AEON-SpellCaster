@@ -35,7 +35,7 @@ words_dict = {
     #Enhancements: Adept
     "Vertical EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 6ft to the height of the channeled or long-lasting glyph attached (mass is increased as would be expected). Duration: long-lasting glyph", "chann":2 },
     "Impact EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.", "chann":2, "over": 1 },
-    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range (Unless modified with Shoot Ice1 or 2)", "chann":2 },
+    "Shoot Ice EN": {"level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range (Unless modified with Shoot Ice1 or 2). Only usable with w<=2 Ice", "chann":2 },
     #Enhancements: Master
     "Greater Vertical EN": {"level":2,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 10ft to the height of the channeled or long-lasting glyph attached", "chann":2 },
 
