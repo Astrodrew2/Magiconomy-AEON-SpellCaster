@@ -417,25 +417,25 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5,zorder = 13)
     elif shape == "double_diamond":
-        half = size / 1.2
-        half2 = half * 1.1   # outer diamond scale factor
+        half = size / 1
+        half2 = half / 1.2   # inner diamond scale factor
     
         # inner diamond
         corners = np.array([
-            [x0,                 y0 + half, z],   # top
-            [x0 + 0.75*half,     y0,        z],   # right
-            [x0,                 y0 - half, z],   # bottom
-            [x0 - 0.75*half,     y0,        z],   # left
-            [x0,                 y0 + half, z]
+            [x0,                 y0 + half2, z],   # top
+            [x0 + 0.75*half2,     y0,        z],   # right
+            [x0,                 y0 - half2, z],   # bottom
+            [x0 - 0.75*half2,     y0,        z],   # left
+            [x0,                 y0 + half2, z]
         ])
     
         # outer diamond
         corners2 = np.array([
-            [x0,                 y0 + half2, z],
-            [x0 + 0.75*half2,    y0,         z],
-            [x0,                 y0 - half2, z],
-            [x0 - 0.75*half2,    y0,         z],
-            [x0,                 y0 + half2, z]
+            [x0,                 y0 + half, z],
+            [x0 + 0.75*half,    y0,         z],
+            [x0,                 y0 - half, z],
+            [x0 - 0.75*half,    y0,         z],
+            [x0,                 y0 + half, z]
         ])
     
         ax.plot(
