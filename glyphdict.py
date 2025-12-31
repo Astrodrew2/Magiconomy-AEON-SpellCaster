@@ -19,7 +19,7 @@ words_dict = {
     "Freeze": {"level":1,"section":6,"AP":1, "range":10, "rt": 4, "comment": "The Ley winds caught within your cast halt almost to a stand still inflicting 4 Slow on targets within your range", "chann":1 },
     "Flame": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "Energize the Ley winds you cast upon making that which it touches burn. Causes Burn.", "chann":1 },
     "Socket": {"level":1,"section":6,"AP":2, "range":2, "rt": 2, "comment": "If a weapon or piece of armor has a slot for a magical item or gemstone, you may use the Ley winds to fuse them together so the weapon or armor gains the effects of the magical item. Duration: continuous", "chann":2 },
-    "Heat": {"level":1,"section":6,"AP":1, "range":5, "rt": 4, "comment": "instant, pushes non-monsterous targets back 5ft", "chann":1 },
+    "Heat": {"level":1,"section":6,"AP":1, "range":5, "rt": 5, "comment": "instant, pushes non-monsterous targets back 5ft", "chann":1 },
     "Chill": {"level":1,"section":6,"AP":1, "range":10, "rt": 5, "comment": "instant, The Ley winds caught within your cast slow down inflicting 1 Slow on targets within your range", "chann":2 },
     "Ice w=1": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
     "Ice w=2": {"level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":1 },
