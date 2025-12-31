@@ -81,8 +81,8 @@ words_dict = {
     
     #Enhancements: Novice
     #Enhancements: Adept
-    "Shoot Thorns EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 6, "comment": "Instant. Shoot Thorns in all directions (radial) for 5ft. If you are casting thorns from yourself you must be wearing Light armor or less on your torso. Damage: 10 (Piercing) PD ⚔️/2 PP", "chann":2, "vig":1, "fiver":2},
-    "Venom EN": {"level":1,"section":5,"AP":1, "range":0, "rt": 1, "comment": "Instant. While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact", "chann":2, "vig":1, "fiver":2},
+    "Shoot Thorns": {"level":1,"section":5,"AP":1, "range":5, "rt": 6, "comment": "Instant. Shoot Thorns in all directions (radial) for 5ft. If you are casting thorns from yourself you must be wearing Light armor or less on your torso. Damage: 10 (Piercing) PD ⚔️/2 PP", "chann":2, "vig":1},
+    "Venom": {"level":1,"section":5,"AP":1, "range":1, "rt": 1, "comment": "Instant. While Thorns is active, cause the thorns to secrete a poison. Inflicts 1 Poison on contact", "chann":2, "vig":1},
     #Enhancements: Master
 
     #SHAMANISM:
