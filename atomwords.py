@@ -350,6 +350,7 @@ def level_size_scale(level, base=1.0, factor=0):
     factor: growth per level
     """
     if level == 1:
+        base = 1.5
         return base
     else:
         return base * (1 + factor * level)
