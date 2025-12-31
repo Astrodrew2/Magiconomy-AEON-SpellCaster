@@ -342,7 +342,7 @@ def calculate_range_increase_charge(base_range_ft, range_increase):
     else:
         return range_increase * 5
 
-def level_size_scale(level, base=1.0, factor=0.25, min_level=1):
+def level_size_scale(level, base=1.0, factor=1):
     """
     Scales size by energy level.
     level: electron energy level
@@ -351,7 +351,7 @@ def level_size_scale(level, base=1.0, factor=0.25, min_level=1):
     """
     if level is None:
         return base
-    return base * (1 + factor * max(0, level - min_level))
+    return base * (1 + factor * level))
 
 
 def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
