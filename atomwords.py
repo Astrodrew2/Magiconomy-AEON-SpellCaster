@@ -461,7 +461,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         h = d * np.sqrt(3) / 2
     
         centers = [
-            (x0,       y0 + h/2, z),   # top
+            (x0,       y0 + h, z),   # top
             (x0 - d/2, y0 - h/2, z),   # bottom left
             (x0 + d/2, y0 - h/2, z)    # bottom right
         ]
