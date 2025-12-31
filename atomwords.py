@@ -631,7 +631,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         modAP += mod.get("AP",0)
                         modEnergy += mod.get("energy",0)
                         electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
-                        electron_positions[target_word]['info']['level'] += modEnergy
+                        electron_positions[target_word]['info']['level'] += mod.get("energy",0)
+                        electron_positions[target_word]['level'] += mod.get("energy",0)
     
         # ---------------- Range Increase Mini-Orbitals ----------------
         if range_increase_input > 0:
