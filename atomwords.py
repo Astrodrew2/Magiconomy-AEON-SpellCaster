@@ -396,7 +396,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
             [x0,        y0 - half - y_offset, z],        # top
             [x0 - half , y0 + half - y_offset, z],        # bottom left
             [x0 + half, y0 + half - y_offset, z],        # bottom right
-            [x0,        y0 - half, z]         # close triangle
+            [x0,        y0 - half - y_offset, z]         # close triangle
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
     elif shape == "circle":
