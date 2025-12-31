@@ -57,7 +57,7 @@ words_dict = {
     #Enhancements: Novice
     #Enhancements: Adept
     "Shadowfire EN": {"level":1,"section":1,"AP":1, "range":0, "rt": 0, "comment": "This gives Ley Fire magic spells the additional Shadowfire effect, dealing 2 × INT MD ✨ to any limb instantly upon initial contact (if you are completely engulfed in Shadowfire this will afflict all targets you come in contact with). This includes contact with existing Walls of Flame and areas burning with the Shadowfire effect. You are a traitor of ley", "chann":2},
-    "Crystal Grove EN": {"level":1,"section":1,"AP":1, "range":10, "rt": 6, "comment": "Splits Glyph of Crystal into an area covering 10ft radial crystal shards", "chann":2, "over": 1 },
+    #"Crystal Grove EN": {"level":1,"section":1,"AP":1, "range":10, "rt": 6, "comment": "Splits Glyph of Crystal into an area covering 10ft radial crystal shards", "chann":2, "over": 1 },
     #Enhancements: Master
 
     #DRUID:
