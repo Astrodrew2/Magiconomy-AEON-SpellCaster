@@ -391,10 +391,11 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ax.plot(corners2[:, 0], corners2[:, 1], corners2[:, 2], color=color, linewidth=1.5,zorder = 13)
     elif shape == "triangle":
         half = size / 1.5
+        y_offset = half * 0.35 
         corners = np.array([
-            [x0,        y0 + half, z],        # top
-            [x0 - half , y0 - half, z],        # bottom left
-            [x0 + half, y0 + half, z],        # bottom right
+            [x0,        y0 + half - y_offset, z],        # top
+            [x0 - half , y0 - half - y_offset, z],        # bottom left
+            [x0 + half, y0 - half - y_offset, z],        # bottom right
             [x0,        y0 + half, z]         # close triangle
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
