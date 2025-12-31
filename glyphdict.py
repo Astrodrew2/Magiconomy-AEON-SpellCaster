@@ -54,6 +54,7 @@ words_dict = {
     #Master
     "Demongate": {"level":5,"section":1,"AP":2, "range":5, "rt": 3, "comment": "Using the End winds open a rift to hell. The rift to hell seals in 2 seconds or after an End Pull whichever happens first unless stabilized.", "chann":2},
     "End Pull": {"level":3,"section":1,"AP":2, "range":10, "rt": 4, "comment": "Beckon End winds and the creatures of which it flows through towards you. Is easiest to cast in areas with concentrated End (e.g. Hell). If linked with with the Glyph of Demongate consult the Demongate table", "chann":2},
+    "Enslave (demon)": {"level":1,"section":1,"AP":2, "range":10, "rt": 3, "comment": "Attempt to push your control over the End that makes up their mind so they submit to you. Roll d12+INT vs the target’s d20 + INT or CON (whichever is higher),. If successful. They heed your call.", "chann":2},
     #Enhancements: Novice
     #Enhancements: Adept
     "Shadowfire EN": {"level":1,"section":1,"AP":1, "range":0, "rt": 0, "comment": "This gives Ley Fire magic spells the additional Shadowfire effect, dealing 2 × INT MD ✨ to any limb instantly upon initial contact (if you are completely engulfed in Shadowfire this will afflict all targets you come in contact with). This includes contact with existing Walls of Flame and areas burning with the Shadowfire effect. You are a traitor of ley", "chann":2},
