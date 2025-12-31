@@ -491,12 +491,18 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 else:
                     rng_num = info.get("range",0)
                     all_ranges.append(rng_num)
+                    
                 
     
                 rt_=info.get("rt",0) 
                 #print(rt_)
                 rt_chann = info.get("chann",2)
-                rt_num = rt_+ range_type_change
+                MAX_RT = max(rt_dict.keys())
+                if rt_ == 0:
+                    rt_num = 0
+                else:
+                    rt_num  = min(rt_ + range_type_change, MAX_RT)
+                #rt_num = rt_+ range_type_change
                 
                     
                 #print(rt_num)
