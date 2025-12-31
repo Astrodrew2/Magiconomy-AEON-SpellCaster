@@ -631,14 +631,13 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         modAP += mod.get("AP",0)
                         modEnergy += mod.get("energy",0)
                         electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
-                        electron_positions[target_word]['info']['level'] += mod.get("energy",0)
                         electron_positions[target_word]['level'] += mod.get("energy",0)
     
         # ---------------- Range Increase Mini-Orbitals ----------------
         if range_increase_input > 0:
             base_range_ft = parse_range_value(words_dict[first_word].get("range","self"))
             added_energy_cost = calculate_range_increase_charge(base_range_ft, range_increase_input)
-            r_first = electron_positions[first_word]['level'] * radius_step
+            r_first = electron_positions[first_word]['info']['level'] * radius_step
             for i in range(added_energy_cost):
                 r = r_first - (i+1)*0.3
                 tilt_angle = 0
