@@ -357,7 +357,7 @@ def level_size_scale(level, base=1.0, factor=1):
 def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
     x0, y0, z0 = center
     z = z0 + 0.5  # lift shape above electron marker
-    size = level_size_scale(level, base=size, factor=0.25)
+    size = level_size_scale(level, base=size, factor=1)
     if shape == "square":
         half = size / 1
         corners = np.array([
