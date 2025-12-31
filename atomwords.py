@@ -342,9 +342,22 @@ def calculate_range_increase_charge(base_range_ft, range_increase):
     else:
         return range_increase * 5
 
-def draw_modifier_shape(ax, shape, center, size=1.0, color='black'):
+def level_size_scale(level, base=1.0, factor=0.25, min_level=1):
+    """
+    Scales size by energy level.
+    level: electron energy level
+    base: base size at min_level
+    factor: growth per level
+    """
+    if level is None:
+        return base
+    return base * (1 + factor * max(0, level - min_level))
+
+
+def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
     x0, y0, z0 = center
     z = z0 + 0.5  # lift shape above electron marker
+    size = level_size_scale(level, base=size, factor=0.25)
     if shape == "square":
         half = size / 1
         corners = np.array([
@@ -382,7 +395,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black'):
             [x0 + half, y0 - half, z],        # bottom right
             [x0,        y0 + half, z]         # close triangle
         ])
-        ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=2.5, zorder=13)
+        ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
     elif shape == "circle":
         theta = np.linspace(0, 2 * np.pi, 50)
         xs = x0 + size * np.cos(theta)
@@ -569,7 +582,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     if target_word in electron_positions:
                         print("Modifier", mod_key, ":",mod.get("comment", []))
                         pos = electron_positions[target_word]['pos']
-                        draw_modifier_shape(ax, mod["shape"], pos, size=mod.get("size",2.0))
+                        level = electron_positions[target_word]['level']
+                        draw_modifier_shape(ax, mod["shape"], pos, size=mod.get("size",2.0),level = level)
                         # Update AP/energy in word info
                         modAP += mod.get("AP",0)
                         modEnergy += mod.get("energy",0)
