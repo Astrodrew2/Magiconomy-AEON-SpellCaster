@@ -43,7 +43,7 @@ range_rt_symbol_dict = {
 
     # Range Types
     "point": "●",
-    "beam": "-",
+    "beam": "—",
     "radial": "●—",
     "cone": "<"
 }
