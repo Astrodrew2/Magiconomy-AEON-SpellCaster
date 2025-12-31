@@ -351,7 +351,7 @@ def level_size_scale(level, base=1.0, factor=1):
     """
     if level is None:
         return base
-    return base * (1 + factor * level))
+    return base * (1 + factor * level)
 
 
 def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
