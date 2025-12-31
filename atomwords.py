@@ -534,6 +534,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         rtcEnergy = 4
                     elif rt_ == 3 and range_type_change == 1:
                         rtcEnergy = 1
+                    elif rt_ == 3 and range_type_change == 2:
+                        rtcEnergy = 2
                     elif rt_ == 3 and rt_chann == 1 and range_type_change == 3:
                         rtcEnergy = 4
                     elif rt_ == 3 and range_type_change == 3:
