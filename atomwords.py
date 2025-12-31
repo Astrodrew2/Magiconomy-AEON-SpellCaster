@@ -349,9 +349,10 @@ def level_size_scale(level, base=1.0, factor=0):
     base: base size at min_level
     factor: growth per level
     """
-    if level is None:
+    if level == 1:
         return base
-    return base * (1 + factor * level)
+    else:
+        return base * (1 + factor * level)
 
 
 def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
