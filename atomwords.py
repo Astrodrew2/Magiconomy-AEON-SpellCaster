@@ -333,9 +333,9 @@ def parse_range_value(r):
     return int(r)
 
 def calculate_range_increase_charge(base_range_ft, range_increase):
-    if base_range_ft < 20:
+    if base_range_ft <= 20:
         return range_increase * 1
-    elif 20 <= base_range_ft <= 30:
+    elif 20 < base_range_ft <= 30:
         return range_increase * 2
     elif 30 < base_range_ft < 100:
         return range_increase * 3
