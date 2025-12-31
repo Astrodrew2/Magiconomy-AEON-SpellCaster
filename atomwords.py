@@ -54,12 +54,12 @@ def bezier_curve_3d(p0, p1, p2, n_points=50):
     curve = ((1-t)**2)[:,None]*p0 + (2*((1-t)*t))[:,None]*p1 + (t**2)[:,None]*p2
     return curve[:,0], curve[:,1], curve[:,2]
 
-def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, level = level, sec1=None, sec2=None,
+def draw_electron_connection(ax, p1, p2, n_lines=1, spacing=0.15, level = 1, sec1=None, sec2=None,
                              arch_factor=0.3, flip=True, quicken=0, chann=2, chann2=1, tick_len=0.5, vig=2, fiver=2):
     p1 = np.array(p1)
     p2 = np.array(p2)
     # ---- ENERGY → SPACING SCALE ----
-    energy_scale = 1.0 + 0.35 * (energy_level - 1)
+    energy_scale = 1.0 + 0.35 * (level - 1)
     effective_spacing = spacing * energy_scale
     distance = np.linalg.norm(p2 - p1)
     arch_height = distance * arch_factor
@@ -694,6 +694,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         conn = draw_electron_connection(ax, (0,0,0), first_electron['pos'],
                                         n_lines=first_electron['info'].get("AP",1),
                                         spacing=0.3,
+                                        level = first_electron['info']['level'],
                                         sec1=first_sec,
                                         sec2=first_electron['sector'],
                                         arch_factor=0.15, flip=True,
@@ -744,6 +745,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 conn = draw_electron_connection(ax, p1, target['pos'],
                                                n_lines=target['info'].get("AP",1),
                                                spacing=0.3,
+                                               level = target['info']['level'],
                                                sec1=sec1, sec2=target['sector'],
                                                arch_factor=0.2, flip=True,
                                                quicken=remaining_quicken,
