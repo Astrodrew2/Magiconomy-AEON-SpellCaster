@@ -94,7 +94,7 @@ words_dict = {
     
     #Adept:
     "Earth (s=2)": {"level":1,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Shifts a chunk of earth the size of a basketball. This can either displace the chunk up as a new mound of the same size or hold it mid air for the action. IF THROWN: Damage: d% +(10 x Focus) of 150 (Force)/2PP", "chann":2},
-    "Earth (s=3)": {"level":2,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a large yoga ball. This can either displace the chunk up as a new mound or hold it mid air for the action. IF THROWN: Damage: d% +(10 x Focus) of 300 (Force)/4PP", "chann":2},
+    "Earth (s=3)": {"level":1,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a large yoga ball. This can either displace the chunk up as a new mound or hold it mid air for the action. IF THROWN: Damage: d% +(10 x Focus) of 300 (Force)/4PP", "chann":2},
     "Water (s=2)": {"level":1,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Shoot a tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 20 (Force)/0PP", "chann":2},
     "Water (s=3)": {"level":2,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Shoot a large tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 40 (Cutting)/0PP", "chann":2},
     "Fire (s=2)": {"level":2,"section":4,"AP":1, "range":60, "rt": 4, "comment": "Pull fire of a medium size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 60 MD, Causes Burn", "chann":2},
