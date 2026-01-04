@@ -113,7 +113,7 @@ words_dict = {
     "Minor Throw Earth EN": {"level":1,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Throw an object of earth, within range, that is loose or suspended with a medium or large size (such as with Glyph of Earth(s=2 or 3)) up to 20 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
     "Water Grapple EN":{"level":2,"section":4,"AP":1, "range":10, "rt": 3, "comment": "A tendril of water, within range, this is applied to initiate a Grapple on its target (only if s = 2,3,or 4).Use 2 × SPI instead of STR for appropriate checks.", "chann":1},
     #Enhancements: Master
-    "Major Throw Earth EN": {"level":5,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Throw an object of earth,within range, that is loose or suspended with a tremendous size (such as with Glyph of Earth(s=4))up to 10 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
+    "Major Throw Earth EN": {"level":4,"section":4,"AP":1, "range":10, "rt": 3, "comment": "Throw an object of earth,within range, that is loose or suspended with a tremendous size (such as with Glyph of Earth(s=4))up to 10 ft away, dealing the specified thrown damage.", "chann":2,"over": 1 },
     
     #WITCHCRAFT
     #Noice:
