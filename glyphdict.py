@@ -103,7 +103,7 @@ words_dict = {
     "Air (s=3)": {"level":3,"section":4,"AP":2, "range":15, "rt": 6, "comment": "Pull the air from 5 vessels you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
     
     #Master:
-    "Earth (s=4)": {"level":5,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a refrigerator. This can either displace the chunk up as a new mound or hold it mid air for the action.IF THROWN: Damage: d% +(10 x Focus) of 1000 (Force)/6PP", "chann":2},
+    "Earth (s=4)": {"level":4,"section":4,"AP":2, "range":10, "rt": 3, "comment": "Pull up chunks of earth the size of a refrigerator. This can either displace the chunk up as a new mound or hold it mid air for the action.IF THROWN: Damage: d% +(10 x Focus) of 1000 (Force)/6PP", "chann":2},
     "Water (s=4)": {"level":3,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Shoot a tremendous tendril of water toward your target from a source 10ft away. Damage: d% +(10 x Focus) of 80 (Force)/0PP", "chann":2},
     "Fire (s=4)": {"level":4,"section":4,"AP":2, "range":30, "rt": 4, "comment": "Pull fire of a medium size from a source up to 10 ft away and hurl it at enemies, extinguishing the same amount of fire. Damage: (d% + 10 × Focus) 180 MD, Causes Burn 2", "chann":2},
     "Air (s=4)": {"level":5,"section":4,"AP":2, "range":15, "rt": 6, "comment": "Pull the air from 10 vessels you target (vessel includes lungs).Damage: (d% + 10 × Focus) 60 Vigor, Inflicts 1 Stun buildup", "chann":2},
