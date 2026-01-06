@@ -766,7 +766,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         first_electron = electron_positions[first_word]
         conn = draw_electron_connection(ax, (0,0,0), first_electron['pos'],
                                         n_lines=first_electron['info'].get("AP",1),
-                                        spacing=0.3,
+                                        spacing=1,
                                         level = first_electron['info']['level'],
                                         sec1=first_sec,
                                         sec2=first_electron['sector'],
@@ -817,7 +817,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 target = electron_positions[t]
                 conn = draw_electron_connection(ax, p1, target['pos'],
                                                n_lines=target['info'].get("AP",1),
-                                               spacing=0.3,
+                                               spacing=1,
                                                level = target['info']['level'],
                                                sec1=sec1, sec2=target['sector'],
                                                arch_factor=0.2, flip=True,
