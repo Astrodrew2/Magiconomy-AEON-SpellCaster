@@ -539,7 +539,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         CLEARANCE = 3
         MIN_INNER_RADIUS = NUCLEUS_RADIUS + CLEARANCE
         radius_step = 4.0
-        max_radius = max_level*radius_step*2
+        max_radius = orbital_radius(max_level, radius_step, MIN_INNER_RADIUS)
     
         # Radial lines + sector labels
         label_radius = max_radius + 0.7
