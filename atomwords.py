@@ -491,7 +491,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
             )
     elif shape == "horns":
         horn_radius = size * 0.7
-        horn_offset = size * 0.65   # lifts horns above circle center
+        horn_offset = size * -0.2   # lifts horns above circle center
     
         theta_h = np.linspace(0, np.pi, 50)  # semicircle facing UP
         hx = x0 + horn_radius * np.cos(theta_h)
@@ -668,6 +668,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     continue
                 targets = mod.get("appto", [])
                 rt_over = mod.get("rt_over", 0)
+                if rt_over == 1:
+                            electron_positions[target_word]['info']['rt'] = 3
+                            electron_positions[target_word]['info']['range'] = 20
                 for target_word in targets:
                     if target_word in electron_positions:
                         print("Modifier", mod_key, ":",mod.get("comment", []))
@@ -680,9 +683,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
                         electron_positions[target_word]['level'] += mod.get("energy",0)
                         # ---- 🔥 RT + RANGE OVERRIDE LOGIC ----
-                        if rt_over == 1:
-                            electron_positions[target_word]['info']['rt'] = 3
-                            electron_positions[target_word]['info']['range'] = 20
+                        
     
         # ---------------- Range Increase Mini-Orbitals ----------------
         if range_increase_input > 0:
