@@ -668,9 +668,6 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     continue
                 targets = mod.get("appto", [])
                 rt_over = mod.get("rt_over", 0)
-                if rt_over == 1:
-                            electron_positions[target_word]['info']['rt'] = 3
-                            electron_positions[target_word]['info']['range'] = 20
                 for target_word in targets:
                     if target_word in electron_positions:
                         print("Modifier", mod_key, ":",mod.get("comment", []))
@@ -682,7 +679,10 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         modEnergy += mod.get("energy",0)
                         electron_positions[target_word]['info']['AP'] += mod.get("AP",0)
                         electron_positions[target_word]['level'] += mod.get("energy",0)
-                        # ---- 🔥 RT + RANGE OVERRIDE LOGIC ----
+                        # ---- 🔥 RT + RANGE OVERRIDE LOGIC ---
+                        if rt_over == 1:
+                            electron_positions[target_word]['info']['rt'] = 3
+                            electron_positions[target_word]['info']['range'] = 20
                         
     
         # ---------------- Range Increase Mini-Orbitals ----------------
