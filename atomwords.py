@@ -49,6 +49,11 @@ range_rt_symbol_dict = {
 }
 
 # ---------------- Helper functions ----------------
+def orbital_radius(level, radius_step, min_inner):
+    if level == 1:
+        return max(radius_step, min_inner)
+    return min_inner + (level - 1) * radius_step
+    
 def bezier_curve_3d(p0, p1, p2, n_points=50):
     t = np.linspace(0,1,n_points)
     curve = ((1-t)**2)[:,None]*p0 + (2*((1-t)*t))[:,None]*p1 + (t**2)[:,None]*p2
@@ -530,7 +535,10 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     
         # Radius setup
         max_level = max([words_dict[word]["level"] for word in words_list])
-        radius_step = 4
+        NUCLEUS_RADIUS = 2.5  # matches your hex marker scale
+        CLEARANCE = 1.5
+        MIN_INNER_RADIUS = NUCLEUS_RADIUS + CLEARANCE
+        radius_step = 4.0
         max_radius = max_level*radius_step
     
         # Radial lines + sector labels
@@ -554,8 +562,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             ax.plot_trisurf(xs, ys, zs, color="teal", alpha=0.12)
     
         # Draw orbitals
+    
         for L in range(1, max_level + 1):
-            r = L * radius_step
+            r = orbital_radius(level=L, radius_step, MIN_INNER_RADIUS)
             tilt_angle = L*12*np.pi/180 if tilt else 0
             x = r*np.cos(theta_full)
             y = r*np.sin(theta_full)*np.cos(tilt_angle)
@@ -572,7 +581,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             grouped.setdefault(key, []).append((word, info))
     
         for (level, sec), words_in_group in grouped.items():
-            r = level*radius_step
+            r = orbital_radius(level, radius_step, MIN_INNER_RADIUS)
             tilt_angle = level*12*np.pi/180 if tilt else 0
             x = r*np.cos(theta_full)
             y = r*np.sin(theta_full)*np.cos(tilt_angle)
@@ -736,7 +745,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         if range_increase_input > 0:
             base_range_ft = parse_range_value(words_dict[first_word].get("range","self"))
             added_energy_cost = calculate_range_increase_charge(base_range_ft, range_increase_input)
-            r_first = electron_positions[first_word]['info']['level'] * radius_step
+            r_first = orbital_radius(electron_positions[first_word]['info']['level'],radius_step,MIN_INNER_RADIUS)
             for i in range(added_energy_cost):
                 r = r_first - (i+1)*0.3
                 tilt_angle = 0
