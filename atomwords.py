@@ -564,7 +564,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         # Draw orbitals
     
         for L in range(1, max_level + 1):
-            r = orbital_radius(level=L, radius_step, MIN_INNER_RADIUS)
+            r = orbital_radius(L, radius_step, MIN_INNER_RADIUS)
             tilt_angle = L*12*np.pi/180 if tilt else 0
             x = r*np.cos(theta_full)
             y = r*np.sin(theta_full)*np.cos(tilt_angle)
