@@ -625,8 +625,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 rt_symbol = range_rt_symbol_dict.get(rt_def, "")
                 #print(rng_symbol)
                 #print(rt_symbol)
-                ax.text(xe, ye-0.1, ze+0.5, rng_symbol, color="black", ha="center", va="bottom", fontsize=9, zorder = 11)
-                ax.text(xe, ye+0.2, ze-0.5, rt_symbol, color="black", ha="center", va="top", fontsize=5, zorder = 11)
+               # ax.text(xe, ye-0.1, ze+0.5, rng_symbol, color="black", ha="center", va="bottom", fontsize=9, zorder = 11)
+               # ax.text(xe, ye+0.2, ze-0.5, rt_symbol, color="black", ha="center", va="top", fontsize=5, zorder = 11)
     
                 # IMPORTANT FIX: use a copy of info
                 electron_positions[word] = {
@@ -683,6 +683,53 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                         if rt_over == 1:
                             electron_positions[target_word]['info']['rt'] = 3
                             electron_positions[target_word]['info']['range'] = 20
+        # ---------------- DRAW RT + RANGE SYMBOLS (POST-MOD) ----------------
+        for word, e in electron_positions.items():
+            info = e['info']
+            xe, ye, ze = e['pos']
+        
+            # ---- RANGE ----
+            if not word.endswith(" EN"):
+                rng_num = info.get("range", 0) * (range_increase_input + 1)
+            else:
+                rng_num = info.get("range", 0)
+        
+            rng_def = range_dict.get(rng_num)
+            rng_symbol = range_rt_symbol_dict.get(rng_def, "")
+        
+            # ---- RT ----
+            rt_ = info.get("rt", 0)
+            MAX_RT = max(rt_dict.keys())
+        
+            if rt_ == 0:
+                rt_num = 0
+            else:
+                rt_num = min(rt_ + range_type_change, MAX_RT)
+        
+            rt_def = rt_dict.get(rt_num)
+            rt_symbol = range_rt_symbol_dict.get(rt_def, "")
+        
+            # ---- DRAW ----
+            ax.text(
+                xe, ye - 0.1, ze + 0.5,
+                rng_symbol,
+                color="black",
+                ha="center",
+                va="bottom",
+                fontsize=9,
+                zorder=11
+            )
+        
+            ax.text(
+                xe, ye + 0.2, ze - 0.5,
+                rt_symbol,
+                color="black",
+                ha="center",
+                va="top",
+                fontsize=5,
+                zorder=11
+            )
+
                         
     
         # ---------------- Range Increase Mini-Orbitals ----------------
