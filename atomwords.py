@@ -538,7 +538,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         NUCLEUS_RADIUS = 5  # matches your hex marker scale
         CLEARANCE = 10
         MIN_INNER_RADIUS = NUCLEUS_RADIUS + CLEARANCE
-        radius_step = 4.0
+        radius_step = 5.0
         max_radius = orbital_radius(max_level, radius_step, MIN_INNER_RADIUS)
     
         # Radial lines + sector labels
