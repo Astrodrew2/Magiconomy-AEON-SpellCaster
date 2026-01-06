@@ -129,7 +129,7 @@ words_dict = {
     "psychE": {"level":5,"section":3,"AP":4, "range":2, "rt": 2, "comment": "When combined with the Fragment, anAtomy, and spiriT Glyphs, change the fate of a dead target, reversing the immediate effect of whatever killed them. However, this does not cure any ailments nor mend any injuries, including lost limbs and Wound Table rolls. The target cannot have been dead for more than 10 days and they cannot be posthumously disfigured beyond the ability to function (e.g. decapitation).", "chann":2},
     
     #Enhancements: Novice
-    "Virulence EN": {"level":5,"section":3,"AP":1, "range":0, "rt": 0, "comment": "Reduce the max duration of a Curse to ⅕ of the original as a hard limit. E.g. If the Duration was 25 days it now becomes 5 days.", "chann":2,"over": 1 },
+    "Virulence EN": {"level":5,"section":3,"AP":1, "range":0, "rt": 0, "comment": "Reduce the max duration of a Curse to ⅕ of the original as a hard limit. E.g. If the Duration was 25 days it now becomes 5 days.", "chann":2,"over": -1 },
     "Chronic EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "Change the Duration of a curse to be Permanent. E.g. If the Duration was 5 days it now becomes Permanent.", "chann":2, "over":1},
     "Exacerbation EN": {"level":1,"section":3,"AP":2, "range":0, "rt": 0, "comment": "Instantly raise all Injury Levels to the next Level of a target when effected by a Curse. (IE. Crippled is now Destroyed)", "chann":2},
     "Radiation EN": {"level":1,"section":3,"AP":1, "range":0, "rt": 0, "comment": "A cursed target hit with this radiates their leaking Spirit outward reducing the Vigor of all mortals within 10ft around them by 20.", "chann":2, "over":1},
