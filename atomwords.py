@@ -372,7 +372,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
     size = level_size_scale(level, base=size, factor=1)
     if shape == "square":
         #half = size / 1.5
-        half = size
+        half = size * 1.5
         corners = np.array([
             [x0 - half, y0 - half, z],
             [x0 + half, y0 - half, z],
@@ -382,8 +382,11 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=2.5, zorder = 13)
     elif shape == "double_square":
-        half = size / 1
-        half2 = half / 1.2
+        #half = size / 1
+        half = size * 2
+        #half2 = half / 1.2
+        half2 = size * 1.7
+        
         corners = np.array([
             [x0 - half, y0 - half, z],
             [x0 + half, y0 - half, z],
