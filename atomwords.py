@@ -411,8 +411,8 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
     elif shape == "circle":
         theta = np.linspace(0, 2 * np.pi, 50)
-        xs = x0 + size * np.cos(theta)
-        ys = y0 + size * np.sin(theta)
+        xs = x0 + (size*2) * np.cos(theta)
+        ys = y0 + (size*2) * np.sin(theta)
         zs = np.ones_like(xs) * z
         ax.plot(xs, ys, zs, color=color, linewidth=1.5)
         
