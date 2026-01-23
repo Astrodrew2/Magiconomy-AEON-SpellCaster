@@ -106,7 +106,7 @@ with st.sidebar:
     )
     st.sidebar.header("Controls")
     
-   with st.sidebar:
+    with st.sidebar:
 
     view_mode = st.radio(
         "View Mode",
