@@ -260,16 +260,16 @@ if view_mode == "Glyph Dictionary":
     render_pdf_as_images(pdf_path) 
     st.stop()
     
-    # Apply button
-    if st.sidebar.button("Apply"):
+# Apply button
+if st.sidebar.button("Apply"):
     
-        if not glyph_list:
-            st.warning("Please select at least one glyph.")
-        else:
-            st.subheader("Spell Hex Map and Table Output")
+    if not glyph_list:
+        st.warning("Please select at least one glyph.")
+    else:
+        st.subheader("Spell Hex Map and Table Output")
     
-            # --- Generate figure and text ---
-            fig, output_text, df= draw_atom_words_from_dict(
+        # --- Generate figure and text ---
+        fig, output_text, df= draw_atom_words_from_dict(
                 words_list=glyph_list,
                 words_dict=words_dict,
                 modifiers_dict=mod_dict,
@@ -279,19 +279,19 @@ if view_mode == "Glyph Dictionary":
                 range_type_change=range_type
             )
     
-            # --- Display figure ---
-            st.pyplot(fig)
-            # --- Convert Matplotlib fig to Plotly ---
-            #plotly_fig = mpl_to_plotly(fig)
+        # --- Display figure ---
+        st.pyplot(fig)
+        # --- Convert Matplotlib fig to Plotly ---
+        #plotly_fig = mpl_to_plotly(fig)
     
-            # --- Display interactive Plotly figure in Streamlit ---
-            #st.plotly_chart(plotly_fig, use_container_width=True)
+        # --- Display interactive Plotly figure in Streamlit ---
+        #st.plotly_chart(plotly_fig, use_container_width=True)
     
             
     
-            # --- Display table/text output ---
-            st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
-            st.write("")
-            st.write("**Glyph functions (comments) and individual cost values**")
-            st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
+        # --- Display table/text output ---
+        st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
+        st.write("")
+        st.write("**Glyph functions (comments) and individual cost values**")
+        st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
 
