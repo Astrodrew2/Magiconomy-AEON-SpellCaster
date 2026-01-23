@@ -106,43 +106,63 @@ with st.sidebar:
     )
     st.sidebar.header("Controls")
     
-    # Glyph selection
-    # --- Glyph selection (unfiltered) ---
+   with st.sidebar:
+
+    view_mode = st.radio(
+        "View Mode",
+        ["Spell Caster", "Glyph Dictionary"],
+        index=0
+    )
+
+    st.header("Controls")
+
     all_glyphs = list(words_dict.keys())
 
-    # --- Domain dropdown ---
+    # --- Book filter ---
+    chosen_books = st.multiselect(
+        "Books (Filter Glyphs):",
+        options=list(Book_list.keys()),
+        default=["All Books"]
+    )
+
+    # --- Domain filter ---
     chosen_domain = st.selectbox(
         "Domain (Filter Glyphs):",
         options=list(domain_to_section.keys()),
-        index=0  # "All Domains"
+        index=0
     )
 
-    # Convert domain → section number
     selected_section = domain_to_section[chosen_domain]
 
-    # --- Filter glyphs based on domain ---
-    # --- Filter glyphs (DISPLAY ONLY) ---
+    # --- Normalize filters ---
+    allowed_books = None if "All Books" in chosen_books or not chosen_books else set(chosen_books)
+
     if chosen_domain == "All":
-        filtered_glyphs = all_glyphs
-    
+        allowed_sections = None
     elif isinstance(selected_section, set):
-        filtered_glyphs = [
-            g for g in all_glyphs
-            if words_dict[g]["section"] in selected_section
-        ]
-    
+        allowed_sections = set(selected_section)
     else:
-        filtered_glyphs = [
-            g for g in all_glyphs
-            if words_dict[g]["section"] == selected_section
-        ]
-    
-    # --- IMPORTANT: keep already-selected glyphs visible ---
+        allowed_sections = {selected_section}
+
+    # --- Intersection filter ---
+    filtered_glyphs = []
+    for g in all_glyphs:
+        info = words_dict[g]
+
+        if allowed_books is not None and info.get("book") not in allowed_books:
+            continue
+
+        if allowed_sections is not None and info.get("section") not in allowed_sections:
+            continue
+
+        filtered_glyphs.append(g)
+
+    # --- Preserve selected glyphs ---
     display_options = sorted(
         set(filtered_glyphs) | set(st.session_state["selected_glyphs"])
     )
-    
-    # --- Glyph selector (state-backed) ---
+
+    # --- Glyph selector ---
     previous = set(st.session_state["selected_glyphs"])
 
     glyph_list = st.multiselect(
@@ -153,14 +173,12 @@ with st.sidebar:
 
     current = set(glyph_list)
 
-    # Detect newly selected glyph
     newly_selected = list(current - previous)
-
     if newly_selected:
         st.session_state["active_glyph"] = newly_selected[-1]
 
-    # Persist selection
     st.session_state["selected_glyphs"] = glyph_list
+
 
     #---
     st.markdown("---")
