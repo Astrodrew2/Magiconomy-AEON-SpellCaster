@@ -108,76 +108,76 @@ with st.sidebar:
     
     with st.sidebar:
 
-    view_mode = st.radio(
-        "View Mode",
-        ["Spell Caster", "Glyph Dictionary"],
-        index=0
-    )
+        view_mode = st.radio(
+            "View Mode",
+            ["Spell Caster", "Glyph Dictionary"],
+            index=0
+        )
 
-    st.header("Controls")
-
-    all_glyphs = list(words_dict.keys())
-
-    # --- Book filter ---
-    chosen_books = st.multiselect(
-        "Books (Filter Glyphs):",
-        options=list(Book_list.keys()),
-        default=["All Books"]
-    )
-
-    # --- Domain filter ---
-    chosen_domain = st.selectbox(
-        "Domain (Filter Glyphs):",
-        options=list(domain_to_section.keys()),
-        index=0
-    )
-
-    selected_section = domain_to_section[chosen_domain]
-
-    # --- Normalize filters ---
-    allowed_books = None if "All Books" in chosen_books or not chosen_books else set(chosen_books)
-
-    if chosen_domain == "All":
-        allowed_sections = None
-    elif isinstance(selected_section, set):
-        allowed_sections = set(selected_section)
-    else:
-        allowed_sections = {selected_section}
-
-    # --- Intersection filter ---
-    filtered_glyphs = []
-    for g in all_glyphs:
-        info = words_dict[g]
-
-        if allowed_books is not None and info.get("book") not in allowed_books:
-            continue
-
-        if allowed_sections is not None and info.get("section") not in allowed_sections:
-            continue
-
-        filtered_glyphs.append(g)
-
-    # --- Preserve selected glyphs ---
-    display_options = sorted(
-        set(filtered_glyphs) | set(st.session_state["selected_glyphs"])
-    )
-
-    # --- Glyph selector ---
-    previous = set(st.session_state["selected_glyphs"])
-
-    glyph_list = st.multiselect(
-        "Select Glyphs",
-        options=display_options,
-        default=st.session_state["selected_glyphs"]
-    )
-
-    current = set(glyph_list)
-
-    newly_selected = list(current - previous)
-    if newly_selected:
-        st.session_state["active_glyph"] = newly_selected[-1]
-
-    st.session_state["selected_glyphs"] = glyph_list
+        st.header("Controls")
+    
+        all_glyphs = list(words_dict.keys())
+    
+        # --- Book filter ---
+        chosen_books = st.multiselect(
+            "Books (Filter Glyphs):",
+            options=list(Book_list.keys()),
+            default=["All Books"]
+        )
+    
+        # --- Domain filter ---
+        chosen_domain = st.selectbox(
+            "Domain (Filter Glyphs):",
+            options=list(domain_to_section.keys()),
+            index=0
+        )
+    
+        selected_section = domain_to_section[chosen_domain]
+    
+        # --- Normalize filters ---
+        allowed_books = None if "All Books" in chosen_books or not chosen_books else set(chosen_books)
+    
+        if chosen_domain == "All":
+            allowed_sections = None
+        elif isinstance(selected_section, set):
+            allowed_sections = set(selected_section)
+        else:
+            allowed_sections = {selected_section}
+    
+        # --- Intersection filter ---
+        filtered_glyphs = []
+        for g in all_glyphs:
+            info = words_dict[g]
+    
+            if allowed_books is not None and info.get("book") not in allowed_books:
+                continue
+    
+            if allowed_sections is not None and info.get("section") not in allowed_sections:
+                continue
+    
+            filtered_glyphs.append(g)
+    
+        # --- Preserve selected glyphs ---
+        display_options = sorted(
+            set(filtered_glyphs) | set(st.session_state["selected_glyphs"])
+        )
+    
+        # --- Glyph selector ---
+        previous = set(st.session_state["selected_glyphs"])
+    
+        glyph_list = st.multiselect(
+            "Select Glyphs",
+            options=display_options,
+            default=st.session_state["selected_glyphs"]
+        )
+    
+        current = set(glyph_list)
+    
+        newly_selected = list(current - previous)
+        if newly_selected:
+            st.session_state["active_glyph"] = newly_selected[-1]
+    
+        st.session_state["selected_glyphs"] = glyph_list
 
 
     #---
