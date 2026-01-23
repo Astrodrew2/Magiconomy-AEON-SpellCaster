@@ -98,17 +98,9 @@ range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "2
 rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
 all_glyphs = list(words_dict.keys())
 # --- Sidebar Inputs ---
-with st.sidebar:
-
-    # ---- NEW VIEW-MODE CONTROL ----
-    view_mode = st.radio(
-        "View Mode",
-        ["Spell Caster", "Glyph Dictionary"],
-        index=0
-    )
-    st.sidebar.header("Controls")
+st.sidebar.header("Controls")
     
-    with st.sidebar:
+with st.sidebar:
 
         # ---- VIEW MODE ----
         view_mode = st.radio(
@@ -192,6 +184,7 @@ with st.sidebar:
             st.session_state["active_glyph"] = newly_selected[-1]
     
         st.session_state["selected_glyphs"] = glyph_list
+   
 
     #---
     st.markdown("---")
