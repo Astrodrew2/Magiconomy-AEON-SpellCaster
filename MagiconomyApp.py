@@ -121,6 +121,24 @@ with st.sidebar:
         all_glyphs = list(words_dict.keys())
     
         # --- Book filter ---
+        selected_book_ids = set()
+
+        for book_name in chosen_books:
+            value = Book_list.get(book_name)
+            if isinstance(value, set):
+                selected_book_ids |= value
+            else:
+                selected_book_ids.add(value)
+
+        if "All Books" in chosen_books or not chosen_books:
+            filtered_glyphs = all_glyphs
+        else:
+            filtered_glyphs = [
+                g for g in all_glyphs
+                if words_dict[g].get("book") in selected_book_ids
+            ]
+
+
         chosen_books = st.multiselect(
             "Books (Filter Glyphs):",
             options=list(Book_list),
