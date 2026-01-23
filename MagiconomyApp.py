@@ -109,10 +109,10 @@ with st.sidebar:
     with st.sidebar:
 
         view_mode = st.radio(
-            "View Mode",
-            ["Spell Caster", "Glyph Dictionary"],
-            index=0
-        )
+        "View Mode",
+        ["Spell Caster", "Glyph Dictionary"],
+        index=0,
+        key="view_mode_radio")
 
         st.header("Controls")
     
