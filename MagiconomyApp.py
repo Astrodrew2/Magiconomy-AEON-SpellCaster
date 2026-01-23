@@ -102,7 +102,7 @@ st.sidebar.header("Controls")
     
 with st.sidebar:
 
-        # ---- VIEW MODE ----
+# ---- VIEW MODE ----
         view_mode = st.radio(
             "View Mode",
             ["Spell Caster", "Glyph Dictionary"],
@@ -186,112 +186,112 @@ with st.sidebar:
         st.session_state["selected_glyphs"] = glyph_list
    
 
-    #---
-    st.markdown("---")
-    st.subheader("Most Recently Selected Glyph Details")
-    
-    active = st.session_state.get("active_glyph")
-    
-    if active:
-        data = words_dict.get(active, {})
-    
-        # Decode values
-        raw_range = data.get("range")
-        raw_range_type = data.get("rt")
-    
-        range_text = range_dict.get(raw_range, "None")
-        range_type_text = rt_dict.get(raw_range_type, "None")
-    
-        st.markdown(f"**Glyph:** {active}")
-        st.markdown(f"**Range:** {range_text}")
-        st.markdown(f"**Range Type:** {range_type_text}")
-        st.markdown(f"**Comment:** {data.get('comment', '—')}")
-    else:
-        st.caption("Select a glyph to view details.")
-    st.markdown("---")
-
-
-
-
-
-    # --- Optional feedback message ---
-    if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
-        st.warning(f"No glyphs found in **{chosen_domain}** domain.")
-    
-    
-    # Modifier selection
-    mods_list = st.sidebar.multiselect(
-        "Select Modifiers",
-        options=list(mod_dict.keys()),
-        default=[]
-    )
-    
-    # Range increase
-    range_inc = st.sidebar.number_input("Range Increase", min_value=0, value=0)
-    
-    # Range type
-    range_type = st.sidebar.number_input("Range Type Change", min_value=0, value=0)
-    
-    # Quicken
-    quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
-
-if view_mode == "Spell Caster":
-    st.title("Aeon Spell Caster")
-    # st.image("magics.png", use_container_width=True)
-    # Add text below the image
-    st.subheader("Tips/Instructions")
-    st.write("**Glyph Dictionary View Mode:** This is where you can learn how the values are calculated and how you can write your own spells! This also shows you the Glyph dictionary with more elaborate descriptions and details.")
-    st.write("**Spell Caster View Mode:** This is where you can use the spell caster calculator.")
-    st.write("Choose a **Domain** to pick your Glyphs from. (These are the Main Magic Groups for which you want to get the bonuses to your spells from. For example, Ley, End, Druidism, etc.)")
-    st.write("You can pick the glyphs in **Select Glyphs** box. Selecting a Glyph will show you more details below it about the range, range type, and general effects. (you may have to select it twice for it to stay)")
-    st.write("**Select Modifiers:** lets you choose the modifiers as shown in the Glyph Dictionary View Mode Modifiers section. These are additions to your spell that only work for certain glyphs converting the effects of some glyphs to do damage or throw objects, for example. ")
-    st.write("**Range Increase:** Type the number equivalent to how many more multiples of the range you want to increase by. Ex.) if its a default of 10ft inputing a 1 will change the range to 20ft, 2 will change the range to 30 ft and so on. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
-    st.write("**Range Type Change:** Type the number equivalent to how many stages up you want to go along this list—Point(channeled) → Beam → Cone → Radial. Ex.) if by default it is a beam you would type 2 to change it to radial or 1 to change it to cone. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
-    st.write("**Quicken:** Type the amount of AP you want to take away from the current AP cost. Ex.) typing 2 for a default 4 AP/ 2Charge cast will result in a 2AP/8Charge cost")
-    st.write("")
-    st.write("**ONCE YOU HIT APPLY YOUR SPELL WILL APPEAR BELOW HERE**")
-    
-    
-  
-
-
-if view_mode == "Glyph Dictionary": 
-    pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
-    render_pdf_as_images(pdf_path) 
-    st.stop()
-
-# Apply button
-if st.sidebar.button("Apply"):
-
-    if not glyph_list:
-        st.warning("Please select at least one glyph.")
-    else:
-        st.subheader("Spell Hex Map and Table Output")
-
-        # --- Generate figure and text ---
-        fig, output_text, df= draw_atom_words_from_dict(
-            words_list=glyph_list,
-            words_dict=words_dict,
-            modifiers_dict=mod_dict,
-            modifiers_to_apply=mods_list,
-            quicken=quicken_val,
-            range_increase_input=range_inc,
-            range_type_change=range_type
-        )
-
-        # --- Display figure ---
-        st.pyplot(fig)
-        # --- Convert Matplotlib fig to Plotly ---
-        #plotly_fig = mpl_to_plotly(fig)
-
-        # --- Display interactive Plotly figure in Streamlit ---
-        #st.plotly_chart(plotly_fig, use_container_width=True)
-
+        #---
+        st.markdown("---")
+        st.subheader("Most Recently Selected Glyph Details")
         
-
-        # --- Display table/text output ---
-        st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
+        active = st.session_state.get("active_glyph")
+        
+        if active:
+            data = words_dict.get(active, {})
+        
+            # Decode values
+            raw_range = data.get("range")
+            raw_range_type = data.get("rt")
+        
+            range_text = range_dict.get(raw_range, "None")
+            range_type_text = rt_dict.get(raw_range_type, "None")
+        
+            st.markdown(f"**Glyph:** {active}")
+            st.markdown(f"**Range:** {range_text}")
+            st.markdown(f"**Range Type:** {range_type_text}")
+            st.markdown(f"**Comment:** {data.get('comment', '—')}")
+        else:
+            st.caption("Select a glyph to view details.")
+        st.markdown("---")
+    
+    
+    
+    
+    
+        # --- Optional feedback message ---
+        if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
+            st.warning(f"No glyphs found in **{chosen_domain}** domain.")
+        
+        
+        # Modifier selection
+        mods_list = st.sidebar.multiselect(
+            "Select Modifiers",
+            options=list(mod_dict.keys()),
+            default=[]
+        )
+        
+        # Range increase
+        range_inc = st.sidebar.number_input("Range Increase", min_value=0, value=0)
+        
+        # Range type
+        range_type = st.sidebar.number_input("Range Type Change", min_value=0, value=0)
+        
+        # Quicken
+        quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
+    
+    if view_mode == "Spell Caster":
+        st.title("Aeon Spell Caster")
+        # st.image("magics.png", use_container_width=True)
+        # Add text below the image
+        st.subheader("Tips/Instructions")
+        st.write("**Glyph Dictionary View Mode:** This is where you can learn how the values are calculated and how you can write your own spells! This also shows you the Glyph dictionary with more elaborate descriptions and details.")
+        st.write("**Spell Caster View Mode:** This is where you can use the spell caster calculator.")
+        st.write("Choose a **Domain** to pick your Glyphs from. (These are the Main Magic Groups for which you want to get the bonuses to your spells from. For example, Ley, End, Druidism, etc.)")
+        st.write("You can pick the glyphs in **Select Glyphs** box. Selecting a Glyph will show you more details below it about the range, range type, and general effects. (you may have to select it twice for it to stay)")
+        st.write("**Select Modifiers:** lets you choose the modifiers as shown in the Glyph Dictionary View Mode Modifiers section. These are additions to your spell that only work for certain glyphs converting the effects of some glyphs to do damage or throw objects, for example. ")
+        st.write("**Range Increase:** Type the number equivalent to how many more multiples of the range you want to increase by. Ex.) if its a default of 10ft inputing a 1 will change the range to 20ft, 2 will change the range to 30 ft and so on. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
+        st.write("**Range Type Change:** Type the number equivalent to how many stages up you want to go along this list—Point(channeled) → Beam → Cone → Radial. Ex.) if by default it is a beam you would type 2 to change it to radial or 1 to change it to cone. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
+        st.write("**Quicken:** Type the amount of AP you want to take away from the current AP cost. Ex.) typing 2 for a default 4 AP/ 2Charge cast will result in a 2AP/8Charge cost")
         st.write("")
-        st.write("**Glyph functions (comments) and individual cost values**")
-        st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
+        st.write("**ONCE YOU HIT APPLY YOUR SPELL WILL APPEAR BELOW HERE**")
+        
+        
+      
+    
+    
+    if view_mode == "Glyph Dictionary": 
+        pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
+        render_pdf_as_images(pdf_path) 
+        st.stop()
+    
+    # Apply button
+    if st.sidebar.button("Apply"):
+    
+        if not glyph_list:
+            st.warning("Please select at least one glyph.")
+        else:
+            st.subheader("Spell Hex Map and Table Output")
+    
+            # --- Generate figure and text ---
+            fig, output_text, df= draw_atom_words_from_dict(
+                words_list=glyph_list,
+                words_dict=words_dict,
+                modifiers_dict=mod_dict,
+                modifiers_to_apply=mods_list,
+                quicken=quicken_val,
+                range_increase_input=range_inc,
+                range_type_change=range_type
+            )
+    
+            # --- Display figure ---
+            st.pyplot(fig)
+            # --- Convert Matplotlib fig to Plotly ---
+            #plotly_fig = mpl_to_plotly(fig)
+    
+            # --- Display interactive Plotly figure in Streamlit ---
+            #st.plotly_chart(plotly_fig, use_container_width=True)
+    
+            
+    
+            # --- Display table/text output ---
+            st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
+            st.write("")
+            st.write("**Glyph functions (comments) and individual cost values**")
+            st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
 
