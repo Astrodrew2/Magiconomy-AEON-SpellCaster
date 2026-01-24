@@ -92,7 +92,7 @@ domain_to_section = {
     "Druidism": 5,
 }
 
-Book_list = {"All Books":set(range(1, 5)),"Book of Glyphs (Standard)":1,"Book of Scrolls":2, "Carnecarta":3, "Book of Phlegmancy":4}
+Book_list = {"All Books":set(range(1, 5)),"Book of Glyphs (Standard)":1,"Book of Scrolls (WIP)":2, "Carnecarta (WIP)":3, "Book of Phlegmancy (WIP)":4}
 # Mapping for range and range type
 range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
 rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
