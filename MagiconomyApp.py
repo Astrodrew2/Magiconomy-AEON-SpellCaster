@@ -248,6 +248,7 @@ with st.sidebar:
         
         
         # Modifier selection
+        st.subheader("Modifiers")
         mods_list = st.sidebar.multiselect(
             "Select Modifiers",
             options=list(mod_dict.keys()),
