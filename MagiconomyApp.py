@@ -139,6 +139,26 @@ with st.sidebar:
         )
     
         selected_section = domain_to_section[chosen_domain]
+        # ---------- MASTERY FILTER ----------
+        st.markdown("### Mastery")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            novice_on = st.checkbox("Novice", value=True, key="mastery_novice")
+        with col2:
+            skilled_on = st.checkbox("Adept", value=True, key="mastery_adept")
+        with col3:
+            master_on = st.checkbox("Master", value=True, key="mastery_master")
+            
+        selected_mastery = set()
+
+        if novice_on:
+            selected_mastery.add("Novice")
+        if skilled_on:
+            selected_mastery.add("Adept")
+        if master_on:
+            selected_mastery.add("Master")
     
         # ---------- COMBINED FILTER ----------
         filtered_glyphs = []
