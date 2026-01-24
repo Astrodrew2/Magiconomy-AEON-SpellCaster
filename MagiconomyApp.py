@@ -129,6 +129,7 @@ with st.sidebar:
             else:
                 selected_book_ids.add(val)
     
+    
         # ---------- DOMAIN FILTER ----------
         chosen_domain = st.selectbox(
             "Domain (Filter Glyphs):",
@@ -158,9 +159,16 @@ with st.sidebar:
                 domain_ok = glyph.get("section") in selected_section
             else:
                 domain_ok = glyph.get("section") == selected_section
-    
-            if book_ok and domain_ok:
+
+            # --- Mastery check ---
+            mastery_ok = (
+                not selected_mastery
+                or glyph.get("mastery") in selected_mastery
+            )
+
+            if book_ok and domain_ok and mastery_ok:
                 filtered_glyphs.append(g)
+    
     
         # ---------- KEEP SELECTED GLYPHS VISIBLE ----------
         display_options = sorted(
