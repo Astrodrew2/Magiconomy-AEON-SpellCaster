@@ -110,7 +110,7 @@ with st.sidebar:
             key="view_mode_radio"  # avoids duplicate ID error
         )
     
-        st.header("Filters")
+        st.subheader("Filters")
     
         # ---------- BOOK FILTER ----------
         chosen_books = st.multiselect(
