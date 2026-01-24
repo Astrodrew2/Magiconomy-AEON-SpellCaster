@@ -110,7 +110,7 @@ with st.sidebar:
             key="view_mode_radio"  # avoids duplicate ID error
         )
     
-        st.header("Controls")
+        st.header("Filters")
     
         # ---------- BOOK FILTER ----------
         chosen_books = st.multiselect(
@@ -196,6 +196,7 @@ with st.sidebar:
         )
     
         # ---------- GLYPH MULTISELECT ----------
+        st.subheader("Glyphs")
         glyph_list = st.multiselect(
             "Select Glyphs",
             options=display_options,
