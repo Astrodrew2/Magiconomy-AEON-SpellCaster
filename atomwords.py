@@ -404,7 +404,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5,zorder = 13)
         ax.plot(corners2[:, 0], corners2[:, 1], corners2[:, 2], color=color, linewidth=1.5,zorder = 13)
     elif shape == "triangle":
-        half = size / 1.5
+        half = size 
         y_offset = half * 0.35 
         corners = np.array([
             [x0,        y0 - half- y_offset+0.2, z],        # top
@@ -413,6 +413,25 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
             [x0,        y0 - half- y_offset+0.2, z]         # close triangle
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
+    elif shape == "double_triangle":
+        half = size 
+        y_offset = half * 0.35 
+        corners = np.array([
+            [x0,        y0 - half- y_offset+0.2, z],        # top
+            [x0 - half , y0 + half - y_offset, z],        # bottom left
+            [x0 + half, y0 + half - y_offset, z],        # bottom right
+            [x0,        y0 - half- y_offset+0.2, z]         # close triangle
+        ])
+        half2 = size*1.5 
+        y_offset2 = half2 * 0.35 *1.5 
+        corners2 = np.array([
+            [x0,        y0 - half2- y_offset2+0.2, z],        # top
+            [x0 - half2 , y0 + half2 - y_offset2, z],        # bottom left
+            [x0 + half2, y0 + half2 - y_offset2, z],        # bottom right
+            [x0,        y0 - half2- y_offset2+0.2, z]         # close triangle
+        ])
+        ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
+        ax.plot(corners2[:, 0], corners2[:, 1], corners2[:, 2], color=color, linewidth=1.5, zorder=13)
     elif shape == "circle":
         theta = np.linspace(0, 2 * np.pi, 50)
         xs = x0 + (size*2) * np.cos(theta)
