@@ -471,7 +471,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         )
     elif shape == "diamond_triangle":
         # --- triangle geometry ---
-        d = size * 2.5          # distance between diamonds
+        d = size * 4          # distance between diamonds
         h = d * np.sqrt(3)/2 
     
         centers = [
