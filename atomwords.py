@@ -421,7 +421,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ax.plot(xs, ys, zs, color=color, linewidth=1.5)
         
     elif shape == "diamond":
-        half = size / 0.8
+        half = size / 0.4
         corners = np.array([
             [x0,        y0 + half, z],  # top
             [x0 + (0.75*half), y0,        z],  # right
@@ -431,8 +431,8 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ])
         ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5,zorder = 13)
     elif shape == "double_diamond":
-        half = size / 1
-        half2 = size / 1.5   # inner diamond scale factor
+        half = size / 0.5
+        half2 = size / 1   # inner diamond scale factor
     
         # inner diamond
         corners = np.array([
@@ -471,8 +471,8 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         )
     elif shape == "diamond_triangle":
         # --- triangle geometry ---
-        d = size              # distance between diamonds
-        h = d * np.sqrt(3) / 2
+        d = size/0.5              # distance between diamonds
+        h = d * np.sqrt(3) 
     
         centers = [
             (x0,       y0 + h, z),   # top
