@@ -412,7 +412,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
             [x0 + half, y0 + half - y_offset, z],        # bottom right
             [x0,        y0 - half- y_offset+0.2, z]         # close triangle
         ])
-        ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=13)
+        ax.plot(corners[:, 0], corners[:, 1], corners[:, 2], color=color, linewidth=1.5, zorder=6)
     elif shape == "double_triangle":
         half = size 
         y_offset = half * 0.35 
