@@ -421,7 +421,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
         ax.plot(xs, ys, zs, color=color, linewidth=1.5)
         
     elif shape == "diamond":
-        half = size / 1.2
+        half = size / 0.8
         corners = np.array([
             [x0,        y0 + half, z],  # top
             [x0 + (0.75*half), y0,        z],  # right
