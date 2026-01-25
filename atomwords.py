@@ -518,7 +518,7 @@ def draw_modifier_shape(ax, shape, center, size=1.0, color='black', level=1):
                 zorder=13
             )
     elif shape == "ripple":
-        horn_radius = size * 0.7
+        horn_radius = size * 1.5
         horn_offset = size * -0.2   # lifts horns above circle center
     
         theta_h = np.linspace(0, np.pi, 50)  # semicircle facing UP
