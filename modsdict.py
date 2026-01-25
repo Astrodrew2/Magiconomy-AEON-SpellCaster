@@ -14,6 +14,6 @@ mod_dict = {
     "Crystal Growth": {"shape":"double_diamond","size":2,"appto":["Crystal"],"AP":2, "energy":0, "comment": "Requires: Glyph of Crystal with beam range type Grows the initial crystal from the Crystal Glyph far enough outward up to the total range of the Glyph of Crystal away from you. If hit by the point of a growing crystal while it grows (during the initial cast), you will take 60 (Piercing) PD ⚔️/7 PP per 15ft of growth. If range is increased increase the damage by that multiple (e.g. 30ft range = 2x60 → 120 PD ⚔️/7 PP.). Add 2 Charge and 2 AP"},
     "Crystal Grove": {"shape":"diamond_triangle","size":2,"appto":["Crystal"],"AP":0, "energy":1, "comment": "Splits Glyph of Crystal into an area covering 10ft radial crystal shards", "chann":2, "over": 1 },
     #Witchcraft
-    "Ranged Curse": {"shape":"ripple","size":2,"appto":["Demise","Pestilence","Famine","Rage"],"AP":1, "energy":0, "comment": " With extra effort (adding 1AP) curses can now be cast at range at a point 20ft away", "rt_over":1},
+    "Ranged Curse": {"shape":"ripple","size":2,"appto":["Demise","Pestulence","Famine","Rage"],"AP":1, "energy":0, "comment": " With extra effort (adding 1AP) curses can now be cast at range at a point 20ft away", "rt_over":1},
 
 }
