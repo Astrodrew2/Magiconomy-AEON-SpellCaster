@@ -228,7 +228,7 @@ with st.sidebar:
             raw_range = data.get("range")
             raw_range_type = data.get("rt")
             ap = data.get("AP")
-            charge = data.get("Energy")
+            charge = data.get("level")
         
             range_text = range_dict.get(raw_range, "None")
             range_type_text = rt_dict.get(raw_range_type, "None")
