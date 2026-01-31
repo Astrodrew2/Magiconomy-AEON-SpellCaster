@@ -227,11 +227,15 @@ with st.sidebar:
             # Decode values
             raw_range = data.get("range")
             raw_range_type = data.get("rt")
+            ap = data.get("AP")
+            charge = data.get("Energy")
         
             range_text = range_dict.get(raw_range, "None")
             range_type_text = rt_dict.get(raw_range_type, "None")
         
             st.markdown(f"**Glyph:** {active}")
+            st.markdown(f"**Charge:** {charge}")
+            st.markdown(f"**AP:** {ap}")
             st.markdown(f"**Range:** {range_text}")
             st.markdown(f"**Range Type:** {range_type_text}")
             st.markdown(f"**Comment:** {data.get('comment', '—')}")
