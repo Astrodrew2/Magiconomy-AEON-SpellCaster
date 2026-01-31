@@ -27,6 +27,7 @@ words_dict = {
     "Ice w=4": {"mastery":"Adept","level":2,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":2, "book":1 },
     "Ice w=5": {"mastery":"Adept","level":3,"section":6,"AP":1, "range":10, "rt": 3, "comment": "You take away all of the energy within the Ley winds creating a thing of ice before you with the density of the weight (w) of the cast,Duration: long-lasting", "chann":2, "book":1 },
     #"Shape Ice": {"level":1,"section":6,"AP":1, "range":2, "rt": 2, "comment": "You cut away at the Ley ice shaping it into your desired form as long as there is enough material to do so. Can only be added to Glyph of Ice. Duration: long-lasting", "chann":2, "book":1 },
+    "Shockwave": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":5, "rt": 3,"comment": "Condenses Ley winds to a point in range and explodes radially out 5ft, knocking an enemy Prone within range. If it makes contact with inanimate object, it will cause fracturing.", "chann":2, "over": 1, "book":1 },
     #Master
     "Greater Flame": {"mastery":"Master","level":2,"section":6,"AP":1, "range":30, "rt": 4, "comment": "Energize the Ley winds you cast upon with far greater power and control making that which it touches burn and effect the natural world around it. Damage: If caught in flames, 2 x INT MD✨and Causes Burn.", "chann":1, "book":1 },
     "Greater Chill": {"mastery":"Master","level":4,"section":6,"AP":1, "range":30, "rt": 5, "comment": "Instant, The Ley winds caught within your cast come to stop briefly inflicting Inflict 6 Slow on targets within your range", "chann":2, "book":1 },
@@ -34,7 +35,6 @@ words_dict = {
     "Brightness EN": {"mastery":"Novice","level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "adds stun effect to Glyph of Light", "chann":2 },
     #Enhancements: Adept
     "Vertical EN": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 6ft to the height of the channeled or long-lasting glyph attached (mass is increased as would be expected). Duration: long-lasting glyph", "chann":2, "book":1 },
-    "Impact EN": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":0, "rt": 0,"comment": "If spell makes contact, knock the enemy Prone. If makes contact with inanimate object, it will cause fracturing.", "chann":2, "over": 1, "book":1 },
     "Shoot Ice EN": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":0, "rt": 0, "comment": "If the caster chooses to release the Ley ice as it pulls away from them during formation it shoots their Ley Ice up to the Glyph of Ice’s specified range (Unless modified with Shoot Ice1 or 2). Only usable with w<=2 Ice", "chann":2, "book":1 },
     #Enhancements: Master
     "Greater Vertical EN": {"mastery":"Master","level":2,"section":6,"AP":1, "range":0, "rt": 0, "comment": "Adds 10ft to the height of the channeled or long-lasting glyph attached", "chann":2, "book":1 },
