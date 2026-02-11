@@ -19,6 +19,40 @@ import matplotlib.image as mpimg
 from PIL import Image
 import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import io
+import cairosvg  
+#
+def load_icon_as_array(path, max_dim=64):
+    if path.lower().endswith(".svg"):
+        png_bytes = cairosvg.svg2png(url=path,
+                                      output_width=max_dim,
+                                      output_height=max_dim)
+        img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
+    else:
+        img = Image.open(path).convert("RGBA")
+        img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
+
+    return np.array(img)
+#
+def data_to_axes_fraction(ax, x, y):
+    display = ax.transData.transform((x, y))
+    axes = ax.transAxes.inverted().transform(display)
+    return axes
+
+def draw_image_3d_frac(ax, img_path, xy_data, zoom=0.05, max_dim=64):
+    arr = load_icon_as_array(img_path, max_dim=max_dim)
+
+    xf, yf = data_to_axes_fraction(ax, xy_data[0], xy_data[1])
+
+    imagebox = OffsetImage(arr, zoom=zoom)
+    ab = AnnotationBbox(
+        imagebox,
+        (xf, yf),
+        xycoords='axes fraction',
+        frameon=False,
+        zorder=25
+    )
+    ax.add_artist(ab)
 
 # Cache for loaded images
 sector_img_cache = {}
@@ -38,17 +72,6 @@ def get_sector_img(path, max_dim=256):
         sector_img_cache[path] = np.array(img)
     return sector_img_cache[path]
     
-def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.02):
-    img = get_sector_img(img_path)
-    imagebox = OffsetImage(img, zoom=zoom)
-    ab = AnnotationBbox(
-        imagebox,
-        xy_frac,               # already in axes fraction
-        xycoords='axes fraction',
-        frameon=False,
-        zorder=20
-    )
-    ax.add_artist(ab)
 
 #--DOMAIN GLYPH CACHE--
 
