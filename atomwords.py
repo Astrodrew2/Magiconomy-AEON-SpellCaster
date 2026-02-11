@@ -643,7 +643,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             img_path_sector = sector_labels.get(i+1)
 
             if img_path_sector:
-                draw_image_3d(ax, img_path, (lx,ly, 0.25), zoom=0.25)
+                draw_image_3d(ax, img_path, (lx,ly, 20), zoom=1)
             else:
                 ax.text(ly,ly,20,str(i+1), color="black",
                         ha="center", va="center", fontsize=20)
