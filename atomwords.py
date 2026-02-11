@@ -637,8 +637,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     with redirect_stdout(buffer):
         if sector_labels is None:
             #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
-            sector_labels = {1:"GlyphGraphics/End.svg",2:"GlyphGraphics/Death.svg",3:"GlyphGraphics/Witchcraft.svg",4:"GlyphGraphics/Shamanism.svg",5:"GlyphGraphics/Druidism.svg",6:"GlyphGraphics/Ley.svg"}
-            #sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
+            sector_labelsC = {1:"[GlyphGraphics/End.svg]",2:"[GlyphGraphics/Death.svg]",3:"[GlyphGraphics/Witchcraft.svg]",4:"[GlyphGraphics/Shamanism.svg]",5:"[GlyphGraphics/Druidism.svg]",6:"[GlyphGraphics/Ley.svg]"}
+            sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
         fig = plt.figure(figsize=(8,8))
@@ -683,7 +683,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             label_angle = angle + sector_angle/2
             lx = label_radius*np.cos(label_angle)
             ly = label_radius*np.sin(label_angle)
-            img_path_sector = sector_labels.get(i+1)
+            img_path_sector = sector_labelsC.get(i+1)
             if img_path_sector:
                 draw_image_3d_frac(ax, img_path_sector, (lx, ly), zoom=0.001)
             #ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
