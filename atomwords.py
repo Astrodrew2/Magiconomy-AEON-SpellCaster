@@ -43,15 +43,15 @@ def get_sector_img(path):
         sector_img_cache[path] = mpimg.imread(path)
     return sector_img_cache[path]
 
-def draw_image_3d(ax, img_path, xyz, zoom=0.05):
+def draw_image_3d(ax, img_path, xyz, zoom=0.5):
     img = get_sector_img(img_path)
 
     imagebox = OffsetImage(img, zoom=zoom)
 
     ab = AnnotationBbox(
         imagebox,
-        (0.6, 0.5),   # center of axes
-        xycoords='data',
+        (0.5, 0.5),   # center of axes
+        xycoords='axes fraction',
         frameon=False,
         zorder=20
     )
