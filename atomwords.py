@@ -19,7 +19,6 @@ sector_img_cache = {}
 
 def get_sector_img(path, max_size=(512, 512)):
     if path not in sector_img_cache:
-        print("AYYE!")
         img = Image.open(path)
         img.thumbnail(max_size, Image.ANTIALIAS)
         sector_img_cache[path] = np.array(img)
