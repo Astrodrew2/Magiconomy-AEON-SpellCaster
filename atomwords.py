@@ -43,7 +43,7 @@ def get_sector_img(path):
         sector_img_cache[path] = mpimg.imread(path)
     return sector_img_cache[path]
 
-def draw_image_3d(ax, img_path, xyz, zoom=0.02):
+def draw_image_3d(ax, img_path, xyz, zoom=0.005):
     img = get_sector_img(img_path)
 
     imagebox = OffsetImage(img, zoom=zoom)
