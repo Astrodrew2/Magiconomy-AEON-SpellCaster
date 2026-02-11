@@ -32,6 +32,7 @@ def draw_glyph_image(ax, img_path, position, zoom=0.15):
     ax.add_artist(ab)
 
 #--DOMAIN GLYPH CACHE--
+from PIL import Image
 from mpl_toolkits.mplot3d import proj3d
 import matplotlib.image as mpimg
 
