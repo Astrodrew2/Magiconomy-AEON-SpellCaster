@@ -40,18 +40,18 @@ def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.2):
 #--DOMAIN GLYPH CACHE--
 
 
-sector_img_cache = {}
+#sector_img_cache = {}
 
-def get_sector_img(path, max_size=256):
-    if path not in sector_img_cache:
+#def get_sector_img(path, max_size=256):
+    #if path not in sector_img_cache:
         img = Image.open(path)
 
         # resize while keeping aspect ratio
-        img.thumbnail((max_size, max_size))
+        #img.thumbnail((max_size, max_size))
 
-        sector_img_cache[path] = np.array(img)
+        #sector_img_cache[path] = np.array(img)
 
-    return sector_img_cache[path]
+    #return sector_img_cache[path]
 
 
 def draw_image_3d(ax, img_path, xyz, zoom=1):
