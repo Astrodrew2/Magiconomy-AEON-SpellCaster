@@ -51,7 +51,7 @@ def draw_image_3d(ax, img_path, xyz, zoom=0.005):
     ab = AnnotationBbox(
         imagebox,
         (0.6, 0.5),   # center of axes
-        xycoords='axes fraction',
+        xycoords='data',
         frameon=False,
         zorder=20
     )
