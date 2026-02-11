@@ -37,6 +37,7 @@ import matplotlib.image as mpimg
 
 sector_img_cache = {}
 
+
 def get_sector_img(path):
     if path not in sector_img_cache:
         sector_img_cache[path] = mpimg.imread(path)
@@ -44,6 +45,9 @@ def get_sector_img(path):
 
 def draw_image_3d(ax, img_path, xyz, zoom=0.2):
     img = get_sector_img(img_path)
+
+     # FORCE projection matrix to exist
+    ax.figure.canvas.draw()
 
     # project 3D → 2D
     x2, y2, _ = proj3d.proj_transform(
