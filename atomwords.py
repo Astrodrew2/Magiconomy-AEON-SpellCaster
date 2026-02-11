@@ -23,78 +23,32 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 # Cache for loaded images
 sector_img_cache = {}
 
-def get_sector_img(path, max_size=(64,64)):
-    """
-    Load and resize an image, cache it.
-    max_size = (width, height)
-    """
-    if path not in sector_img_cache:
-        img = Image.open(path).convert("RGBA")
-        img.thumbnail(max_size, Image.Resampling.LANCZOS)
-        sector_img_cache[path] = img
-    return sector_img_cache[path]
-
-def draw_multiple_images_3d(ax, img_paths, xyz, zoom=0.2, spacing=(0.1,0)):
-    """
-    Combine multiple glyph images into a single transparent image, then place once on axes.
-    img_paths: list of file paths for glyph images
-    xyz: 3D location in data coordinates
-    spacing: pixel offset between images in the composite
-    """
-    # Load all images
-    images = [get_sector_img(p) for p in img_paths]
-
-    # Determine composite size
-    widths, heights = zip(*(i.size for i in images))
-    total_width = sum(widths) + spacing[0]*(len(images)-1)
-    max_height = max(heights) + spacing[1]*2
-
-    # Create a transparent composite image
-    composite = Image.new("RGBA", (int(total_width), int(max_height)), (0,0,0,0))
-
-    # Paste each image into the composite
-    x_offset = 0
-    for img in images:
-        composite.paste(img, (int(x_offset), int((max_height - img.height)/2)), img)
-        x_offset += img.width + spacing[0]
-
-    # Convert to numpy array for Matplotlib
-    img_array = np.array(composite)
-
-    # Project 3D → 2D
-    from mpl_toolkits.mplot3d import proj3d
-    x2, y2, _ = proj3d.proj_transform(xyz[0], xyz[1], xyz[2], ax.get_proj())
-
-    # Add to axes
-    imagebox = OffsetImage(img_array, zoom=zoom)
-    ab = AnnotationBbox(imagebox, (x2, y2), xycoords='data', frameon=False, zorder=20)
-    ax.add_artist(ab)
 
 
 #sector_img_cache = {}
 
 
-#def get_sector_img(path, max_dim=256):
- #   if path not in sector_img_cache:
-  #      img = Image.open(path)
-   #     # Downsize if necessary
-    #    if max(img.size) > max_dim:
-     #       img.thumbnail((max_dim, max_dim))
-      #  return img
-       # sector_img_cache[path] = np.array(img)
-   # return sector_img_cache[path]
+def get_sector_img(path, max_dim=256):
+    if path not in sector_img_cache:
+        img = Image.open(path)
+        # Downsize if necessary
+        if max(img.size) > max_dim:
+            img.thumbnail((max_dim, max_dim))
+        return img
+        sector_img_cache[path] = np.array(img)
+    return sector_img_cache[path]
     
-#def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.02):
- #   img = get_sector_img(img_path)
- #   imagebox = OffsetImage(img, zoom=zoom)
- #   ab = AnnotationBbox(
- #       imagebox,
-  #      xy_frac,               # already in axes fraction
-  #      xycoords='axes fraction',
-   #     frameon=False,
-  #      zorder=20
-  #  )
- #   ax.add_artist(ab)
+def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.02):
+    img = get_sector_img(img_path)
+    imagebox = OffsetImage(img, zoom=zoom)
+    ab = AnnotationBbox(
+        imagebox,
+        xy_frac,               # already in axes fraction
+        xycoords='axes fraction',
+        frameon=False,
+        zorder=20
+    )
+    ax.add_artist(ab)
 
 #--DOMAIN GLYPH CACHE--
 
@@ -694,39 +648,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         radius_step = 5.0
         max_radius = orbital_radius(max_level, radius_step, MIN_INNER_RADIUS)
 
-        # ------------------------- Radial Sectors with Composited Images -------------------------
-        max_radius = 5  # example, adjust as needed
-        sector_angle = np.pi/3
-        label_radius = max_radius + 0.7
-        
-        # Loop over 6 sectors
-        for i in range(6):
-            # Radial line
-            angle = i * sector_angle
-            x = max_radius * np.cos(angle)
-            y = max_radius * np.sin(angle)
-            ax.plot([0, x], [0, y], [0, 0], color="black", linestyle="--", linewidth=1, alpha=0.5)
-        
-            # Label position (slightly further out)
-            label_angle = angle + sector_angle / 2
-            lx = label_radius * np.cos(label_angle)
-            ly = label_radius * np.sin(label_angle)
-            lz = 0.25  # height above plane
-        
-            # Get all glyph paths for this sector (allowing multiple)
-            # Example: if your sector_labels dict is like {1:["path1","path2"], 2:["path3"], ...}
-            img_paths_sector = sector_labels.get(i+1, [])
-            if isinstance(img_paths_sector, str):
-                img_paths_sector = [img_paths_sector]  # convert single string to list
-        
-            if img_paths_sector:
-                # Composite + plot
-                draw_multiple_images_3d(ax, img_paths_sector, xyz=(lx, ly, lz), zoom=0.15, spacing=(5,0))
-            else:
-                # fallback: just plot text
-                ax.text(lx, ly, lz, str(i+1), color="black",
-                        ha="center", va="center", fontsize=20)
-
+       
     
         # Radial lines + sector labels
         label_radius = max_radius + 0.7
@@ -740,7 +662,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             ly = label_radius*np.sin(label_angle)
             img_path_sector = sector_labels.get(i+1)
             
-            #ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
+            ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
     
         # Shade allowed sectors
         for sec in allowed_sectors:
