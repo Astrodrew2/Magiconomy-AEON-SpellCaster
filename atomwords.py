@@ -7,7 +7,8 @@ import sys
 from contextlib import redirect_stdout
 import pandas as pd
 
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from matplotlib.offsetbox import OffsetImage
+from matplotlib.offsetbox import AnnotationBbox
 import matplotlib.image as mpimg
 
 # ---------- GLYPH IMAGE CACHE ----------
@@ -31,7 +32,6 @@ def draw_glyph_image(ax, img_path, position, zoom=0.15):
 
 #--DOMAIN GLYPH CACHE--
 from mpl_toolkits.mplot3d import proj3d
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import matplotlib.image as mpimg
 
 sector_img_cache = {}
