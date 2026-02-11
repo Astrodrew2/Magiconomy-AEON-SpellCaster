@@ -637,7 +637,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     with redirect_stdout(buffer):
         if sector_labels is None:
             #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
-            sector_labelsC = {1:"[GlyphGraphics/End.svg]",2:"[GlyphGraphics/Death.svg]",3:"[GlyphGraphics/Witchcraft.svg]",4:"[GlyphGraphics/Shamanism.svg]",5:"[GlyphGraphics/Druidism.svg]",6:"[GlyphGraphics/Ley.svg]"}
+            sector_labelsC = {1:["GlyphGraphics/End.svg"],2:["GlyphGraphics/Death.svg"],3:["GlyphGraphics/Witchcraft.svg"],4:["GlyphGraphics/Shamanism.svg"],5:["GlyphGraphics/Druidism.svg"],6:["GlyphGraphics/Ley.svg"]}
             sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
