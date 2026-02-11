@@ -593,7 +593,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     with redirect_stdout(buffer):
         if sector_labels is None:
             #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
-            sector_labels = {1:"../GlyphGraphics/End.png",2:"../GlyphGraphics/Death.png",3:"../GlyphGraphics/Witchcraft.png",4:"../GlyphGraphics/Shamanism.png",5:"../GlyphGraphics/Druidism.png",6:"../GlyphGraphics/Ley.png"}
+            sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
         fig = plt.figure(figsize=(8,8))
