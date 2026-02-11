@@ -24,7 +24,7 @@ def get_sector_img(path, max_size=(512, 512)):
         sector_img_cache[path] = np.array(img)
     return sector_img_cache[path]
     
-def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.2):
+def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.02):
     img = get_sector_img(img_path)
     imagebox = OffsetImage(img, zoom=zoom)
     ab = AnnotationBbox(
