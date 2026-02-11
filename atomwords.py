@@ -43,7 +43,7 @@ def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.2):
 
 #def get_sector_img(path, max_size=256):
     #if path not in sector_img_cache:
-        img = Image.open(path)
+        #img = Image.open(path)
 
         # resize while keeping aspect ratio
         #img.thumbnail((max_size, max_size))
