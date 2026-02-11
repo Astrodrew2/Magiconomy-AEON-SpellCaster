@@ -661,8 +661,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             lx = label_radius*np.cos(label_angle)
             ly = label_radius*np.sin(label_angle)
             img_path_sector = sector_labels.get(i+1)
-            
-            ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
+            if img_path_sector:
+                draw_image_3d(ax, img_path_sector, (lx, ly, 0.25), zoom=0.125)
+            #ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
     
         # Shade allowed sectors
         for sec in allowed_sectors:
