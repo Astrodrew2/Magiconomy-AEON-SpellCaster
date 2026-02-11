@@ -38,7 +38,7 @@ import matplotlib.image as mpimg
 
 sector_img_cache = {}
 
-def get_sector_img(path, max_size=128):
+def get_sector_img(path, max_size=256):
     if path not in sector_img_cache:
         img = Image.open(path)
 
