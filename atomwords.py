@@ -17,7 +17,7 @@ import matplotlib.image as mpimg
 # ---------- Outer MAgic GLYPHCACHE ----------
 sector_img_cache = {}
 
-def get_sector_img(path, max_size=(512, 512)):
+def get_sector_img(path, max_size=(256, 256)):
     if path not in sector_img_cache:
         img = Image.open(path)
         img.thumbnail(max_size, Image.Resampling.LANCZOS)
@@ -646,7 +646,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             img_path_sector = sector_labels.get(i+1)
 
             if img_path_sector:
-                draw_image_3d_frac(ax, img_path_sector, (lx,ly), zoom=0.05)
+                draw_image_3d_frac(ax, img_path_sector, (lx,ly), zoom=0.025)
             else:
                 ax.text(ly,ly,20,str(i+1), color="black",
                         ha="center", va="center", fontsize=20)
