@@ -21,23 +21,7 @@ import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import io
 import cairosvg  
-#
-def load_icon_as_array(path, max_dim=64):
-    if path.lower().endswith(".svg"):
-        png_bytes = cairosvg.svg2png(url=path,
-                                      output_width=max_dim,
-                                      output_height=max_dim)
-        img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
-    else:
-        img = Image.open(path).convert("RGBA")
-        img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
 
-    return np.array(img)
-#
-def data_to_axes_fraction(ax, x, y):
-    display = ax.transData.transform((x, y))
-    axes = ax.transAxes.inverted().transform(display)
-    return axes
 
 def draw_image_3d_frac(ax, img_path, xy_data, zoom=0.05, max_dim=64):
     arr = load_icon_as_array(img_path, max_dim=max_dim)
