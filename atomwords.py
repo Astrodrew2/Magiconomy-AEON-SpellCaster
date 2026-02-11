@@ -37,11 +37,17 @@ import matplotlib.image as mpimg
 
 sector_img_cache = {}
 
-
-def get_sector_img(path):
+def get_sector_img(path, max_size=128):
     if path not in sector_img_cache:
-        sector_img_cache[path] = mpimg.imread(path)
+        img = Image.open(path)
+
+        # resize while keeping aspect ratio
+        img.thumbnail((max_size, max_size))
+
+        sector_img_cache[path] = np.array(img)
+
     return sector_img_cache[path]
+
 
 def draw_image_3d(ax, img_path, xyz, zoom=0.5):
     img = get_sector_img(img_path)
