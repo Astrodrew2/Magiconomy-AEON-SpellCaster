@@ -10,31 +10,38 @@ import pandas as pd
 
 from matplotlib.offsetbox import OffsetImage
 from matplotlib.offsetbox import AnnotationBbox
+from PIL import Image
+from mpl_toolkits.mplot3d import proj3d
 import matplotlib.image as mpimg
 
-# ---------- GLYPH IMAGE CACHE ----------
-glyph_img_cache = {}
+# ---------- Outer MAgic GLYPHCACHE ----------
+sector_img_cache = {}
 
-def get_glyph_image(path):
-    if path not in glyph_img_cache:
-        glyph_img_cache[path] = mpimg.imread(path)
-    return glyph_img_cache[path]
+def get_sector_img(path, max_size=256):
+    if path not in sector_img_cache:
+        img = Image.open(path)
 
-def draw_glyph_image(ax, img_path, position, zoom=0.15):
-    img = get_glyph_image(img_path)
+        # resize while keeping aspect ratio
+        img.thumbnail((max_size, max_size))
+
+        sector_img_cache[path] = np.array(img)
+
+    return sector_img_cache[path]
+    
+def draw_image_3d_frac(ax, img_path, xy_frac, zoom=0.2):
+    img = get_sector_img(img_path)
     imagebox = OffsetImage(img, zoom=zoom)
     ab = AnnotationBbox(
         imagebox,
-        (position[0], position[1]),  # 2D placement
+        xy_frac,               # already in axes fraction
+        xycoords='axes fraction',
         frameon=False,
-        zorder=15
+        zorder=20
     )
     ax.add_artist(ab)
 
 #--DOMAIN GLYPH CACHE--
-from PIL import Image
-from mpl_toolkits.mplot3d import proj3d
-import matplotlib.image as mpimg
+
 
 sector_img_cache = {}
 
@@ -643,7 +650,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             img_path_sector = sector_labels.get(i+1)
 
             if img_path_sector:
-                draw_image_3d(ax, img_path_sector, (lx,ly, 20), zoom=0.25)
+                draw_image_3d_frac(ax, img_path_sector, (lx,ly, 20), zoom=0.25)
             else:
                 ax.text(ly,ly,20,str(i+1), color="black",
                         ha="center", va="center", fontsize=20)
