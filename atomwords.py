@@ -17,10 +17,13 @@ import matplotlib.image as mpimg
 # ---------- Outer MAgic GLYPHCACHE ----------
 sector_img_cache = {}
 
-def get_sector_img(path, max_size=(256, 256)):
+def get_sector_img(path, max_dim=256):
     if path not in sector_img_cache:
         img = Image.open(path)
-        img.thumbnail(max_size, Image.Resampling.LANCZOS)
+        # Downsize if necessary
+        if max(img.size) > max_dim:
+            img.thumbnail((max_dim, max_dim))
+        return img
         sector_img_cache[path] = np.array(img)
     return sector_img_cache[path]
     
