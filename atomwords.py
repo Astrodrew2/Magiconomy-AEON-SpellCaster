@@ -607,7 +607,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
-        fig = plt.figure(figsize=(6,6))
+        fig = plt.figure(figsize=(4,4),dpi=50)
         ax = fig.add_subplot(111, projection="3d")
         ax.set_facecolor("tan")
         plt.axis("off")
