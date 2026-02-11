@@ -50,7 +50,7 @@ def get_sector_img(path, max_size=128):
     return sector_img_cache[path]
 
 
-def draw_image_3d(ax, img_path, xyz, zoom=0.5):
+def draw_image_3d(ax, img_path, xyz, zoom=1):
     img = get_sector_img(img_path)
 
     imagebox = OffsetImage(img, zoom=zoom)
