@@ -46,19 +46,12 @@ def get_sector_img(path):
 def draw_image_3d(ax, img_path, xyz, zoom=0.2):
     img = get_sector_img(img_path)
 
-     # FORCE projection matrix to exist
-    ax.figure.canvas.draw()
-
-    # project 3D → 2D
-    x2, y2, _ = proj3d.proj_transform(
-        xyz[0], xyz[1], xyz[2], ax.get_proj()
-    )
-
     imagebox = OffsetImage(img, zoom=zoom)
+
     ab = AnnotationBbox(
         imagebox,
-        (x2, y2),
-        xycoords='data',
+        (0.5, 0.5),   # center of axes
+        xycoords='axes fraction',
         frameon=False,
         zorder=20
     )
