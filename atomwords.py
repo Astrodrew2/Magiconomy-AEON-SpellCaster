@@ -17,6 +17,8 @@ import matplotlib.image as mpimg
 # ---------- Outer MAgic GLYPHCACHE ----------
 sector_img_cache = {}
 
+Image.MAX_IMAGE_PIXELS = None
+
 def get_sector_img(path, max_dim=256):
     if path not in sector_img_cache:
         img = Image.open(path)
