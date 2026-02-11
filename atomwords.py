@@ -7,6 +7,59 @@ import sys
 from contextlib import redirect_stdout
 import pandas as pd
 
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import matplotlib.image as mpimg
+
+# ---------- GLYPH IMAGE CACHE ----------
+glyph_img_cache = {}
+
+def get_glyph_image(path):
+    if path not in glyph_img_cache:
+        glyph_img_cache[path] = mpimg.imread(path)
+    return glyph_img_cache[path]
+
+def draw_glyph_image(ax, img_path, position, zoom=0.15):
+    img = get_glyph_image(img_path)
+    imagebox = OffsetImage(img, zoom=zoom)
+    ab = AnnotationBbox(
+        imagebox,
+        (position[0], position[1]),  # 2D placement
+        frameon=False,
+        zorder=15
+    )
+    ax.add_artist(ab)
+
+#--DOMAIN GLYPH CACHE--
+from mpl_toolkits.mplot3d import proj3d
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import matplotlib.image as mpimg
+
+sector_img_cache = {}
+
+def get_sector_img(path):
+    if path not in sector_img_cache:
+        sector_img_cache[path] = mpimg.imread(path)
+    return sector_img_cache[path]
+
+def draw_image_3d(ax, img_path, xyz, zoom=0.2):
+    img = get_sector_img(img_path)
+
+    # project 3D → 2D
+    x2, y2, _ = proj3d.proj_transform(
+        xyz[0], xyz[1], xyz[2], ax.get_proj()
+    )
+
+    imagebox = OffsetImage(img, zoom=zoom)
+    ab = AnnotationBbox(
+        imagebox,
+        (x2, y2),
+        xycoords='data',
+        frameon=False,
+        zorder=20
+    )
+    ax.add_artist(ab)
+------
+
 # Mapping for range and range type
 range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
 rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
@@ -538,7 +591,8 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     buffer = io.StringIO()
     with redirect_stdout(buffer):
         if sector_labels is None:
-            sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
+            #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
+            sector_labels = {1:"GlyphGraphics/Ley.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/End.png"}
     
         allowed_sectors = sorted({words_dict[word]["section"] for word in words_list})
         fig = plt.figure(figsize=(8,8))
@@ -554,7 +608,14 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         first_sec = words_dict[first_word]["section"]
         nucleus_label = sector_labels.get(first_sec, str(first_sec))
         ax.scatter(0,0,0,marker="h", facecolors='tan', edgecolors='black', linewidths=1.5, s=2500)
-        ax.text(0,0,0.2,nucleus_label,color="black",ha="center",va="center", fontsize=20,fontweight="bold")
+        img_path = sector_labels.get(first_sec)
+
+        if img_path:
+            draw_image_3d(ax, img_path, (0, 0, 0.25), zoom=0.25)
+        else:
+            ax.text(0,0,0.2,str(first_sec), color="black",
+                    ha="center", va="center", fontsize=20)
+        #ax.text(0,0,0.2,nucleus_label,color="black",ha="center",va="center", fontsize=20,fontweight="bold")
     
         # Radius setup
         max_level = max([words_dict[word]["level"] for word in words_list])
