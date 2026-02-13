@@ -21,9 +21,34 @@ import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import io
 import cairosvg  
+#----
+from PIL import Image
+import numpy as np
 
+sector_img_cache = {}
 
-def draw_image_3d_frac(ax, img_path, xy_data, zoom=0.05, max_dim=64):
+def data_to_axes_fraction(ax, x, y):
+    trans = ax.transData.transform((x, y))
+    inv = ax.transAxes.inverted()
+    return inv.transform(trans)
+
+def load_icon_as_array(path, max_dim=128):
+    if path in sector_img_cache:
+        return sector_img_cache[path]
+
+    img = Image.open(path).convert("RGBA")
+
+    # resize safely
+    if max(img.size) > max_dim:
+        img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
+
+    arr = np.array(img)
+    sector_img_cache[path] = arr
+    return arr
+
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+
+def draw_image_3d_frac(ax, img_path, xy_data, zoom=0.15, max_dim=128):
     arr = load_icon_as_array(img_path, max_dim=max_dim)
 
     xf, yf = data_to_axes_fraction(ax, xy_data[0], xy_data[1])
@@ -38,12 +63,13 @@ def draw_image_3d_frac(ax, img_path, xy_data, zoom=0.05, max_dim=64):
     )
     ax.add_artist(ab)
 
+#-----
+
+
+
 # Cache for loaded images
 sector_img_cache = {}
 
-
-
-#sector_img_cache = {}
 
 
 def get_sector_img(path, max_dim=256):
