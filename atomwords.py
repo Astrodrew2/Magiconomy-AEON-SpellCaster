@@ -118,21 +118,27 @@ def draw_image_3d(ax, img_path, xyz, zoom=0.5):
 def draw_glyph_3d(ax, img_path, xyz, zoom=0.5):
     x, y, z = xyz
 
-    # Project 3D → 2D
+    # 1️⃣ Project 3D → 2D data coordinates
     x2, y2, _ = proj3d.proj_transform(x, y, z, ax.get_proj())
+
+    # 2️⃣ Convert to display (pixel) coordinates
+    x_display, y_display = ax.transData.transform((x2, y2))
 
     img = get_sector_img(img_path)
     imagebox = OffsetImage(img, zoom=zoom)
 
+    # 3️⃣ Place using display coords
     ab = AnnotationBbox(
         imagebox,
-        (x2, y2),
-        xycoords='data',   # IMPORTANT
+        (x_display, y_display),
+        xycoords='figure pixels',   # ← THIS is the key
         frameon=False,
-        zorder=20
+        zorder=50
     )
 
     ax.add_artist(ab)
+
+#------
 
 # Mapping for range and range type
 range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
