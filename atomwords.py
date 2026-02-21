@@ -646,7 +646,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     buffer = io.StringIO()
     with redirect_stdout(buffer):
         if sector_labels is None:
-            #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
+            sector_labelsOut = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
             sector_labelsC = {1:"GlyphGraphics/End.svg",2:"GlyphGraphics/Death.svg",3:"GlyphGraphics/Witchcraft.svg",4:"GlyphGraphics/Shamanism.svg",5:"GlyphGraphics/Druidism.svg",6:"GlyphGraphics/Ley.svg"}
             sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
@@ -696,7 +696,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             img_path_sector = sector_labels.get(i+1)
             #if img_path_sector:
                 #draw_image_3d_frac(ax, img_path_sector, (lx, ly), zoom=0.001)
-            ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
+            ax.text(lx,ly,20,sector_labelsOut.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
     
         # Shade allowed sectors
         for sec in allowed_sectors:
@@ -747,7 +747,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 glyph_path = info["glyph"]
 
                 if glyph_path:
-                    draw_image_3d(ax, glyph_path, (0, 0, 0.25), zoom=0.125)
+                    draw_image_3d(ax, glyph_path, (xe, ye, ze+0.2), zoom=0.125)
                 else:
                     ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
     
