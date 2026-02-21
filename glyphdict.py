@@ -12,7 +12,7 @@
 words_dict = {
     #LEY
     #Novice
-    "Light": {"mastery":"Novice","level":1,"section":6,"AP":1, "range":10, "rt": 6, "comment": "instant, Emanate a light from your hand radially outward. It’s shine is almost calming", "chann":1, "book":1 },
+    "Light": {"glyph":"GlyphGraphics/Glyphs/Light.png", "mastery":"Novice","level":1,"section":6,"AP":1, "range":10, "rt": 6, "comment": "instant, Emanate a light from your hand radially outward. It’s shine is almost calming", "chann":1, "book":1 },
     "Charge D": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a weapon with MD ✨ equal to 2 × INT. When the effect wears off, the weapon turns to ash. Duration 3 turns", "chann":2, "book":1 },
     "Charge R": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a piece of armor with MR 🪞 equal to 2 × INT. When the effect wears off, the armor turns to ash. Duration 3 turns", "chann":2, "book":1 },
     #Adept
