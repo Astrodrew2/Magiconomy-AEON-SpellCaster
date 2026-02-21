@@ -316,7 +316,7 @@ if st.sidebar.button("Apply"):
             )
     
         # --- Display figure ---
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig)
         #plt.close(fig)
         #st.pyplot(fig)
         # --- Convert Matplotlib fig to Plotly ---
