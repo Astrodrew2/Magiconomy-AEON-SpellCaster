@@ -10,7 +10,7 @@ mod_dict = modsdict.mod_dict
 import pandas as pd
 import base64
 import os
-from pdf2image import convert_from_path
+#from pdf2image import convert_from_path
 
 #from plotly.tools import mpl_to_plotly
 #import plotly.graph_objects as go
@@ -33,6 +33,7 @@ def render_pdf_as_images(pdf_path):
     # Display each page as an image
     for i, page in enumerate(pages):
         st.image(page, caption=f"Page {i+1}", use_container_width=True)
+        
 def display_pdf(pdf_path: str):
     """Embed a PDF into the Streamlit app."""
     with open(pdf_path, "rb") as f:
@@ -293,7 +294,8 @@ if view_mode == "Spell Caster":
     
 if view_mode == "Glyph Dictionary": 
     pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
-    render_pdf_as_images(pdf_path) 
+    #render_pdf_as_images(pdf_path) 
+    display_pdf(pdf_path)
     st.stop()
     
 # Apply button
