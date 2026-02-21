@@ -115,6 +115,25 @@ def draw_image_3d(ax, img_path, xyz, zoom=0.5):
     ax.add_artist(ab)
 #------
 
+def draw_glyph_3d(ax, img_path, xyz, zoom=0.5):
+    x, y, z = xyz
+
+    # Project 3D → 2D
+    x2, y2, _ = proj3d.proj_transform(x, y, z, ax.get_proj())
+
+    img = get_sector_img(img_path)
+    imagebox = OffsetImage(img, zoom=zoom)
+
+    ab = AnnotationBbox(
+        imagebox,
+        (x2, y2),
+        xycoords='data',   # IMPORTANT
+        frameon=False,
+        zorder=20
+    )
+
+    ax.add_artist(ab)
+
 # Mapping for range and range type
 range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
 rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
@@ -747,7 +766,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 glyph_path = info["glyph"]
 
                 if glyph_path:
-                    draw_image_3d(ax, glyph_path, (xe, ye, ze+0.2), zoom=0.125)
+                    draw_glyph_3d(ax, glyph_path, (xe, ye, ze+0.2), zoom=0.125)
                 else:
                     ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
     
