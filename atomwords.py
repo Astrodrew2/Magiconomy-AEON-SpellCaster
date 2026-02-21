@@ -697,7 +697,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         #    draw_image_3d(ax, img_path, (0, 0, 0.25), zoom=0.125)
         #else:
          #   ax.text(0,0,0.2,str(first_sec), color="black",
-                    ha="center", va="center", fontsize=20)
+                   # ha="center", va="center", fontsize=20)
         ax.text(0,0,0.2,nucleus_label,color="black",ha="center",va="center", fontsize=20,fontweight="bold")
     
         # Radius setup
