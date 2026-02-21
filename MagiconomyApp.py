@@ -294,8 +294,8 @@ if view_mode == "Spell Caster":
     
 if view_mode == "Glyph Dictionary": 
     pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
-    #render_pdf_as_images(pdf_path) 
-    display_pdf(pdf_path)
+    render_pdf_as_images(pdf_path) 
+    #display_pdf(pdf_path)
     st.stop()
     
 # Apply button
