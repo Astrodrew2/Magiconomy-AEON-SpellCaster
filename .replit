@@ -24,7 +24,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "streamlit run MagiconomyApp.py"
+args = "streamlit run MagiconomyAppSHOULDWORK.py"
 waitForPort = 5000
 
 [workflows.workflow.metadata]
@@ -36,4 +36,4 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["streamlit", "run", "MagiconomyApp.py", "--server.port=5000", "--server.address=0.0.0.0"]
+run = ["streamlit", "run", "MagiconomyAppSHOULDWORK.py", "--server.port=5000", "--server.address=0.0.0.0"]
