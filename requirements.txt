@@ -8,6 +8,3 @@ streamlit
 tabulate
 Pillow
 cairosvg
-cairosvg
-Pillow
-plotly
