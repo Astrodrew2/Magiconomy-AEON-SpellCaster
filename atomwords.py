@@ -694,9 +694,9 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             lx = label_radius*np.cos(label_angle)
             ly = label_radius*np.sin(label_angle)
             img_path_sector = sector_labels.get(i+1)
-            if img_path_sector:
-                draw_image_3d_frac(ax, img_path_sector, (lx, ly), zoom=0.001)
-            #ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
+            #if img_path_sector:
+                #draw_image_3d_frac(ax, img_path_sector, (lx, ly), zoom=0.001)
+            ax.text(lx,ly,20,sector_labels.get(i+1,str(i+1)),color="black",ha="center",va="center",fontsize=20, alpha=0.5)
     
         # Shade allowed sectors
         for sec in allowed_sectors:
@@ -744,7 +744,12 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 ye = r*np.sin(angle)*np.cos(tilt_angle)
                 ze = r*np.sin(angle)*np.sin(tilt_angle)
                 ax.scatter(xe, ye, ze, s=800, facecolors='tan', edgecolors='black')
-                ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
+                glyph_path = info["glyph"]
+
+                if glyph_path:
+                    draw_image_3d(ax, glyph_path, (0, 0, 0.25), zoom=0.125)
+                else:
+                    ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
     
                 # --- RANGE + RT TEXT ABOVE/BELOW ELECTRON ---
                 
