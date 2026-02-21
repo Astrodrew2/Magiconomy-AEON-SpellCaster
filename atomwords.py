@@ -1051,12 +1051,12 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         
         ax.view_init(elev=alt, azim=azim)
         lim = max_radius+1
-        ax.set_xlim(-10,10)
-        ax.set_ylim(-10,10)
-        ax.set_zlim(-5,5)
-       # ax.set_xlim(-lim,lim)
-       # ax.set_ylim(-lim,lim)
-       # ax.set_zlim(-lim,lim)
+        #ax.set_xlim(-10,10)
+        #ax.set_ylim(-10,10)
+        #ax.set_zlim(-5,5)
+        ax.set_xlim(-lim,lim)
+        ax.set_ylim(-lim,lim)
+        ax.set_zlim(-lim,lim)
         
         #plt.show()
         return fig, printed_output, df
