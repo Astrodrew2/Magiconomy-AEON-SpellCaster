@@ -770,7 +770,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 ye = r*np.sin(angle)*np.cos(tilt_angle)
                 ze = r*np.sin(angle)*np.sin(tilt_angle)
                 ax.scatter(xe, ye, ze, s=800, facecolors='tan', edgecolors='black')
-                glyph_path = info["glyph"]
+                glyph_path = info.get("glyph")
 
                 if glyph_path:
                     draw_glyph_3d(ax, glyph_path, (xe/5.5, ye*1.8, ze+0.2), zoom=0.1)
