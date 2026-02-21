@@ -115,7 +115,7 @@ def draw_image_3d(ax, img_path, xyz, zoom=0.5):
     ax.add_artist(ab)
 #------
 
-def draw_glyph_3d(ax, img_path, xyz, zoom=0.3):
+def draw_glyph_3d(ax, img_path, xyz, zoom=0.5):
     x, y, z = xyz
 
     # 1️⃣ Project 3D → 2D data coordinates
@@ -773,7 +773,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 glyph_path = info["glyph"]
 
                 if glyph_path:
-                    draw_glyph_3d(ax, glyph_path, (xe/5.7, ye*1.8, ze+0.2), zoom=0.125)
+                    draw_glyph_3d(ax, glyph_path, (xe/5.6, ye*1.8, ze+0.2), zoom=0.1)
                 else:
                     ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
     
