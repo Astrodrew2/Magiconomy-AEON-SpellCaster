@@ -7,4 +7,3 @@ plotly
 streamlit
 tabulate
 Pillow
-cairosvg
