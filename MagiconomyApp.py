@@ -10,7 +10,7 @@ mod_dict = modsdict.mod_dict
 import pandas as pd
 import base64
 import os
-#from pdf2image import convert_from_path
+from pdf2image import convert_from_path
 
 #from plotly.tools import mpl_to_plotly
 #import plotly.graph_objects as go
