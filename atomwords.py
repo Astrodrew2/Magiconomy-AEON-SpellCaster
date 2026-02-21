@@ -773,7 +773,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                 glyph_path = info["glyph"]
 
                 if glyph_path:
-                    draw_glyph_3d(ax, glyph_path, (xe, ye, ze+0.2), zoom=0.125)
+                    draw_glyph_3d(ax, glyph_path, (xe/2, ye, ze+0.2), zoom=0.125)
                 else:
                     ax.text(xe, ye, ze+0.2, word, color="black", ha="center", va="center", fontsize=10, zorder=10)
     
@@ -896,7 +896,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         
             # ---- DRAW ----
             ax.text(
-                xe, ye - 0.1, ze + 0.5,
+                xe, ye - 0.2, ze + 0.5,
                 rng_symbol,
                 color="black",
                 ha="center",
@@ -906,7 +906,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             )
         
             ax.text(
-                xe, ye + 0.2, ze - 0.5,
+                xe, ye + 0.3, ze - 0.5,
                 rt_symbol,
                 color="black",
                 ha="center",
