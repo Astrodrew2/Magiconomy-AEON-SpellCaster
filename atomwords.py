@@ -673,7 +673,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
     with redirect_stdout(buffer):
         if sector_labels is None:
             sector_labelsOut = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
-            #sector_labels = {1:"↙️",2:"⬇️",3:"↘️",4:"↗️",5:"⬆️",6:"↖️"}
+            sector_labelsT = {1:"End",2:"Death",3:"Witchcraft",4:"Shamanic",5:"Druidic",6:"Ley"}
             #sector_labelsC = {1:"GlyphGraphics/End.svg",2:"GlyphGraphics/Death.svg",3:"GlyphGraphics/Witchcraft.svg",4:"GlyphGraphics/Shamanism.svg",5:"GlyphGraphics/Druidism.svg",6:"GlyphGraphics/Ley.svg"}
             sector_labels = {1:"GlyphGraphics/End.png",2:"GlyphGraphics/Death.png",3:"GlyphGraphics/Witchcraft.png",4:"GlyphGraphics/Shamanism.png",5:"GlyphGraphics/Druidism.png",6:"GlyphGraphics/Ley.png"}
     
@@ -974,7 +974,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
             base_energy,
             cross_AP,
             cross_energy,
-            sector_labels.get(first_electron.get("sector","N/A"), str(first_electron['info'].get("sector","N/A"))),
+            sector_labelsT.get(first_electron.get("sector","N/A"), str(first_electron['info'].get("sector","N/A"))),
             range_dict.get(first_electron['info'].get("range","N/A"), str(first_electron['info'].get("range","N/A"))),
             rt_dict.get(first_electron['info'].get("rt","N/A"), str(first_electron['info'].get("rt","N/A"))),
             first_electron['info'].get("comment",""),
@@ -1036,7 +1036,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     base_energy,
                     cross_AP,
                     cross_energy,
-                    sector_labels.get(target.get("sector","N/A"), str(target['info'].get("sector","N/A"))),
+                    sector_labelsT.get(target.get("sector","N/A"), str(target['info'].get("sector","N/A"))),
                     range_dict.get(target['info'].get("range","N/A"), str(target['info'].get("range","N/A"))),
                     rt_dict.get(target['info'].get("rt","N/A"), str(target['info'].get("rt","N/A"))),
                     target['info'].get("comment",""),
