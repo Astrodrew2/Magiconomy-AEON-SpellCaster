@@ -148,7 +148,7 @@ with st.sidebar:
         with col1:
             novice_on = st.checkbox("Novice", value=True, key="mastery_novice")
         with col2:
-            skilled_on = st.checkbox("Adept", value=True, key="mastery_adept")
+            skilled_on = st.checkbox("Skilled", value=True, key="mastery_adept")
         with col3:
             master_on = st.checkbox("Master", value=True, key="mastery_master")
             
