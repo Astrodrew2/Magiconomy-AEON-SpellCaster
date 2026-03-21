@@ -787,7 +787,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                     rng_num = info.get("range",0)*(range_increase_input+1)
                     name = word
                     rng_def=range_dict.get(rng_num)
-                    print("Range with Mods: for",word,rng_def)
+                    print("Range with Mods for",word,":",rng_def)
                     all_ranges.append(rng_def)
                 else:
                     rng_num = info.get("range",0)
