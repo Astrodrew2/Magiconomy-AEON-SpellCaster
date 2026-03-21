@@ -1075,7 +1075,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
                                        #"Domain","Range","RT","Comment","Chan","AP"], tablefmt="fancy_grid"))
         pd.set_option('display.max_colwidth', None)
         df = pd.DataFrame(table,columns=["From","To","Base AP","Base Energy","Cross AP","Cross Energy","Domain","Range","RT","Comment","Chan","AP"])
-        print("EFFECTS:",df["Comment"].to_string(index=False))
+        print("EFFECTS:",df["To"],"-",df["Comment"].to_string(index=False))
     
     
         printed_output = buffer.getvalue()
