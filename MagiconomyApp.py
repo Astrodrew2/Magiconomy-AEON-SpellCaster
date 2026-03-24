@@ -78,7 +78,7 @@ st.markdown("""
 # ====================== APP HEADER ====================== #
 col1, col2 = st.columns([5, 1])
 with col1:
-    st.title("🌙 Aeon Spell Caster")
+    st.title("Aeon Spell Caster")
 with col2:
     show_tips = st.button("ℹ️ Tips", use_container_width=True)
 
@@ -92,13 +92,13 @@ view_mode = st.radio(
 
 # ====================== TIPS SECTION ====================== #
 if show_tips:
-    with st.expander("📖 Instructions & Tips", expanded=True):
+    with st.expander("Instructions & Tips", expanded=True):
         st.markdown("""
 ### How to Use This Spell Caster:
 
 **View Modes:**
 - **Spell Caster:** Create and visualize spells with custom parameters
-- **Glyph Dictionary:** Browse the complete glyph reference guide
+- **Glyph Dictionary:** Browse the complete Magiconomy book and glyph reference guide
 
 **Filtering Glyphs:**
 - **Books:** Select which spell books you have access to
@@ -109,7 +109,7 @@ if show_tips:
 1. Select glyphs from the "Glyph Selection" box
 2. Choose modifiers to enhance your spell effects
 3. Adjust Range Increase, Range Type, and Quicken as needed
-4. Click **APPLY** to generate your spell visualization
+4. Click **APPLY** to generate your spell visualization and cost summary
 
 **Parameters:**
 - **Range Increase:** Multiplies the range (e.g., 1 = 2x range, 2 = 3x range)
@@ -155,13 +155,13 @@ rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
 all_glyphs = list(words_dict.keys())
 
 # ====================== CONTROL PANELS ====================== #
-st.markdown("### ⚙️ Spell Configuration")
+st.markdown("### Spell Configuration")
 
 # Top row: Filters
 filter_col1, filter_col2, filter_col3 = st.columns(3, gap="medium")
 
 with filter_col1:
-    st.markdown("**📚 Books**")
+    st.markdown("**Books**")
     chosen_books = st.multiselect(
         "Books (Filter Glyphs):",
         options=list(Book_list.keys()),
@@ -171,7 +171,7 @@ with filter_col1:
     )
 
 with filter_col2:
-    st.markdown("**🌍 Domain**")
+    st.markdown("**Domain**")
     chosen_domain = st.selectbox(
         "Domain (Filter Glyphs):",
         options=list(domain_to_section.keys()),
@@ -181,7 +181,7 @@ with filter_col2:
     )
 
 with filter_col3:
-    st.markdown("**⚔️ Mastery**")
+    st.markdown("**Mastery**")
     mastery_cols = st.columns(3)
     with mastery_cols[0]:
         novice_on = st.checkbox("Novice", value=True, key="mastery_novice")
@@ -232,7 +232,7 @@ display_options = sorted(set(filtered_glyphs) | set(st.session_state.get("select
 glyph_col, modifier_col = st.columns([2, 1], gap="medium")
 
 with glyph_col:
-    st.markdown("**🔮 Select Glyphs**")
+    st.markdown("**Select Glyphs**")
     glyph_list = st.multiselect(
         "Select Glyphs",
         options=display_options,
@@ -242,7 +242,7 @@ with glyph_col:
     )
 
 with modifier_col:
-    st.markdown("**🎯 Modifiers**")
+    st.markdown("**Modifiers**")
     mods_list = st.multiselect(
         "Select Modifiers",
         options=list(mod_dict.keys()),
@@ -259,17 +259,17 @@ if newly_selected:
 st.session_state["selected_glyphs"] = glyph_list
 
 # Third row: Spell parameters
-st.markdown("**⚡ Spell Parameters**")
+st.markdown("**Spell Parameters**")
 param_col1, param_col2, param_col3, param_col4 = st.columns(4, gap="medium")
 
 with param_col1:
-    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="collapsed")
+    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="visible")
 
 with param_col2:
-    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="collapsed")
+    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="visible")
 
 with param_col3:
-    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="collapsed")
+    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="visible")
 
 with param_col4:
     apply_button = st.button("✨ APPLY", use_container_width=True, type="primary")
@@ -280,7 +280,7 @@ st.markdown("---")
 detail_col, empty_col = st.columns([1, 3])
 
 with detail_col:
-    st.markdown("**📋 Active Glyph**")
+    st.markdown("**Active Glyph**")
     active = st.session_state.get("active_glyph")
     
     if active:
