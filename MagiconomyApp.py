@@ -275,23 +275,30 @@ with detail_col:
     st.markdown("**📋 Selected Glyphs**")
     
     if glyph_list:
-        for glyph_name in glyph_list:
-            data = words_dict.get(glyph_name, {})
-            raw_range = data.get("range")
-            raw_range_type = data.get("rt")
-            ap = data.get("AP")
-            charge = data.get("level")
-            
-            range_text = range_dict.get(raw_range, "None")
-            range_type_text = rt_dict.get(raw_range_type, "None")
-            
-            with st.container(border=True):
-                st.markdown(f"**{glyph_name}**")
-                st.write(f"💎 Charge: {charge}")
-                st.write(f"⚡ AP: {ap}")
-                st.write(f"📏 Range: {range_text}")
-                st.write(f"📊 Range Type: {range_type_text}")
-                st.caption(f"*{data.get('comment', '—')}*")
+        # Create columns for each glyph (max 3 per row)
+        cols_per_row = 3
+        for i in range(0, len(glyph_list), cols_per_row):
+            cols = st.columns(min(cols_per_row, len(glyph_list) - i))
+            for j, col in enumerate(cols):
+                if i + j < len(glyph_list):
+                    glyph_name = glyph_list[i + j]
+                    data = words_dict.get(glyph_name, {})
+                    raw_range = data.get("range")
+                    raw_range_type = data.get("rt")
+                    ap = data.get("AP")
+                    charge = data.get("level")
+                    
+                    range_text = range_dict.get(raw_range, "None")
+                    range_type_text = rt_dict.get(raw_range_type, "None")
+                    
+                    with col:
+                        with st.container(border=True):
+                            st.markdown(f"**{glyph_name}**")
+                            st.write(f"💎 {charge}")
+                            st.write(f"⚡ {ap}")
+                            st.write(f"📏 {range_text}")
+                            st.write(f"📊 {range_type_text}")
+                            st.caption(f"*{data.get('comment', '—')}*")
     else:
         st.info("Select glyphs to view details")
 
