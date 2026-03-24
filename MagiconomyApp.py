@@ -69,6 +69,12 @@ st.markdown("""
     background-color: #f9f7f4;
     margin-bottom: 1rem;
 }
+label {
+    white-space: nowrap !important;
+}
+h2, h3, h4, h5, h6 {
+    white-space: nowrap !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
