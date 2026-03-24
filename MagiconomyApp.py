@@ -235,7 +235,7 @@ with glyph_col:
         options=display_options,
         default=st.session_state.get("selected_glyphs", []),
         key="glyph_selector",
-        label_visibility="collapsed"
+        label_visibility="visible"
     )
 
 with modifier_col:
@@ -244,7 +244,7 @@ with modifier_col:
         "Select Modifiers",
         options=list(mod_dict.keys()),
         default=[],
-        label_visibility="collapsed"
+        label_visibility="visible"
     )
 
 # Update selected glyphs
@@ -255,13 +255,13 @@ st.markdown("**Spell Parameters**")
 param_col1, param_col2, param_col3, param_col4 = st.columns(4, gap="medium")
 
 with param_col1:
-    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="collapsed")
+    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="visible")
 
 with param_col2:
-    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="collapsed")
+    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="visible")
 
 with param_col3:
-    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="collapsed")
+    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="visible")
 
 with param_col4:
     apply_button = st.button("✨ APPLY", use_container_width=True, type="primary")
@@ -294,11 +294,11 @@ with detail_col:
                     with col:
                         with st.container(border=True):
                             st.markdown(f"**{glyph_name}**")
-                            st.write(f"💎 {charge}")
-                            st.write(f"⚡ {ap}")
-                            st.write(f"📏 {range_text}")
-                            st.write(f"📊 {range_type_text}")
-                            st.caption(f"*{data.get('comment', '—')}*")
+                            st.write(f"Charges: {charge}")
+                            st.write(f"AP: {ap}")
+                            st.write(f"Range: {range_text}")
+                            st.write(f"Range Type: {range_type_text}")
+                            st.caption(f"Effects: *{data.get('comment', '—')}*")
     else:
         st.info("Select glyphs to view details")
 
