@@ -342,7 +342,12 @@ if apply_button:
         
         with summary_col:
             st.markdown("### 📊 Cost Summary")
-            st.write(output_text)
+            with st.container(border=True):
+                # Parse and display each line of the cost summary
+                lines = output_text.strip().split('\n')
+                for line in lines:
+                    if line.strip():
+                        st.write(line)
         
         with viz_col:
             st.pyplot(fig)
