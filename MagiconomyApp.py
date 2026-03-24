@@ -1,19 +1,17 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
-from atomwords import draw_atom_words_from_dict  # your plotting function
-#from plotlyatomwordsWIP import draw_atom_words_from_dict
+from atomwords import draw_atom_words_from_dict
 import glyphdict
-words_dict = glyphdict.words_dict
 import modsdict
-mod_dict = modsdict.mod_dict
 import pandas as pd
 import base64
 import os
 from pdf2image import convert_from_path
 
-#from plotly.tools import mpl_to_plotly
-#import plotly.graph_objects as go
+words_dict = glyphdict.words_dict
+mod_dict = modsdict.mod_dict
+
 # --- Session state initialization ---
 if "selected_glyphs" not in st.session_state:
     st.session_state["selected_glyphs"] = []
@@ -27,10 +25,7 @@ def render_pdf_as_images(pdf_path):
         st.error(f"PDF file not found: {pdf_path}")
         return
 
-    # Convert pages to images
     pages = convert_from_path(pdf_path, dpi=150)
-
-    # Display each page as an image
     for i, page in enumerate(pages):
         st.image(page, caption=f"Page {i+1}", use_container_width=True)
         
@@ -70,19 +65,66 @@ st.markdown("""
 .styled-table tr:hover {
     background-color: #04665f;
 }
+.control-box {
+    padding: 1.5rem;
+    border: 2px solid #D2B48C;
+    border-radius: 8px;
+    background-color: #f9f7f4;
+    margin-bottom: 1rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
+# ====================== APP HEADER ====================== #
+col1, col2 = st.columns([5, 1])
+with col1:
+    st.title("🌙 Aeon Spell Caster")
+with col2:
+    show_tips = st.button("ℹ️ Tips", use_container_width=True)
 
-#Sidebar coloration and format
-# ---- CUSTOM SIDEBAR STYLING ----
+# ====================== VIEW MODE SELECTOR ====================== #
+view_mode = st.radio(
+    "View Mode",
+    ["Spell Caster", "Glyph Dictionary"],
+    index=0,
+    horizontal=True
+)
 
+# ====================== TIPS SECTION ====================== #
+if show_tips:
+    with st.expander("📖 Instructions & Tips", expanded=True):
+        st.markdown("""
+### How to Use This Spell Caster:
 
+**View Modes:**
+- **Spell Caster:** Create and visualize spells with custom parameters
+- **Glyph Dictionary:** Browse the complete glyph reference guide
 
+**Filtering Glyphs:**
+- **Books:** Select which spell books you have access to
+- **Domain:** Choose a magical domain (Ley, End, Druidism, etc.)
+- **Mastery:** Filter by your skill level (Novice, Skilled, Master)
 
-# ====================== APP LAYOUT ====================== #
+**Creating Spells:**
+1. Select glyphs from the "Glyph Selection" box
+2. Choose modifiers to enhance your spell effects
+3. Adjust Range Increase, Range Type, and Quicken as needed
+4. Click **APPLY** to generate your spell visualization
 
-# -- Domain name → section conversion map --
+**Parameters:**
+- **Range Increase:** Multiplies the range (e.g., 1 = 2x range, 2 = 3x range)
+- **Range Type Change:** Upgrades range type (Point → Beam → Cone → Radial)
+- **Quicken:** Reduces AP cost at the expense of energy
+        """)
+
+# ====================== GLYPH DICTIONARY VIEW ====================== #
+if view_mode == "Glyph Dictionary": 
+    pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
+    render_pdf_as_images(pdf_path)
+    st.stop()
+
+# ====================== SPELL CASTER VIEW ====================== #
+# Setup domain and book mappings
 domain_to_section = {
     "All": set(range(1, 7)),
     "Ley": 6,
@@ -93,245 +135,213 @@ domain_to_section = {
     "Druidism": 5,
 }
 
-Book_list = {"All Books":set(range(1, 5)),"Book of Glyphs (Standard)":1,"Book of Scrolls (WIP)":2, "Carnecarta (WIP)":3, "Book of Phlegmancy (WIP)":4}
-# Mapping for range and range type
-range_dict = {1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft", 25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft",45: "45 ft", 50: "50 ft", 55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft", 200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft", 450: "450 ft", 500: "500 ft" }
+Book_list = {
+    "All Books": set(range(1, 5)),
+    "Book of Glyphs (Standard)": 1,
+    "Book of Scrolls (WIP)": 2,
+    "Carnecarta (WIP)": 3,
+    "Book of Phlegmancy (WIP)": 4
+}
+
+range_dict = {
+    1: "self", 2: "touch", 5: "5 ft", 10: "10 ft", 15: "15 ft", 20: "20 ft",
+    25: "25 ft", 30: "30 ft", 35: "35 ft", 40: "40 ft", 45: "45 ft", 50: "50 ft",
+    55: "55 ft", 60: "60 ft", 100: "100 ft", 120: "120 ft", 150: "150 ft",
+    200: "200 ft", 250: "250 ft", 300: "300 ft", 350: "350 ft", 400: "400 ft",
+    450: "450 ft", 500: "500 ft"
+}
+
 rt_dict = {1: "self", 2: "touch", 3: "point", 4: "beam", 5: "cone", 6: "radial"}
 all_glyphs = list(words_dict.keys())
-# --- Sidebar Inputs ---
-st.sidebar.header("Controls")
-    
-with st.sidebar:
 
-# ---- VIEW MODE ----
-        view_mode = st.radio(
-            "View Mode",
-            ["Spell Caster", "Glyph Dictionary"],
-            index=0,
-            key="view_mode_radio"  # avoids duplicate ID error
-        )
-    
-        st.subheader("Filters")
-    
-        # ---------- BOOK FILTER ----------
-        chosen_books = st.multiselect(
-            "Books (Filter Glyphs):",
-            options=list(Book_list.keys()),
-            default=["All Books"],
-            key="book_filter"
-        )
-    
-        # Resolve selected book IDs
-        selected_book_ids = set()
-        for book in chosen_books:
-            val = Book_list.get(book)
-            if isinstance(val, set):
-                selected_book_ids |= val
-            else:
-                selected_book_ids.add(val)
-    
-    
-        # ---------- DOMAIN FILTER ----------
-        chosen_domain = st.selectbox(
-            "Domain (Filter Glyphs):",
-            options=list(domain_to_section.keys()),
-            index=0,
-            key="domain_filter"
-        )
-    
-        selected_section = domain_to_section[chosen_domain]
-        # ---------- MASTERY FILTER ----------
-        st.markdown("### Mastery")
-        
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            novice_on = st.checkbox("Novice", value=True, key="mastery_novice")
-        with col2:
-            skilled_on = st.checkbox("Skilled", value=True, key="mastery_adept")
-        with col3:
-            master_on = st.checkbox("Master", value=True, key="mastery_master")
-            
-        selected_mastery = set()
+# ====================== CONTROL PANELS ====================== #
+st.markdown("### ⚙️ Spell Configuration")
 
-        if novice_on:
-            selected_mastery.add("Novice")
-        if skilled_on:
-            selected_mastery.add("Adept")
-        if master_on:
-            selected_mastery.add("Master")
-    
-        # ---------- COMBINED FILTER ----------
-        filtered_glyphs = []
-    
-        for g in all_glyphs:
-            glyph = words_dict[g]
-    
-            # --- Book check ---
-            book_ok = (
-                "All Books" in chosen_books
-                or glyph.get("book") in selected_book_ids
-            )
-    
-            # --- Domain check ---
-            if chosen_domain == "All":
-                domain_ok = True
-            elif isinstance(selected_section, (set, list)):
-                domain_ok = glyph.get("section") in selected_section
-            else:
-                domain_ok = glyph.get("section") == selected_section
+# Top row: Filters
+filter_col1, filter_col2, filter_col3 = st.columns(3, gap="medium")
 
-            # --- Mastery check ---
-            mastery_ok = (
-                not selected_mastery
-                or glyph.get("mastery") in selected_mastery
-            )
+with filter_col1:
+    st.markdown("**📚 Books**")
+    chosen_books = st.multiselect(
+        "Books (Filter Glyphs):",
+        options=list(Book_list.keys()),
+        default=["All Books"],
+        key="book_filter",
+        label_visibility="collapsed"
+    )
 
-            if book_ok and domain_ok and mastery_ok:
-                filtered_glyphs.append(g)
-    
-    
-        # ---------- KEEP SELECTED GLYPHS VISIBLE ----------
-        display_options = sorted(
-            set(filtered_glyphs) | set(st.session_state.get("selected_glyphs", []))
-        )
-    
-        # ---------- GLYPH MULTISELECT ----------
-        st.subheader("Glyphs")
-        glyph_list = st.multiselect(
-            "Select Glyphs",
-            options=display_options,
-            default=st.session_state.get("selected_glyphs", []),
-            key="glyph_selector"
-        )
-    
-        # ---------- SELECTION TRACKING ----------
-        previous = set(st.session_state.get("selected_glyphs", []))
-        current = set(glyph_list)
-    
-        newly_selected = list(current - previous)
-        if newly_selected:
-            st.session_state["active_glyph"] = newly_selected[-1]
-    
-        st.session_state["selected_glyphs"] = glyph_list
-   
+with filter_col2:
+    st.markdown("**🌍 Domain**")
+    chosen_domain = st.selectbox(
+        "Domain (Filter Glyphs):",
+        options=list(domain_to_section.keys()),
+        index=0,
+        key="domain_filter",
+        label_visibility="collapsed"
+    )
 
-        #---
-        st.markdown("---")
-        st.subheader("Most Recently Selected Glyph Details")
-        
-        active = st.session_state.get("active_glyph")
-        
-        if active:
-            data = words_dict.get(active, {})
-        
-            # Decode values
-            raw_range = data.get("range")
-            raw_range_type = data.get("rt")
-            ap = data.get("AP")
-            charge = data.get("level")
-        
-            range_text = range_dict.get(raw_range, "None")
-            range_type_text = rt_dict.get(raw_range_type, "None")
-        
-            st.markdown(f"**Glyph:** {active}")
-            st.markdown(f"**Charge:** {charge}")
-            st.markdown(f"**AP:** {ap}")
-            st.markdown(f"**Range:** {range_text}")
-            st.markdown(f"**Range Type:** {range_type_text}")
-            st.markdown(f"**Comment:** {data.get('comment', '—')}")
-        else:
-            st.caption("Select a glyph to view details.")
-        st.markdown("---")
+with filter_col3:
+    st.markdown("**⚔️ Mastery**")
+    mastery_cols = st.columns(3)
+    with mastery_cols[0]:
+        novice_on = st.checkbox("Novice", value=True, key="mastery_novice")
+    with mastery_cols[1]:
+        skilled_on = st.checkbox("Skilled", value=True, key="mastery_adept")
+    with mastery_cols[2]:
+        master_on = st.checkbox("Master", value=True, key="mastery_master")
+
+# Process filters
+selected_book_ids = set()
+for book in chosen_books:
+    val = Book_list.get(book)
+    if isinstance(val, set):
+        selected_book_ids |= val
+    else:
+        selected_book_ids.add(val)
+
+selected_section = domain_to_section[chosen_domain]
+selected_mastery = set()
+if novice_on:
+    selected_mastery.add("Novice")
+if skilled_on:
+    selected_mastery.add("Adept")
+if master_on:
+    selected_mastery.add("Master")
+
+# Filter glyphs
+filtered_glyphs = []
+for g in all_glyphs:
+    glyph = words_dict[g]
+    book_ok = "All Books" in chosen_books or glyph.get("book") in selected_book_ids
     
+    if chosen_domain == "All":
+        domain_ok = True
+    elif isinstance(selected_section, (set, list)):
+        domain_ok = glyph.get("section") in selected_section
+    else:
+        domain_ok = glyph.get("section") == selected_section
+
+    mastery_ok = not selected_mastery or glyph.get("mastery") in selected_mastery
+
+    if book_ok and domain_ok and mastery_ok:
+        filtered_glyphs.append(g)
+
+display_options = sorted(set(filtered_glyphs) | set(st.session_state.get("selected_glyphs", [])))
+
+# Second row: Glyph selection and modifiers
+glyph_col, modifier_col = st.columns([2, 1], gap="medium")
+
+with glyph_col:
+    st.markdown("**🔮 Select Glyphs**")
+    glyph_list = st.multiselect(
+        "Select Glyphs",
+        options=display_options,
+        default=st.session_state.get("selected_glyphs", []),
+        key="glyph_selector",
+        label_visibility="collapsed"
+    )
+
+with modifier_col:
+    st.markdown("**🎯 Modifiers**")
+    mods_list = st.multiselect(
+        "Select Modifiers",
+        options=list(mod_dict.keys()),
+        default=[],
+        label_visibility="collapsed"
+    )
+
+# Track selection changes
+previous = set(st.session_state.get("selected_glyphs", []))
+current = set(glyph_list)
+newly_selected = list(current - previous)
+if newly_selected:
+    st.session_state["active_glyph"] = newly_selected[-1]
+st.session_state["selected_glyphs"] = glyph_list
+
+# Third row: Spell parameters
+st.markdown("**⚡ Spell Parameters**")
+param_col1, param_col2, param_col3, param_col4 = st.columns(4, gap="medium")
+
+with param_col1:
+    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="collapsed")
+
+with param_col2:
+    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="collapsed")
+
+with param_col3:
+    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="collapsed")
+
+with param_col4:
+    apply_button = st.button("✨ APPLY", use_container_width=True, type="primary")
+
+# ====================== GLYPH DETAILS PANEL ====================== #
+st.markdown("---")
+
+detail_col, empty_col = st.columns([1, 3])
+
+with detail_col:
+    st.markdown("**📋 Active Glyph**")
+    active = st.session_state.get("active_glyph")
     
-    
-    
-    
-        # --- Optional feedback message ---
-        if chosen_domain != "All Domains" and len(filtered_glyphs) == 0:
-            st.warning(f"No glyphs found in **{chosen_domain}** domain.")
+    if active:
+        data = words_dict.get(active, {})
+        raw_range = data.get("range")
+        raw_range_type = data.get("rt")
+        ap = data.get("AP")
+        charge = data.get("level")
         
+        range_text = range_dict.get(raw_range, "None")
+        range_type_text = rt_dict.get(raw_range_type, "None")
         
-        # Modifier selection
-        st.subheader("Modifiers")
-        mods_list = st.sidebar.multiselect(
-            "Select Modifiers",
-            options=list(mod_dict.keys()),
-            default=[]
-        )
-        
-        # Range increase
-        range_inc = st.sidebar.number_input("Range Increase", min_value=0, value=0)
-        
-        # Range type
-        range_type = st.sidebar.number_input("Range Type Change", min_value=0, value=0)
-        
-        # Quicken
-        quicken_val = st.sidebar.number_input("Quicken", min_value=0, value=0)
-    
-if view_mode == "Spell Caster":
-    st.title("Aeon Spell Caster")
-    # st.image("magics.png", use_container_width=True)
-    # Add text below the image 
-    st.subheader("Tips/Instructions")
-    st.write("**Glyph Dictionary View Mode:** This is where you can learn how the values are calculated and how you can write your own spells! This also shows you the Glyph dictionary with more elaborate descriptions and details.")
-    st.write("**Spell Caster View Mode:** This is where you can use the spell caster calculator.")
-    st.write("Choose **Books** to pick your Glyphs from. (These are the Books/Scrolls for which you access to get your glyphs from. For example, the Standard Book of Glyphs and/or the Book of Scrolls)")
-    st.write("Choose a **Domain** to pick your Glyphs from. (These are the Main Magic Groups for which you want to get the bonuses to your spells from. For example, Ley, End, Druidism, etc.)")
-    st.write("Choose your level(s) of **Mastery** to pick Glyphs from. (This is the minimum level of skill required for you to know the Glyph)")
-    st.write("You can pick the glyphs in **Select Glyphs** box. Selecting a Glyph will show you more details below it about the range, range type, and general effects. (you may have to select it twice for it to stay)")
-    st.write("**Select Modifiers:** lets you choose the modifiers as shown in the Glyph Dictionary View Mode Modifiers section. These are additions to your spell that only work for certain glyphs converting the effects of some glyphs to do damage or throw objects, for example. ")
-    st.write("**Range Increase:** Type the number equivalent to how many more multiples of the range you want to increase by. Ex.) if its a default of 10ft inputing a 1 will change the range to 20ft, 2 will change the range to 30 ft and so on. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
-    st.write("**Range Type Change:** Type the number equivalent to how many stages up you want to go along this list—Point(channeled) → Beam → Cone → Radial. Ex.) if by default it is a beam you would type 2 to change it to radial or 1 to change it to cone. **NOT APPLICABLE TO GLYPHS WITH SELF OR TOUCH RANGE TYPES**")
-    st.write("**Quicken:** Type the amount of AP you want to take away from the current AP cost. Ex.) typing 2 for a default 4 AP/ 2Charge cast will result in a 2AP/8Charge cost")
-    st.write("")
-    st.write("**ONCE YOU HIT APPLY YOUR SPELL WILL APPEAR BELOW HERE**")
-        
-        
-      
-    
-    
-if view_mode == "Glyph Dictionary": 
-    pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
-    render_pdf_as_images(pdf_path) 
-    #display_pdf(pdf_path)
-    st.stop()
-    
-# Apply button
-if st.sidebar.button("Apply"):
-    
+        with st.container(border=True):
+            st.markdown(f"**{active}**")
+            st.write(f"💎 Charge: {charge}")
+            st.write(f"⚡ AP: {ap}")
+            st.write(f"📏 Range: {range_text}")
+            st.write(f"📊 Range Type: {range_type_text}")
+            st.caption(f"*{data.get('comment', '—')}*")
+    else:
+        st.info("Select a glyph to view details")
+
+# ====================== SPELL GENERATION ====================== #
+if apply_button:
     if not glyph_list:
         st.warning("Please select at least one glyph.")
     else:
-        st.subheader("Spell Hex Map and Table Output")
-    
-        # --- Generate figure and text ---
-        fig, output_text, df= draw_atom_words_from_dict(
-                words_list=glyph_list,
-                words_dict=words_dict,
-                modifiers_dict=mod_dict,
-                modifiers_to_apply=mods_list,
-                quicken=quicken_val,
-                range_increase_input=range_inc,
-                range_type_change=range_type
+        st.markdown("---")
+        st.markdown("## ✨ Spell Visualization")
+        
+        # Generate spell
+        fig, output_text, df = draw_atom_words_from_dict(
+            words_list=glyph_list,
+            words_dict=words_dict,
+            modifiers_dict=mod_dict,
+            modifiers_to_apply=mods_list,
+            quicken=quicken_val,
+            range_increase_input=range_inc,
+            range_type_change=range_type
+        )
+        
+        # Display visualization centered
+        col_left, col_center, col_right = st.columns([1, 2, 1])
+        with col_center:
+            st.pyplot(fig)
+        
+        st.markdown("---")
+        
+        # Display results in two columns
+        results_col1, results_col2 = st.columns([1, 1], gap="large")
+        
+        with results_col1:
+            st.markdown("### 📊 Cost Summary")
+            st.text_area(
+                "Cost and Modifiers",
+                value=output_text,
+                height=250,
+                disabled=True,
+                label_visibility="collapsed"
             )
-    
-        # --- Display figure ---
-        st.pyplot(fig)
-        #plt.close(fig)
-        #st.pyplot(fig)
-        # --- Convert Matplotlib fig to Plotly ---
-        #plotly_fig = mpl_to_plotly(fig)
-    
-        # --- Display interactive Plotly figure in Streamlit ---
-        #st.plotly_chart(plotly_fig, use_container_width=True)
-    
-            
-    
-        # --- Display table/text output ---
-        st.text_area("**Total Cost and Modifiers**", value=output_text, height=300)
-        st.write("")
-        st.write("**Glyph functions (comments) and individual cost values**")
-        st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
-
+        
+        with results_col2:
+            st.markdown("### 📋 Detailed Breakdown")
+            st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
