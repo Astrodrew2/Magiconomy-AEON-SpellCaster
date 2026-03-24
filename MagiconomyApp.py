@@ -16,9 +16,6 @@ mod_dict = modsdict.mod_dict
 if "selected_glyphs" not in st.session_state:
     st.session_state["selected_glyphs"] = []
 
-if "active_glyph" not in st.session_state:
-    st.session_state["active_glyph"] = None
-
 def render_pdf_as_images(pdf_path):
     """Convert each PDF page to an image and display it."""
     if not os.path.exists(pdf_path):
@@ -250,12 +247,7 @@ with modifier_col:
         label_visibility="collapsed"
     )
 
-# Track selection changes
-previous = set(st.session_state.get("selected_glyphs", []))
-current = set(glyph_list)
-newly_selected = list(current - previous)
-if newly_selected:
-    st.session_state["active_glyph"] = newly_selected[-1]
+# Update selected glyphs
 st.session_state["selected_glyphs"] = glyph_list
 
 # Third row: Spell parameters
@@ -263,13 +255,13 @@ st.markdown("**Spell Parameters**")
 param_col1, param_col2, param_col3, param_col4 = st.columns(4, gap="medium")
 
 with param_col1:
-    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="visible")
+    range_inc = st.number_input("Range Increase", min_value=0, value=0, label_visibility="collapsed")
 
 with param_col2:
-    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="visible")
+    range_type = st.number_input("Range Type Change", min_value=0, value=0, label_visibility="collapsed")
 
 with param_col3:
-    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="visible")
+    quicken_val = st.number_input("Quicken", min_value=0, value=0, label_visibility="collapsed")
 
 with param_col4:
     apply_button = st.button("✨ APPLY", use_container_width=True, type="primary")
@@ -280,28 +272,28 @@ st.markdown("---")
 detail_col, empty_col = st.columns([1, 3])
 
 with detail_col:
-    st.markdown("**Active Glyph**")
-    active = st.session_state.get("active_glyph")
+    st.markdown("**📋 Selected Glyphs**")
     
-    if active:
-        data = words_dict.get(active, {})
-        raw_range = data.get("range")
-        raw_range_type = data.get("rt")
-        ap = data.get("AP")
-        charge = data.get("level")
-        
-        range_text = range_dict.get(raw_range, "None")
-        range_type_text = rt_dict.get(raw_range_type, "None")
-        
-        with st.container(border=True):
-            st.markdown(f"**{active}**")
-            st.write(f"💎 Charge: {charge}")
-            st.write(f"⚡ AP: {ap}")
-            st.write(f"📏 Range: {range_text}")
-            st.write(f"📊 Range Type: {range_type_text}")
-            st.caption(f"*{data.get('comment', '—')}*")
+    if glyph_list:
+        for glyph_name in glyph_list:
+            data = words_dict.get(glyph_name, {})
+            raw_range = data.get("range")
+            raw_range_type = data.get("rt")
+            ap = data.get("AP")
+            charge = data.get("level")
+            
+            range_text = range_dict.get(raw_range, "None")
+            range_type_text = rt_dict.get(raw_range_type, "None")
+            
+            with st.container(border=True):
+                st.markdown(f"**{glyph_name}**")
+                st.write(f"💎 Charge: {charge}")
+                st.write(f"⚡ AP: {ap}")
+                st.write(f"📏 Range: {range_text}")
+                st.write(f"📊 Range Type: {range_type_text}")
+                st.caption(f"*{data.get('comment', '—')}*")
     else:
-        st.info("Select a glyph to view details")
+        st.info("Select glyphs to view details")
 
 # ====================== SPELL GENERATION ====================== #
 if apply_button:
