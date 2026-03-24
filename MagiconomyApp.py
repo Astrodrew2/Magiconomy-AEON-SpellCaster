@@ -16,6 +16,9 @@ mod_dict = modsdict.mod_dict
 if "selected_glyphs" not in st.session_state:
     st.session_state["selected_glyphs"] = []
 
+if "spell_applied" not in st.session_state:
+    st.session_state["spell_applied"] = False
+
 def render_pdf_as_images(pdf_path):
     """Convert each PDF page to an image and display it."""
     if not os.path.exists(pdf_path):
@@ -253,8 +256,9 @@ with modifier_col:
         label_visibility="collapsed"
     )
 
-# Update selected glyphs
+# Update selected glyphs and reset spell_applied flag
 st.session_state["selected_glyphs"] = glyph_list
+st.session_state["spell_applied"] = False
 
 # Third row: Spell parameters
 st.markdown("**Spell Parameters**")
@@ -273,43 +277,45 @@ with param_col4:
     apply_button = st.button("✨ APPLY", use_container_width=True, type="primary")
 
 # ====================== GLYPH DETAILS PANEL ====================== #
-st.markdown("---")
+if not st.session_state.get("spell_applied", False):
+    st.markdown("---")
 
-detail_col, empty_col = st.columns([12, 3])
+    detail_col, empty_col = st.columns([12, 3])
 
-with detail_col:
-    st.markdown("**📋 Selected Glyphs**")
-    
-    if glyph_list:
-        # Create columns for each glyph (max 3 per row)
-        cols_per_row = 4
-        for i in range(0, len(glyph_list), cols_per_row):
-            cols = st.columns(min(cols_per_row, len(glyph_list) - i))
-            for j, col in enumerate(cols):
-                if i + j < len(glyph_list):
-                    glyph_name = glyph_list[i + j]
-                    data = words_dict.get(glyph_name, {})
-                    raw_range = data.get("range")
-                    raw_range_type = data.get("rt")
-                    ap = data.get("AP")
-                    charge = data.get("level")
-                    
-                    range_text = range_dict.get(raw_range, "None")
-                    range_type_text = rt_dict.get(raw_range_type, "None")
-                    
-                    with col:
-                        with st.container(border=True):
-                            st.markdown(f"**{glyph_name}**")
-                            st.write(f"Charges: {charge}")
-                            st.write(f"AP: {ap}")
-                            st.write(f"Range: {range_text}")
-                            st.write(f"Range Type: {range_type_text}")
-                            st.caption(f"Effects: *{data.get('comment', '—')}*")
-    else:
-        st.info("Select glyphs to view details")
+    with detail_col:
+        st.markdown("**📋 Selected Glyphs**")
+        
+        if glyph_list:
+            # Create columns for each glyph (max 4 per row)
+            cols_per_row = 4
+            for i in range(0, len(glyph_list), cols_per_row):
+                cols = st.columns(min(cols_per_row, len(glyph_list) - i))
+                for j, col in enumerate(cols):
+                    if i + j < len(glyph_list):
+                        glyph_name = glyph_list[i + j]
+                        data = words_dict.get(glyph_name, {})
+                        raw_range = data.get("range")
+                        raw_range_type = data.get("rt")
+                        ap = data.get("AP")
+                        charge = data.get("level")
+                        
+                        range_text = range_dict.get(raw_range, "None")
+                        range_type_text = rt_dict.get(raw_range_type, "None")
+                        
+                        with col:
+                            with st.container(border=True):
+                                st.markdown(f"**{glyph_name}**")
+                                st.write(f"Charges: {charge}")
+                                st.write(f"AP: {ap}")
+                                st.write(f"Range: {range_text}")
+                                st.write(f"Range Type: {range_type_text}")
+                                st.caption(f"Effects: *{data.get('comment', '—')}*")
+        else:
+            st.info("Select glyphs to view details")
 
 # ====================== SPELL GENERATION ====================== #
 if apply_button:
+    st.session_state["spell_applied"] = True
     if not glyph_list:
         st.warning("Please select at least one glyph.")
     else:
