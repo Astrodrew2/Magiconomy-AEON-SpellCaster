@@ -275,14 +275,14 @@ with param_col4:
 # ====================== GLYPH DETAILS PANEL ====================== #
 st.markdown("---")
 
-detail_col, empty_col = st.columns([10, 3])
+detail_col, empty_col = st.columns([12, 3])
 
 with detail_col:
     st.markdown("**📋 Selected Glyphs**")
     
     if glyph_list:
         # Create columns for each glyph (max 3 per row)
-        cols_per_row = 3
+        cols_per_row = 4
         for i in range(0, len(glyph_list), cols_per_row):
             cols = st.columns(min(cols_per_row, len(glyph_list) - i))
             for j, col in enumerate(cols):
