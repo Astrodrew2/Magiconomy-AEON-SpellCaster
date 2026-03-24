@@ -78,6 +78,9 @@ label {
 h2, h3, h4, h5, h6 {
     white-space: nowrap !important;
 }
+textarea {
+    color: white !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
