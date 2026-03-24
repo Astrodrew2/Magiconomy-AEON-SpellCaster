@@ -334,11 +334,8 @@ if apply_button:
             range_type_change=range_type
         )
         
-        # Display visualization and cost summary side by side
-        viz_col, summary_col = st.columns([1.5, 1], gap="medium")
-        
-        with viz_col:
-            st.pyplot(fig)
+        # Display cost summary and visualization side by side
+        summary_col, viz_col = st.columns([1, 1.5], gap="medium")
         
         with summary_col:
             st.markdown("### 📊 Cost Summary")
@@ -349,6 +346,9 @@ if apply_button:
                 disabled=True,
                 label_visibility="collapsed"
             )
+        
+        with viz_col:
+            st.pyplot(fig)
         
         st.markdown("---")
         
