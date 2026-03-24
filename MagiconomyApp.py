@@ -346,7 +346,7 @@ if apply_button:
                 "Cost and Modifiers",
                 value=output_text,
                 height=300,
-                disabled=True,
+                disabled=False,
                 label_visibility="collapsed"
             )
         
