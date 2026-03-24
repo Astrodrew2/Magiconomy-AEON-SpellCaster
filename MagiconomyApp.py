@@ -341,7 +341,7 @@ if apply_button:
         summary_col, viz_col = st.columns([1, 1.5], gap="medium")
         
         with summary_col:
-            st.markdown("### 📊 Cost Summary")
+            st.markdown("### Summary")
             
             # Split output into main summary and extras
             if "---EXTRAS---" in output_text:
