@@ -342,13 +342,7 @@ if apply_button:
         
         with summary_col:
             st.markdown("### 📊 Cost Summary")
-            st.text_area(
-                "Cost and Modifiers",
-                value=output_text,
-                height=300,
-                disabled=False,
-                label_visibility="collapsed"
-            )
+            st.code(output_text, language=None)
         
         with viz_col:
             st.pyplot(fig)
