@@ -342,7 +342,7 @@ if apply_button:
         
         with summary_col:
             st.markdown("### 📊 Cost Summary")
-            st.markdown(output_text)
+            st.write(output_text)
         
         with viz_col:
             st.pyplot(fig)
