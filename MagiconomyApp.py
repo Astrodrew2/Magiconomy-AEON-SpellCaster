@@ -275,7 +275,7 @@ with param_col4:
 # ====================== GLYPH DETAILS PANEL ====================== #
 st.markdown("---")
 
-detail_col, empty_col = st.columns([1, 10])
+detail_col, empty_col = st.columns([1, 3])
 
 with detail_col:
     st.markdown("**📋 Selected Glyphs**")
