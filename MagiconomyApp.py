@@ -256,9 +256,10 @@ with modifier_col:
         label_visibility="collapsed"
     )
 
-# Update selected glyphs and reset spell_applied flag
+# Update selected glyphs and reset spell_applied flag if glyphs changed
+if set(glyph_list) != set(st.session_state.get("selected_glyphs", [])):
+    st.session_state["spell_applied"] = False
 st.session_state["selected_glyphs"] = glyph_list
-st.session_state["spell_applied"] = False
 
 # Third row: Spell parameters
 st.markdown("**Spell Parameters**")
