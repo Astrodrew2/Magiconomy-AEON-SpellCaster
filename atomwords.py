@@ -1065,11 +1065,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         else:
             print("TOTAL AP:", total_AP)
             print("TOTAL ENERGY:", total_energy)
-        print ("AP from Mods:", modAP)
-        print ("ENERGY from Mods:", modEnergy + rtcEnergy)
-        print("ENERGY from RANGE INC:", added_energy_cost)
-        print("RANGE INC:", range_increase_input+1,"X")
-        print("Quicken Value:", quicken)
+       
        
         #print(tabulate(table, headers=["From","To","Base AP","Base Energy","Cross AP","Cross Energy",
                                        #"Domain","Range","RT","Comment","Chan","AP"], tablefmt="fancy_grid"))
@@ -1079,6 +1075,13 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         print("EFFECTS:")
         for _, row in df.iterrows():
             print(f"{row['To']} | {row['Comment']}")
+
+        print("---EXTRAS---")
+        print ("AP from Mods:", modAP)
+        print ("ENERGY from Mods:", modEnergy + rtcEnergy)
+        print("ENERGY from RANGE INC:", added_energy_cost)
+        print("RANGE INC:", range_increase_input+1,"X")
+        print("Quicken Value:", quicken)
     
     
         printed_output = buffer.getvalue()
