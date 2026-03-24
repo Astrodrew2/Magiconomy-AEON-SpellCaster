@@ -334,26 +334,24 @@ if apply_button:
             range_type_change=range_type
         )
         
-        # Display visualization centered
-        col_left, col_center, col_right = st.columns([1, 2, 1])
-        with col_center:
+        # Display visualization and cost summary side by side
+        viz_col, summary_col = st.columns([1.5, 1], gap="medium")
+        
+        with viz_col:
             st.pyplot(fig)
         
-        st.markdown("---")
-        
-        # Display results in two columns
-        results_col1, results_col2 = st.columns([1, 1], gap="large")
-        
-        with results_col1:
+        with summary_col:
             st.markdown("### 📊 Cost Summary")
             st.text_area(
                 "Cost and Modifiers",
                 value=output_text,
-                height=250,
+                height=300,
                 disabled=True,
                 label_visibility="collapsed"
             )
         
-        with results_col2:
-            st.markdown("### 📋 Detailed Breakdown")
-            st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
+        st.markdown("---")
+        
+        # Display detailed breakdown below
+        st.markdown("### 📋 Detailed Breakdown")
+        st.write(df.to_html(classes="styled-table", index=False), unsafe_allow_html=True)
