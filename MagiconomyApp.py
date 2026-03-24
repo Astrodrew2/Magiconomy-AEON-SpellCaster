@@ -342,12 +342,29 @@ if apply_button:
         
         with summary_col:
             st.markdown("### 📊 Cost Summary")
+            
+            # Split output into main summary and extras
+            if "---EXTRAS---" in output_text:
+                main_summary, extras_section = output_text.split("---EXTRAS---", 1)
+            else:
+                main_summary = output_text
+                extras_section = ""
+            
+            # Display main cost summary
             with st.container(border=True):
-                # Parse and display each line of the cost summary
-                lines = output_text.strip().split('\n')
+                lines = main_summary.strip().split('\n')
                 for line in lines:
                     if line.strip():
                         st.write(line)
+            
+            # Display extras section if it exists
+            if extras_section.strip():
+                st.markdown("### ⭐ Extras")
+                with st.container(border=True):
+                    lines = extras_section.strip().split('\n')
+                    for line in lines:
+                        if line.strip():
+                            st.write(line)
         
         with viz_col:
             st.pyplot(fig)
