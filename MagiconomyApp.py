@@ -359,7 +359,7 @@ if apply_button:
             
             # Display extras section if it exists
             if extras_section.strip():
-                st.markdown("### ⭐ Extras")
+                st.markdown("# Extras")
                 with st.container(border=True):
                     lines = extras_section.strip().split('\n')
                     for line in lines:
