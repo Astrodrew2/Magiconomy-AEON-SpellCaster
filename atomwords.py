@@ -1080,7 +1080,7 @@ def draw_atom_words_from_dict(words_list, words_dict, modifiers_dict=None, modif
         print ("AP from Mods:", modAP)
         print ("ENERGY from Mods:", modEnergy + rtcEnergy)
         print("ENERGY from RANGE INC:", added_energy_cost)
-        print("RANGE INC:", range_increase_input+1,"X")
+        print("RANGE INC:", range_increase_input+1,"X default range")
         print("Quicken Value:", quicken)
     
     
