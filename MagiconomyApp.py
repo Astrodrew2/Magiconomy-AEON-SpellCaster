@@ -341,7 +341,7 @@ if apply_button:
         summary_col, viz_col = st.columns([1, 1.5], gap="medium")
         
         with summary_col:
-            st.markdown("### Cost Summary")
+            st.markdown("### 📊 Cost Summary")
             with st.container(border=True):
                 # Parse and display each line of the cost summary
                 lines = output_text.strip().split('\n')
