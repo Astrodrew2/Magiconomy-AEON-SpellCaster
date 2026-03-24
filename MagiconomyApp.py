@@ -235,7 +235,7 @@ with glyph_col:
         options=display_options,
         default=st.session_state.get("selected_glyphs", []),
         key="glyph_selector",
-        label_visibility="visible"
+        label_visibility="collapsed"
     )
 
 with modifier_col:
@@ -244,7 +244,7 @@ with modifier_col:
         "Select Modifiers",
         options=list(mod_dict.keys()),
         default=[],
-        label_visibility="visible"
+        label_visibility="collapsed"
     )
 
 # Update selected glyphs
