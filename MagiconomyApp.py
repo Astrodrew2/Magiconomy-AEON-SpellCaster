@@ -107,7 +107,8 @@ if show_tips:
 
 **View Modes:**
 - **Spell Caster:** Create and visualize spells with custom parameters
-- **Glyph Dictionary:** Browse the complete Magiconomy book and glyph reference guide
+- **Glyph Dictionary:** Browse the standard glyph reference guide
+- **Guide Book:** Browse the Magiconomy reference guide book for tips on creating a character and writing spells
 
 **Filtering Glyphs:**
 - **Books:** Select which spell books you have access to
