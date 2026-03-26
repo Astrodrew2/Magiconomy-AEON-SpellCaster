@@ -94,7 +94,7 @@ with col2:
 # ====================== VIEW MODE SELECTOR ====================== #
 view_mode = st.radio(
     "View Mode",
-    ["Spell Caster", "Glyph Dictionary"],
+    ["Spell Caster", "Glyph Dictionary", "Guide Book"],
     index=0,
     horizontal=True
 )
@@ -129,6 +129,12 @@ if show_tips:
 # ====================== GLYPH DICTIONARY VIEW ====================== #
 if view_mode == "Glyph Dictionary": 
     pdf_path = "Glyph_Dictionary(tobeupdated).pdf" 
+    render_pdf_as_images(pdf_path)
+    st.stop()
+
+# ====================== GUIDE BOOK VIEW ====================== #
+if view_mode == "Guide Book": 
+    pdf_path = "Magiconomy_Book.pdf" 
     render_pdf_as_images(pdf_path)
     st.stop()
 
