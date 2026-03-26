@@ -13,8 +13,8 @@ words_dict = {
     #LEY "glyph":"GlyphGraphics/Glyphs/Light.png"
     #Novice
     "Light": {"mastery":"Novice","level":1,"section":6,"AP":1, "range":60, "rt": 6, "comment": "instant, Emanate a light from your hand radially outward. It’s shine is almost calming", "chann":1, "book":1 },
-    "Charge D": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a weapon with MD ✨ equal to 2 × INT. When the effect wears off, the weapon turns to ash. Duration 3 turns", "chann":2, "book":1 },
-    "Charge R": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a piece of armor with MR 🪞 equal to 2 × INT. When the effect wears off, the armor turns to ash. Duration 3 turns", "chann":2, "book":1 },
+    "Charge D": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a weapon with MD ✨ equal to 1/2 × INT. When the effect wears off, the weapon turns to ash. Duration 3 turns", "chann":2, "book":1 },
+    "Charge R": {"mastery":"Novice","level":2,"section":6,"AP":2, "range":2, "rt": 2, "comment": "Imbue a piece of armor with MR 🪞 equal to 1/2 × INT. When the effect wears off, the armor turns to ash. Duration 3 turns", "chann":2, "book":1 },
     #Adept
     "Freeze": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":10, "rt": 4, "comment": "The Ley winds caught within your cast halt almost to a stand still inflicting 4 Slow on targets within your range", "chann":1, "book":1 },
     "Flame": {"mastery":"Adept","level":1,"section":6,"AP":1, "range":10, "rt": 3, "comment": "Energize the Ley winds you cast upon making that which it touches burn. Causes Burn.", "chann":1, "book":1 },
