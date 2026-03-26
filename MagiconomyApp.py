@@ -174,7 +174,7 @@ with filter_col1:
     chosen_books = st.multiselect(
         "Books (Filter Glyphs):",
         options=list(Book_list.keys()),
-        default=["All Books"],
+        default=["Book of Glyphs (Standard)"],
         key="book_filter",
         label_visibility="collapsed"
     )
